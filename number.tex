@@ -1,0 +1,356 @@
+\documentclass[11pt]{article}
+
+\usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{ragged2e}
+\usepackage{cancel}
+\usepackage{amssymb}
+\begin{document}
+
+\numberwithin{equation}{subsection}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Defintion}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+%\newcommand{\R}{\mathbb{R}}
+%\newcommand{\R}{\mathbb{Z}}
+%\newcommand{\R}{\mathbb{C}}
+%\begin{theorem}
+%\begin{theorem}
+
+\title{Number Theory}
+\author{Vinesh Ramgi}
+	%\date{}
+\maketitle
+\newpage
+\tableofcontents{}
+\newpage
+	\section{Introduction/Review}
+	\subsection{Introduction}
+	Number Theory is the theory of the ring $\mathbb{Z}$ and other related rings. A ring (in this course) is a set $R$ with two binary operations $+$ and $*$ such that:
+	\begin{itemize}
+		\item ($R$, $+$) is an abelian group
+		\item $*$ is associative, commutative and has an identity element $1$
+		\item $x(y+z) = xy + xz \hspace{10pt} \forall x,y,z \in \mathbb{R} $
+
+	\end{itemize}
+Examples of rings:
+	\begin{itemize}
+		\item $\mathbb{Z}$ is a ring
+		\item Every field is a ring, (e.g. $\mathbb{R}, \mathbb{C}, \mathbb{Q}$)
+		\item $\mathbb{Z}/n$ \hspace{10pt} $\mathbb{Z}$ modulo $n$ = \{$0, \dots, n-1$\}
+		\item $\mathbb{F}$[X] = \{ polynomials $f(x)$ with coefficients in $\mathbb{F}$
+
+
+	\end{itemize}
+	\subsection{Review}
+
+	\subsubsection{Congruences}
+	Let $n$ be a positive integer. Given $x,y \in \mathbb{Z}$, we say $x$ is congruentt to $y$ modulo $n$ if $x-y$ is a multiple of $n$.\\
+
+	$x \equiv y (n)$  \hspace{10pt} or \hspace{10pt} $x \equiv y$ mod $n$
+	
+	\begin{flushleft}
+	%\begin{align*}
+		\textbf{E.g} \hspace{10pt} $2 \equiv 12 \hspace{5pt} (10)$\\
+		\hspace{42pt}$\equiv  -8 \hspace{5pt} (10)$
+	%\end{align*}
+	\end{flushleft}
+	
+
+	We write $\mathbb{Z}/n$ for the ring of congruency classes modulo $n$, i.e. the elements are integer, with two of them regarded as the same if they are congruent modulo $n$.\\
+
+	Since every integer is congruent to a unique integer in the set $\{0,\dots, n-1\}$, we have $\mathbb{Z}/n = \{0,\dots, n-1\}$.
+
+	An element $x$ of $\mathbb{Z}/n $ is called "invertible" or a "unit" if $\exists y \in \mathbb{Z}/n$ such that $xy \equiv 1 (n)$.
+
+	\begin{theorem}
+$x$ is invertible modulo $n$ iff x and n are coprime
+	\end{theorem}
+	\textbf{Recall} Two numbers are coprime if their highest common factor is 1.
+
+	Here's how we find the inverse of $x$ in $\mathbb{Z}/n$. Since $X$ and $n$ are coprime we can find $h, k \in \mathbb{Z}$ such that $hx+kn = 1 \implies hx = 1 \hspace{5pt} (n)$. So h is the inverse of $x$ modulo $n$.
+
+	\begin{flushleft}
+		\textbf{E.g} We'll find the inberse of 7 modulo 25 using Euclid's algorithm
+
+		\begin{align*}
+			25 &= 3\times7 + 4   &1=4-1(3) \hspace{15pt}\\
+			7 &= 1\times4 + 3    &1= 4-1(7-1(4))&=2(4)-1(7)\\
+			4&= 1\times3+1	     &1 = 2(25-3(7)) - 1(7) &= 2(25) - 7(7)
+		\end{align*}
+
+		\begin{align*}
+			2(25) &- 7(7) = 1 \\
+			&-7(7) = 1 \hspace{5pt}(25) \\
+			\\(7^{-1}) &= -7= 18 \hspace{5pt} (25) \\
+			7\times 18 &= 126 = 1 \hspace{5pt} (25) 
+		\end{align*}
+	\end{flushleft}
+
+	We'll write $(\mathbb{Z}/n)^{\times}$ for the invertible elements in $\mathbb{Z}/n $\\
+\begin{flushleft}
+	%\begin{align*}
+		\textbf{E.g} \\ $(\mathbb{Z}/3)^{\times}$ = \{ \cancel 0, 1, 2 \}\\ 
+			$(\mathbb{Z}/6)^{\times}$ = \{ \cancel 0, 1, \cancel 2, \cancel 3, \cancel4, 5 \} 
+
+
+	%\end{align*}
+\end{flushleft}
+
+
+\begin{theorem}
+	$(\mathbb{Z}/n)^{\times}$ is a group with the operation of multiplicity.
+\end{theorem}
+
+	
+	
+	\subsubsection{Solving Linear Congruences}
+
+Suppose we want to solve $ax\equiv b \hspace{5pt} (n)$ (given $a,b$ and $n$).
+
+\begin{flushleft}
+	\textbf{Case 1:} If $a$ is coprime to $n$ then we can find $a^{-1}$ modulo $n$ by Euclid's algorithm,\\ \hspace{40pt} $x \equiv a^{-1}b \hspace{5pt} (n) $
+
+
+	\textbf{Case 2:} If $a$ is a factor of $n$, then there are two possibilities:\\
+	\hspace{40pt} \textbf{2a)} if $a$ is also a factor of $b$ then $ax \equiv b$ \hspace{3pt} $(n)$ is equivalent to $x = \frac{b}{a} \hspace{10pt} (\frac{n}{a})$\\
+	\hspace{40pt} \textbf{2b)} if $a$ is not a factor of $b$ then there are no solutions
+
+\end{flushleft}
+\newpage 
+\begin{flushleft}
+	\textbf{E.g.} Solve $5x = 11 \hspace{5pt} (13)$\\
+	This is case 1 because 5 and 13 are coprime
+	\begin{align*}
+		13 &= 2\times5 + 3   &1=(3) -1(2) \\
+		5 &= 1\times3 + 2 &1=(3) -1(5-1(3)) = 2(3) -(5)\\
+		3 &= 1\times2 + 1 & 1 =2(13 -2(5)) - (5) = 2(13)-5(5) \\
+	\end{align*}
+	\begin{align*}
+		1\equiv& -5(5) \hspace{10pt} (13)\\
+		 5^{-1} \equiv& -5 \equiv 8\hspace{10pt} (13)\\
+		 \\
+		5x\equiv& 11 \hspace{10pt} (13)\\
+		x \equiv 8 \times 11 \equiv& 88 \hspace{10pt} (13)\\
+		\\
+		x \equiv & 10 \hspace{10pt} (13)
+	\end{align*}
+\end{flushleft}
+
+\begin{flushleft}
+	\textbf{E.g.} Solve $7x \equiv 84 \hspace{10pt} (490)$\\
+	
+	\hspace{25pt} 7 is a factor of 490 so case 2)\\
+	\hspace{25pt} 7 is a factor of 84 so case 2a) \\
+	\vspace{5pt}
+	\hspace{25pt} $7x \equiv 84 \hspace{10pt}(490)$\\
+	\hspace{25pt} $x \equiv 12 \hspace{10pt} (70)$
+\end{flushleft}
+
+\begin{flushleft}
+	\textbf{E.g.} Solve $7x \equiv 85 \hspace{10pt} (490)$\\
+	\hspace{25pt} This is case 2b (7 is a factor of 490 but not of 85) $\therefore$ No solutions	    \\
+	\vspace{5pt}
+	\hspace{25pt} $7x \equiv 85 \hspace{10pt} (490)$\\
+	$\implies \hspace{2pt}7x = 85 + 490y $ for some $y \in \mathbb{Z}$\\
+	$\implies \hspace{2pt}0 \equiv 1 \hspace{10pt} (7) $
+\end{flushleft}
+
+
+\begin{flushleft}
+	\textbf{E.g.} Solve $6x \equiv 3 \hspace{10pt} (21) $\\
+	\hspace{22pt} This is neither case 1 nor case 2 but we can rewrite as: \\
+	\vspace{5pt}
+	\hspace{26pt}$3(2x) \equiv 3 \hspace{10pt} (21)$\\
+	\vspace{5pt}
+	\hspace{26pt}By case 2 we can solve for $2x \equiv 1 \hspace{10pt} (7) $\\
+	\hspace{26pt}but now 2 is invertible modulo 7 so now solve by case 1\\
+	\vspace{5pt} 
+	\hspace{26pt} $\therefore x\equiv 4 \hspace{10pt} (7)$
+\end{flushleft}
+
+\subsection{Chinese Remainder Theorem}
+Suppost we know the congruency class of $x$ modulo 10. Then we can work out its congruency class mod 2 and mod 5.\\
+\textbf{E.g.} if $x \equiv 7 \hspace{5pt}(10)$, then $x \equiv 1 \hspace{5pt} (2) $ and $x \equiv 2 \hspace{5pt} (5) $  \vspace{5pt}\\
+Then the Chinese Remainder Theorem allows us to do the opposite, i.e. if we know $x$ modulo 2 and modulo 5, then we can work out the value of $x$ modulo 10.\\
+\newpage
+Suppose $n$ \& $m$ are coprime positive integers, let $a \in (\mathbb{Z} / n)$ and $b \in (\mathbb{Z}/m)$ then there is a unique
+
+\hspace{10pt} $x \in (\mathbb{Z}/nm)$ such that $x \equiv a \hspace{10pt} (n)$\\
+\hspace*{136pt} $x \equiv b \hspace{10pt} (m)$ \\
+\textbf{Proof of existence part:}\\
+\vspace*{5pt}Since $n$ \& $m$ are coprime, we can find $h,k \in \mathbb{Z}$ such that $hn + km = 1$.\\
+\vspace{5pt}Let $x = hnb + kma$\\
+Check that this a solution to both congruences:
+	\begin{align*}	
+		\hspace{-15em} x &\equiv kma \hspace{10pt} (n) \\
+		\hspace{-15em} x &\equiv (1-hn)a \hspace{10pt} (n) \\
+		\hspace{-15em} x &\equiv (1)a \hspace{10pt} (n)\\ 
+		\hspace{-15em} x &\equiv a \hspace{10pt}(n) 
+	\end{align*}
+\vspace{5pt}Similarly, this holds for $x \equiv b \hspace{10pt} (m)$.\\
+\textbf{E.g.} Solve the simultaneous congruence:
+\begin{flushleft}
+	\hspace{10pt} $x \equiv 3 \hspace{10pt} (8)$\\
+	\hspace{10pt} $x \equiv 4 \hspace{10pt} (5)$
+\end{flushleft}
+By the Chinese Remainder Theorem, there is unique solution modulo 40. To find the solution we let $x = hnb + kma $. \\ First find $h,k$ by Euclid's algorithm.
+	\begin{align*}
+		8 &= 1\times5 + 3   &1=(3) -1(2) \\
+		5 &= 1\times3 + 2 &1=(3) -1(5-1(3)) = 2(3) -(5)\\
+		3 &= 1\times2 + 1 & 1 =2(8 -2(5)) - (5) = 2(8)-5(5) \\
+	\end{align*}
+	\begin{align*}
+		\hspace{-15em}\therefore x &= (2*8*4) - (3*5*3)\\
+		\hspace{-15em} x &= 64 - 45 \\ 
+		\hspace{-15em} \implies x &\equiv 19 \hspace{10pt} (40) 
+	\end{align*}
+
+Remark: We can use the Chinese Remainder Theorem to solvoe a congruence modulo $nm$, by first solving mod $n$ and then mod $m$ and then combining the results.\\
+\textbf{E.g.} Solve $x^{2} \equiv 2 \hspace{5pt} (119)$. Note 119 = 7 * 17.\\
+By CRT this is equivalent to:
+\begin{align*}
+	x^{2} & \equiv 2 \hspace{10pt}(7)  & \implies  x&\equiv \pm3 \hspace{10pt} (7)\\
+	x^{2} & \equiv 2 \hspace{10pt} (17) & \implies x&\equiv \pm6 \hspace{10pt} (17)
+\end{align*}
+
+Now we combine the solutions:
+\begin{align*}
+	17 & = 2*7+3  &1=&(7) - 2(3)\\
+	7 &= 2*3+1   &1 =&(7) - 2(17-2(7))\\
+	& &  1=&5(7) -2(17)
+\end{align*}
+Since 
+\begin{align*}
+	x &\equiv \pm 3\hspace{10pt}(7)  \hspace{50pt}\text{We get } x \equiv 5*7*(\pm 6) - 2*17*(\pm 3) \\
+	x &\equiv \pm 6 \hspace{10pt} (17) \hspace{81pt} x \equiv \pm 11 \text{  or} \pm 45 \hspace{10pt} (119) 
+\end{align*}
+
+\subsection{Prime numbers}
+
+\begin{definition}
+An integer $p\geq 2 $ is a prime number if the only factors of $p$ are $\pm 1, \pm p$
+\end{definition}
+
+We'll write $\mathbb{F}_p$ for $\mathbb{Z}/p$. This is because:
+\begin{theorem}
+	If p is prime, then $\mathbb{F}_p$ is a field 
+\end{theorem}
+
+\begin{proof}
+	Need to check that the non-zero elements of $\mathbb{F}_p$ all have inverses.\\
+	
+	Let $x \in \mathbb{F}_p$ with $x \not \equiv 0 \hspace{7pt}(p)$ i.e. $x$ is not a multiple of $p$\\
+	
+	$\therefore$ hcf($x,p$) $=1$\\
+	
+	$\therefore x$ \& $p$ coprime
+\end{proof}
+\subsection{Fermat's Little Theorem}
+\begin{theorem}
+	Let $p$ be a prime number. If $x$ is not a multiple of $p$ then $x^{p-1} \equiv 1 \hspace{7pt} (p)$
+\end{theorem}
+
+\begin{proof}
+	$x \in \mathbb{F}_{p}^{x} = \{1,2,\dots, p-1\}$ a group with $p-1$ elements.
+
+	Let $n$ be the order of $x$ in this group. 
+	
+	(order of $x$ is smallest $n>0$ such that $x^{n} \equiv 1 \hspace{7pt} (p) )$
+
+	By corollary to Lagrange's Theorem, $p-1$ is a multiple of $n$\\
+
+	$x^n \equiv 1\hspace{7pt} (p) $
+
+	$x^{p-1} \equiv 1 \hspace{7pt} (p)$
+\end{proof}
+\begin{theorem}
+Lagrange's Theorem: If $H$ is a subgroup of a finite group $G$, then $|H|$ is a factor of $|G|$.
+\end{theorem}
+
+\begin{corollary}
+Order of an element is a factor of $|G|$
+\end{corollary}
+We can use Fermat's Little Theorem to do calculations.\\
+\textbf{E.g.} Calculate $10^{100}$ modulo $19$\\
+
+By Fermat's Little Theorem: $10^{18} \equiv 1 \hspace{7pt} (19)$ 
+
+\begin{align*}
+	10^{100} &\equiv  (10^{18})^{5} * 10^{10} \hspace{7pt} (19)\\
+	& \equiv  100^{5}\hspace{7pt} (19)\\
+	& \equiv  5^5\hspace{7pt} (19) \\
+	& \equiv 25 * 125 \equiv 6*11 \equiv 9 \hspace{7pt} (19) 
+\end{align*}
+
+Also using Fermat's Little Theorem we can solve congruence of the form $x^a \equiv b\hspace{7pt} (p) $ as long as $p$ prime and $a$ inverible modulo $p-1$
+
+\subsubsection{General method to solve $x^a \equiv b\hspace{7pt} (p)$}
+
+
+Let
+\begin{align*} 
+c = a^{-1}\hspace{7pt} (p-1)\\
+	ac = 1+ (p-1)r
+\end{align*}
+Raise both sides of the congruence to power $c$:
+\begin{align*}
+	\therefore x^{ac}  &\equiv b^{c}\hspace{7pt} (p)\\
+	 x^{1+(p-1)r} &\equiv b^{c}\hspace{7pt}(p)\\
+	 x &\equiv b^{c}
+\end{align*}
+So the solution is $x \equiv b^c\hspace{7pt} (p)$\\
+\textbf{E.g.} Solve $x^5 \equiv 2\hspace{7pt} (19) $
+
+19 is prime and 5 is coprime to 18.
+
+Find $c = 5^{-1} $ mod $ 18$
+
+\begin{align*}
+	18 =& 3*5 +3& 1=& 2*3 - 5&\\
+	5 =& 2*3 - 1 & 1=&2(18-3*5) - 5&\\
+	& & 1=&2*18 - 7*5&\\
+	\\
+	&&\therefore 5^{-1} &\equiv -7\hspace{7pt} (18)\\
+	&&&\equiv 11\hspace{7pt} (18)\\ 
+	\therefore x &\equiv 2^{11}\hspace{7pt} (19)\\
+	& \equiv 2048 \hspace{7pt}(19)\\
+	& \equiv 15\hspace{7pt} (19)
+\end{align*}
+
+\subsection{Fundamental Theorem of Arithmetic}
+If $n$ is a positive integer then there is a unique factorisation, $n= p_1p_2\dots p_r$ with $p_i$ prime. "Unique" means up to reordering the primes $p_1$,$\dots$, $p_r$.
+Showing that a factorisation exists is easy. For the uniqueness part we use:
+
+\subsubsection{Euclid's Lemma}
+
+\begin{lemma}
+Suppose $p$ prime, and $p | ab$. Then $p| a$ or $p|b$.
+\end{lemma}
+To prove Euclid's lemma we use Bezout's lemma.
+\begin{proof}
+	Assume $p|ab$ but $p\not|\hspace{5pt}a $. Then hcf($a,p$) = 1
+	
+	By Bezout's lemma, $\exists h,k $ such that:
+	
+	$1 =ha + kp$ 
+
+	$b = hab + kpb$\hspace{50pt} Both $hab$ and $kpb$ are multiples of p. \\$\therefore p | b$
+\end{proof}
+
+\subsubsection{Checking whether a number is prime}
+If $n$ is composite then the smallest factor of $n$ is (apart from 1) is a prime number $p\leq \sqrt{n}$, i.e. to show that $n$ is prime, we just need to show that none of the primes up to $\sqrt{n}$ are factors of n.\\
+\textbf{E.g.} Is 199 prime? 
+
+$\sqrt{199} < 15$ since $15^2 = 225$\\
+The primes up to 15 are 
+
+
+
+
+	\end{document}
+ 
