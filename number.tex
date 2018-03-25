@@ -12,7 +12,11 @@
 \usepackage{wasysym}
 %position tables
 \usepackage{placeins}
+%use right curly braces
+\usepackage{mathtools}
+
 \begin{document}
+
 
 \numberwithin{equation}{subsection}
 \newtheorem{theorem}{Theorem}[section]
@@ -478,13 +482,58 @@ We'll use the theorem before we prove it.\\
 	\end{align*}
 \end{proof}
 
+\textbf{E.g.} Calculate $\phi(200)$
+\begin{align*}
+	\phi(200) &= \phi(2^3 * 5^2) &\hspace{300pt}\\
+	&= (2-1)2^{3-1} * (5-1)5^{2-1}\\
+	& = 4*4*5\\
+	& = 80
+\end{align*}
 
+\begin{theorem}
+	Suppose $n$ and $m$ are coprime, then $(\mathbb{Z}/nm)^\times \cong (\mathbb{Z}/n)^\times * (\mathbb{Z}/m)^\times$\\
+	The isomorphism is the map $x \mapsto (x \mod n, x \mod m)$
+\end{theorem}
 
+\textbf{E.g.} $n=4 $, $m=5$ 
+\begin{align*}
+	(\mathbb{Z}/4)^\times &= \{1,3\}\\
+	(\mathbb{Z}/5)^\times &= \{1,2,3,4\}\\
+	\therefore (\mathbb{Z}/4)^\times * (\mathbb{Z}/5)^\times &= \{ (1,1), (1,2), (1,3), (1,4),\\
+	&\hspace{20pt} (3,1), (3,2), (3,3), (3,4)\}\\
+	(\mathbb{Z}/20)^\times &= \{1,3,7,9,11,13,17,19\}
+\end{align*}
+The isomorphism is: 
+\begin{align*}
+	1&\mapsto(1,1)  &11\mapsto(3,1)\\
+	3&\mapsto(3,3)  &13\mapsto(1,3)\\
+	7&\mapsto(3,2)  &17\mapsto(1,2)\\
+	9&\mapsto(1,4)  &19\mapsto(3,4)
+\end{align*}
 
+\begin{proof}
+	Let $\Phi: \mathbb{Z}/nm \mapsto \mathbb{Z}/n * \mathbb{Z}/m$\\
+	\hspace{30pt} $\Phi(x) = (x\mod n, x \mod m)$ \\
+	\hspace{30pt} This is a bijection by the Chinese Remainder Theorem.\\
+	\hspace{30pt} We'll next show that $x$ is invertible mod $nm \iff x$ is invertible mod $n$ and mod $m$
+	$(\implies)$ Suppose $x$ is invertible mod $nm$ 
+	%\vspace{10pt}
+	\begin{align*}
+		\text{Let } xy &\equiv 1\hspace{7pt}(nm) \hspace{285pt}\\
+		\therefore xy & \equiv 1\hspace{7pt} (n)\\
+		xy &\equiv 1 \hspace{7pt} (m)\\
+	\end{align*}
+	\hspace{34pt} $\therefore x$ invertible mod $n$ and $m$ 
 
-
-
-
+	$(\impliedby) $ Suppose $x$ invertible mod $n$ and $m$
+	\begin{align*}
+		xa &\equiv 1\hspace{7pt} (n)\\
+		xb &\equiv 1\hspace{7pt} (n)\hspace{270pt}
+	\end{align*}
+	\hspace{36pt}By the Chinese Remainder Theorem, $\exists y$ such that $y \equiv a\hspace{7pt} (n)$\\ 
+	$\hspace{281pt} y \equiv b \hspace{7pt} (m)$
+	$\therefore xy \equiv xa \equiv 1 \hspace{7pt} (n)$
+\end{proof}
 
 
 
