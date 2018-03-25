@@ -5,8 +5,13 @@
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{ragged2e}
+%crossed out elements
 \usepackage{cancel}
 \usepackage{amssymb}
+%lightning symbol
+\usepackage{wasysym}
+%position tables
+\usepackage{placeins}
 \begin{document}
 
 \numberwithin{equation}{subsection}
@@ -347,7 +352,155 @@ If $n$ is composite then the smallest factor of $n$ is (apart from 1) is a prime
 \textbf{E.g.} Is 199 prime? 
 
 $\sqrt{199} < 15$ since $15^2 = 225$\\
-The primes up to 15 are 
+The primes up to 15 are $\cancel 2,\cancel 3,\cancel 5,\cancel 7,\cancel 11,\cancel 13$\hspace{20pt} 199 $\equiv$ 3\hspace{7pt} (7)
+
+\hspace{190pt} 199 $\equiv $ 4\hspace{7pt} (13) 
+
+\hspace{190pt} $\therefore$ 199 is prime
+
+\begin{theorem}
+There are infinitely many primes
+\end{theorem}
+
+\begin{proof}
+Suppose $p_1, \dots, p_n$ are all the primes.
+
+	\hspace{18pt}Let $N = p_1\dots p_n + 1$
+
+	\hspace{18pt}$\therefore N$ has no prime factors \lightning 
+\end{proof}
+\flushleft{}
+Similarly there are infinitely many primes $p \equiv 2 \hspace{7pt} (3)$
+\begin{proof}
+Assume there are only finitely many primes, call them $p_1,p_2,\dots,p_r$. All other primes\\ 
+	\hspace{31pt}	are either 3 or are congruent to 1 mod 3.
+	
+	\hspace{35pt}Let $N=3p\dots p_{r-1}$. Since $3 \not | \hspace{5pt}N$ and $p_i \not |\hspace{5pt} N $ then all the prime factor of $N$ are 
+	
+	\hspace{35pt}congruent to 1 mod 3.
+
+
+	\hspace{35pt}$\therefore N \equiv 1\hspace{7pt} (3) \implies$ because clearly $N \equiv 2\hspace{7pt} (3)$ 
+\end{proof}
+
+
+\newpage
+\section{Elementary Number Theory}
+
+\subsection{Euler Totient Function}
+Recall $(\mathbb{Z}/n)^\times$ is the group of invertible elements in $\mathbb{Z}/n$.
+
+\textbf{E.g.} $(\mathbb{Z}/6)^\times = \{ 1,6\} $
+
+\hspace{23pt} $(\mathbb{Z}/8)^\times = \{1,3,5,7\}$
+
+These are groups with the multiplication operation, * . The multiplication table for $(\mathbb{Z}/8)^\times$ is given below. 
+
+\centering
+	\begin{tabular}{l|llll}
+		* & \multicolumn{1}{l}{1} 
+		 & \multicolumn{1}{l}{3} 
+		 & \multicolumn{1}{l}{5} 
+		 & \multicolumn{1}{l}{7} \\ \hline
+		1 & 1 & 3 & 5 & 7 \\
+		3 & 3 & 1 & 7 & 5 \\
+		5 & 5 & 7 & 1 & 3 \\ 
+		7 & 7 & 5 & 3 & 1 \\ 
+	\end{tabular}
+
+
+\begin{definition}
+	The Euler Totient function is $\phi(n) = |(\mathbb{Z}/n)^\times | $
+\end{definition}
+\raggedright
+\begin{align*}	
+	\textbf{E.g.} \hspace{10pt}\phi(6) &= 2 &\hspace{200pt}\\
+	  \phi(8) &= 4 &\hspace{400pt}
+\end{align*}
+If $p$ prime then $(\mathbb{Z}/p)^\times = \{1, \dots, p-1 \}$ so  $\phi(p) = p-1$
+
+\begin{theorem}
+	Euler's Theorem- Let $x \in (\mathbb{Z}/n)^\times$ then $x^{\phi(n)} \equiv 1\hspace{7pt} (n) $ 
+\end{theorem}
+In the case $n=p$ is prime, this is just Fermat's Little Theorem.
+
+
+
+\begin{proof}
+	Let $d$ be the order of $x$, i.e. $x^{d} \equiv 1 \hspace{7pt} (n) $.
+	By a corollary to Lagrange's Theorem, $d$ is a factor of $\phi(n) \implies x^{\phi (n)} \equiv 1 \hspace{7pt} (n)$ 
+\end{proof}
+We can use Euler's theorem to solve congruences and calculate powers mod $n$. To use the theorem, we need a quick way of calculating $\phi(n) $.
+
+\begin{lemma}
+	Let $n=p^a$ where $p$ is prime $a>0$. Then $\phi(n) = (p-1)p^{a-1}$
+\end{lemma}
+\textbf{E.g.} $\phi(8) = \phi(2^3) = (2-1)2^{3-1} = 4$
+\begin{proof}
+An integer is coprime to $p^a$ as long as it's not a multiple of $p$.\\
+	$\therefore $ The elements of $\mathbb{Z}/p^a$ which are not invertible are the multiples of $p$. $0, p, 2p, \dots, p^a - p$.\\
+	There are $p^a-1$ of these:\vspace{10pt}\\
+	$\therefore |(\mathbb{Z}/p^a)^\times| = p^a - p^{a-1} = (p-1)p^{a-1}$
+\end{proof}
+
+
+\begin{theorem}
+	Let $n$ and $m$ be coprime. Then there is an isomorphism:
+	\begin{equation*}
+		(\mathbb{Z}/nm)^\times \cong (\mathbb{Z}/n)^\times * (\mathbb{Z}/m)^\times
+	\end{equation*}
+\end{theorem}
+We'll use the theorem before we prove it.\\
+
+\textbf{Remark}: If $G$ and $H$ are groups, $G\times H  = \{ (x,y): x \in G, y \in H \}$, then $G\times H$ is a group with the operation , $(x, y)(x',y') = (xx',yy')$ and $G \times H$ is the "direct product" of $G$ and $H$ 
+\begin{corollary}
+	If $n$ and $m$ are coprime then $\phi(nm) = \phi(n)\phi(m)$
+\end{corollary}
+\begin{proof}
+	\begin{align*}
+		\phi(nm) = | (\mathbb{Z}/n)^\times | &= |(\mathbb{Z}/n)^\times * (\mathbb{Z}/m)^\times |\\
+		&= |(\mathbb{Z}/n)^\times| * |(\mathbb{Z}/m)^\times|\\
+		&= \phi(n) \phi(m)
+	\end{align*}
+\end{proof}
+\begin{corollary}
+	(Corollary of the corollary): Suppose $n = p_{1}^{a_1} \dots p_{r}^{a_r}$ with $p_1, \dots p_r$ distinct primes and $a_i > 0 $. Then 
+	\begin{equation*}
+		\phi(n) = (p_1 - 1)p^{a_1 - 1} \hspace{2pt}* \dots *\hspace{2pt} (p_r - 1)p_{r}^{a_r -1} 
+	\end{equation*}
+\end{corollary}
+
+\begin{proof}
+	Since $p_1^{a_1}, \dots, p_r^{a_r}$ are coprime,\\
+	\begin{align*}
+		\phi(n) & = \phi(p_1^{a_1}) \dots \phi(p_r^{a_r})&\text{by the corollary}\\
+		& = (p_1 - 1)p_1^{a_1 - 1} \dots (p_r -1)p_r^{a_r-1} &\text{by the lemma} 
+	\end{align*}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
