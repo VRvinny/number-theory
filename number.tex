@@ -13,7 +13,11 @@
 %position tables
 \usepackage{placeins}
 %use right curly braces
-\usepackage{mathtools}
+%\usepackage{mathtools}
+
+
+
+\newenvironment{rcases}{\left.\begin{aligned}}{\end{aligned}\right\rbrace}
 
 \begin{document}
 
@@ -521,7 +525,7 @@ The isomorphism is:
 	\begin{align*}
 		\text{Let } xy &\equiv 1\hspace{7pt}(nm) \hspace{285pt}\\
 		\therefore xy & \equiv 1\hspace{7pt} (n)\\
-		xy &\equiv 1 \hspace{7pt} (m)\\
+		xy &\equiv 1 \hspace{7pt} (m)
 	\end{align*}
 	\hspace{34pt} $\therefore x$ invertible mod $n$ and $m$ 
 
@@ -532,8 +536,132 @@ The isomorphism is:
 	\end{align*}
 	\hspace{36pt}By the Chinese Remainder Theorem, $\exists y$ such that $y \equiv a\hspace{7pt} (n)$\\ 
 	$\hspace{281pt} y \equiv b \hspace{7pt} (m)$
-	$\therefore xy \equiv xa \equiv 1 \hspace{7pt} (n)$
+\begin{equation*}
+\begin{rcases}
+	\therefore xy &\equiv xa \equiv 1\hspace{7pt} (n)\\
+	&\equiv xb \equiv 1  \hspace{7pt} (m) \\
+\end{rcases}
+	\implies xy \equiv 1 \hspace{7pt}  (nm) \text{    by the Chinese Remainder Theorem} 
+\end{equation*}
+	We've shown that $\Phi$ gives a bijection between $(\mathbb{Z}/nm)^\times$ and $(\mathbb{Z}/n)^\times$ * $(\mathbb{Z}/m)^\times$. We'll next check that $\Phi (xy) = \Phi (x) \Phi (y)$.\\
+	\begin{align*}
+		\Phi(xy) &= (xy \mod n, xy \mod m)\\
+		& =(x \mod n , x \mod m) * (y \mod n, y \mod m)\\
+		&= \Phi (x) \Phi(y)
+	\end{align*}
 \end{proof}
+\subsection{Euler's Theorem}
+If $x \in (\mathbb{Z}/n)^\times $ then $x^{\phi{(n)}} \equiv 1\hspace{7pt} (n) $ and $	\phi(p_1^{a_1} \dots p_r^{a_r}) = (p_1-1) p^{a_1 -1} \dots (p_r-1)p_r^{a_r-1}$\\ \vspace{7pt}
+\textbf{E.g.} Calculate $7^{135246872002} \mod 10000$ 
+\begin{align*}
+	&7 \text{ coprime to  10000 so } 7^{\phi(10000)} \equiv 1\hspace{7pt} (10000) \hspace{180pt}\\
+	& 10000 = 2^4 *5^4\\
+	\therefore &\phi(10000) = (2-1)2^3 * (5-1)*5^3 = 8*500\\
+	&7^{4000} \equiv 1 \hspace{7pt}(10000) \implies 7^n \text{ depends only on } n \text{ mod 4000}\\
+	&135246872002 \equiv 2 (4000)\\
+	\therefore& 7^{135246872002} \equiv 7^2 \equiv 49\hspace{7pt} (10000)
+\end{align*}
+We can also use Euler's THeorem to solve congruence with powers
+\newpage
+\subsubsection{Solving equations of the form $x^{a} \equiv b \hspace{7pt} (n)$}
+
+
+Supose we want to solve $x^a \equiv b\hspace{7pt} (n)$ where $b$ is coprime to $ n$ and $a$ is coprime to $\phi(n)$. Clearly any solution $x$ must be coprime to $n$ by Euler's Theorem $x^{\phi(n)} \equiv 1\hspace{7pt} (n)$.\\
+$\therefore$ The congruency class of $x^y \mod n $ depends only $y \mod \phi(n)$ \\ \vspace{7pt}
+
+Let 
+
+\begin{equation*}
+	c =a^{-1} \mod \phi(n)
+\end{equation*}
+Raise both sides of the congruence to power $c$:
+\begin{equation*}
+	x^{ac} \equiv x^1 \equiv b^c\hspace{7pt} (n) 
+\end{equation*}
+$\therefore $ The solution is $x \equiv b^c \hspace{7pt} (n)$
+\\[1em]
+
+
+\textbf{E.g.} $x^7 \equiv 3\hspace{7pt}(50) $ 
+\\3 is coprime to 50,
+\begin{align*}
+	50 &= 2*5^2 \\ \implies \phi(50) &= 1*4*5 = 20
+\end{align*}
+7 is coprime to $\phi(50)$. To solve, we need to find
+\begin{align*}
+	c &\equiv 7^{-1} \mod \phi(50)\\
+	&\equiv 3 \hspace{7pt} (20) \\[1em]
+	x &\equiv 3^3 \equiv 27\hspace{7pt} (50) 
+\end{align*}
+
+
+\textbf{E.g.} $x^{27} \equiv 5\hspace{7pt} (123)$\\
+5 is coprime to 123,
+
+\begin{align*}
+	123 &= 3*41\\
+	\implies \phi(123) &= 2*40 = 80
+\end{align*}
+27 is coprime to 80
+
+To solve, we find $27^{-1} \mod 80$ 
+\begin{align*}
+	80 &= 3*27 - 1\\
+	\implies 1 &= 3*27 - 80 \\[1em]
+	27^{-1} &= 3\\[1em]
+	x &= 5^3\\
+	x &= 125 \equiv 2\hspace{7pt} (123)
+\end{align*}
+
+\subsection{Primitive roots}
+Recall, let $G$ be a finite froup. $G$ is called a cyclic group if $\exists x \in G$ such that, every element in $G$ has the form $x^n$ for some $n \in \mathbb{Z}$, i.e. $G = \{ 1,x,x^2, \dots , x^{n-1}\}$ where $n$ is the order of $x$, equivalentl the order of $x$ is $|G|$. The element $x$ is called a generator of $G$.
+
+\begin{theorem}
+	(Gauss' Theorem), For ever prime number $p$, the group $\mathbb{F}^{\times}_{p}$ is cyclic
+\end{theorem}
+\begin{definition}
+	A generator of $\mathbb{F}^{\times}_p$ is called a primitive root. Equivalently, this is an element of order $p-1$
+\end{definition}
+\textbf{E.g.} $p=7, x=3$ We'll see that 3 is a primitive root modulo 7
+\begin{align*}
+	\text{Powers of 3 in }F^{\times}_7: && 3^0 =1 && 3^3 \equiv 6 \hspace{7pt}(7) && 3^6 \equiv 1\hspace{7pt} (7)\\
+	&& 3^1= 3 && 3^4 \equiv 4 \hspace{7pt}(7) \\
+	&& 3^2 \equiv 2\hspace{7pt} (7) &&3^5 \equiv 1 \hspace{7pt} (7)
+\end{align*}
+so 3 is a primitive root modulo 7.
+There is a quicker way to check whether $x$ is a primitive root.
+
+\begin{proposition}
+	Let $x \in \mathbb{F}^{\times}_p$, then $x$ is a primitive root modulo $p$ if and only if for every prime factor $q$ of $p-1$:
+	\begin{equation*}
+		x^{\frac{p-1}{q}} \neq 1\hspace{7pt} (p)
+	\end{equation*}
+\end{proposition}
+
+\begin{proof}
+Assume the second statement is false, so $\exists$ prime factor $q$ of $p-1$ such that:
+	\begin{align*}
+		&x^{\frac{p-1}{q}} \equiv 1\hspace{7pt} (p) \hspace{0pt} &\therefore \text{order of } x \leq \frac{p-1}{q} < p-1\\
+&& \therefore x \text{ is not a primitive root}
+	\end{align*}
+Conversely, assume $x$ is not a primitive root, so $x$ doe not have order $p-1$. But the order of $x$ is a factor of $p-1$.\\
+Suppose the order of $x$ is $\frac{p-1}{d}$, $d>1$.\\
+
+Let $q$ be a prime factor of $d  \implies q | p-1$ \\
+
+	$\frac{p-1}{q}$ is a multiple of $\frac{p-1}{d}$ but $x^{\frac{p-1}{q}} \equiv 1\hspace{7pt} (p) \implies x^{\frac{p-1}{q}} \equiv 1 \hspace{7pt} (p)$
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
 
 
 
