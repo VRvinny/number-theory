@@ -14,10 +14,11 @@
 \usepackage{placeins}
 %use right curly braces
 %\usepackage{mathtools}
+%place text under sigmas and pi
+\usepackage{mathtools}
 
 
-
-\newenvironment{rcases}{\left.\begin{aligned}}{\end{aligned}\right\rbrace}
+\newenvironment{rcurly}{\left.\begin{aligned}}{\end{aligned}\right\rbrace}
 
 \begin{document}
 
@@ -537,10 +538,10 @@ The isomorphism is:
 	\hspace{36pt}By the Chinese Remainder Theorem, $\exists y$ such that $y \equiv a\hspace{7pt} (n)$\\ 
 	$\hspace{281pt} y \equiv b \hspace{7pt} (m)$
 \begin{equation*}
-\begin{rcases}
+\begin{rcurly}
 	\therefore xy &\equiv xa \equiv 1\hspace{7pt} (n)\\
 	&\equiv xb \equiv 1  \hspace{7pt} (m) \\
-\end{rcases}
+\end{rcurly}
 	\implies xy \equiv 1 \hspace{7pt}  (nm) \text{    by the Chinese Remainder Theorem} 
 \end{equation*}
 	We've shown that $\Phi$ gives a bijection between $(\mathbb{Z}/nm)^\times$ and $(\mathbb{Z}/n)^\times$ * $(\mathbb{Z}/m)^\times$. We'll next check that $\Phi (xy) = \Phi (x) \Phi (y)$.\\
@@ -614,7 +615,7 @@ To solve, we find $27^{-1} \mod 80$
 \end{align*}
 
 \subsection{Primitive roots}
-Recall, let $G$ be a finite froup. $G$ is called a cyclic group if $\exists x \in G$ such that, every element in $G$ has the form $x^n$ for some $n \in \mathbb{Z}$, i.e. $G = \{ 1,x,x^2, \dots , x^{n-1}\}$ where $n$ is the order of $x$, equivalentl the order of $x$ is $|G|$. The element $x$ is called a generator of $G$.
+Recall, let $G$ be a finite group. $G$ is called a cyclic group if $\exists x \in G$ such that, every element in $G$ has the form $x^n$ for some $n \in \mathbb{Z}$, i.e. $G = \{ 1,x,x^2, \dots , x^{n-1}\}$ where $n$ is the order of $x$, equivalentl the order of $x$ is $|G|$. The element $x$ is called a generator of $G$.
 
 \begin{theorem}
 	(Gauss' Theorem), For ever prime number $p$, the group $\mathbb{F}^{\times}_{p}$ is cyclic
@@ -653,20 +654,75 @@ Let $q$ be a prime factor of $d  \implies q | p-1$ \\
 
 \end{proof}
 
+\textbf{E.g.} $p=29$\\
+By the proposition $x$ is a primitive root mod 29 $\iff x^{28/2} \not \equiv 1\hspace{7pt} (29)$ and \\
+\hspace{259pt} $x^{28/7} \not \equiv 1 \hspace{7pt} (29)$\\[1em]
+
+\hspace{230pt} $\iff x^{14} \not \equiv 1 \hspace{7pt} (29) $ and\\
+\hspace{259pt} $x^4 \not \equiv 1\hspace{7pt} (29)$ 
 
 
+\begin{align*}
+	\text{Try }x=2: &&2^4 &\equiv 16 \not \equiv 1\hspace{7pt} (29)  \\
+	&& 2^{14} &\equiv 128^2 \equiv 12^2 \equiv 144 \equiv -1 \hspace{7pt} (29)\\
+	\therefore 2 \text{ is a primitive root mod 29}
+\end{align*}
+
+Another trick to speed up the calculation:\\
+$\mathbb{F}_p$ is a field $\therefore$ every polynomimal of $d$ has no more than $d$ in $\mathbb{F}$ (proved in 2201).\\
+\hspace{55pt} $\therefore$ if $x^2 \equiv 1 \hspace{7pt} (p)$ then $x \equiv \pm 1 \hspace{7pt} (p)$
+\\[1em]  
 
 
+This means that checking whether $x^{14} \equiv 1 \hspace{7pt}(29)$ is equivalent to checking whether $x^7 \equiv \pm 1 \hspace{7pt} (29)$.
+\\[1em]
 
+\textbf{E.g} 3 is also a primitive root modulo 29
 
+\begin{align*}
+	3^2& \equiv 9 \not \equiv \pm 1 \hspace{7pt} (29) &&&&&&&&&\\
+	3^4& \equiv 1 \hspace{7pt} (29)\\[1em]
+	3^7& \equiv 27^2 * 3 \hspace{7pt} (29)\\
+	&\equiv (-2)^2 * 3 \equiv 12 \hspace{7pt} (29)\\
+	&\equiv \pm 1 \hspace{7pt}(29) \\[1em]
+	&\therefore 3^{14} \not \equiv 1 \hspace{7pt} (29)
+\end{align*}
 
+\subsection{Roots of unity and Cyclotomic Polynomials}
+A complex number $\zeta$ is called an $n^{th}$ root of unity if $\zeta ^n = 1$. The $n^{th}$ roots of unity are $e^{2\pi i \frac{a}{n}}$ for $a = \{0, 1, \dots, n-1\} $\\
+We call $\zeta$ a primitive $n^{th}$ root of unity if $n$ smaller power than $\zeta^n$ is equal to 1, i.e. $\zeta$ has order $n$ in $\mathbb{C}^\times$ if $\zeta$ is not a primitive $n^{th}$ root of unity $\zeta = e^{2\pi i \frac{b}{d}}$ where $b = \{0,\dots, d-1\}$ for $d<n$\\
+$\therefore \frac{a}{n} = \frac{b}{d}$\\[1em]
+The cancellation happens when $a$ is not coprime to $n$. This shows that the primitive $n^{th}$ of unity are $e^{2\pi i \frac{a}{n}}$, $a \in (\mathbb{Z}/n)^\times$.
 
+\begin{corollary}
+	There are exactly $\phi(n)$ primitive $n^{th}$ roots of unity
+\end{corollary}
+We'll actually prove a more precise version of Gauss' Theorem.
+\begin{theorem}
+	For every factor $d$ of $p^{-1}$ there are $\phi(d)$ elements in $\mathbb{F}^{\times}_{p}$ of order d.
+\end{theorem}
+\begin{definition}
+	The $n^{th}$ cyclotomic polynomial is:
+	\begin{equation*}
+		\Phi_{n} (x) = \Pi_{\substack{\text{primtive }\\ n^{th} \text{roots}\\ \text{of unity } \zeta }  }(X- \zeta)  
+	\end{equation*}
+	i.e $\zeta ^n = 1 $ and no smaller power of $\zeta$ is 1, $\zeta = e^{2 \pi i \frac{a}{n} }, a \in (\mathbb{Z}/n)^\times$
+\end{definition}
+This has degree $\phi(n)$.\\[1em]
+\newpage{}
+\textbf{E.g.} n=4\\
+Primitive  $4^{th}$ roots of unity are $i,-i$:
+\begin{align*}
+	\Phi_4(x) &= (x-i)(x-(-i))&&&&&&\\
+	&= x^2 + 1
+\end{align*}
 
-
-
-
-
-
+\begin{lemma}
+	For every $n>0$
+	\begin{equation*}
+		x^n - 1 = \Pi_{\substack{\text{factors}\\ d \text{ of } n }} \Phi_{d} (x)
+	\end{equation*}
+\end{lemma}
 
 
 
