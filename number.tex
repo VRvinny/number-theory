@@ -718,22 +718,82 @@ Primitive  $4^{th}$ roots of unity are $i,-i$:
 \end{align*}
 
 \begin{lemma}
-	For every $n>0$
+	For every $n>0$:
 	\begin{equation*}
 		x^n - 1 = \Pi_{\substack{\text{factors}\\ d \text{ of } n }} \Phi_{d} (x)
 	\end{equation*}
 \end{lemma}
+\textbf{E.g.} Calculate $\Phi_6 (x)$
 
 
+\begin{align*}
+	\text{By the lemma} &&&& x^6 -1 &= \Phi_1 \Phi_2 \Phi_3 \Phi_6 &&&& x^6-1 = (x^3 - 1) \Phi_2 \Phi_6 \\
+	&&&& x^3 -1 &= \Phi_1 \Phi_3 
+\end{align*}
+\begin{align*}
+	\therefore \Phi_6 = \frac{x^6-1}{(x^3-1(x+1)} = \frac{x^3+1}{x+1} =x^2-x+1
+\end{align*}
+Let $p$ be a prime number. A primitive root mod $p$ is an $x \in \mathbb{F}_p^{\times}$, such that $x$ generates $\mathbb{F}^\times_p$. Equivalently order = $p-1$
 
+\subsubsection{How to calculate $\Phi_n(x)$}
+\begin{lemma}
+	$x^n - 1 = \Pi_{\substack{d|n}} \Phi_d(x)$ 
+\end{lemma}
 
+\textbf{E.g.} $n=4$
+\begin{align*}
+	x^4-1 &= \Phi_1 \Phi_2 \Phi_4 && && \Phi_1 = x-1\\
+	&&&&& \Phi_2 = (x-(-1)) = x+1\\
+	&&&&& \Phi_4 = (x-i)(x-(-i))= x^2+1\\
+	& =(x-1)(x+1)(x^2+1)
+\end{align*}
 
+\begin{proof}
+	\begin{equation*}
+x^n - 1 = \Pi_{\substack{\\\zeta \text{ is an }\\ n^{th} \text{ root of}\\ \text{unity}}} (x- \zeta)
+	\end{equation*}
+		
+		but every $n^{th}$ root of unity is a primitive $d^{th}$ root of unity for some $d|n$.\\
+	\begin{equation*}
+		x^{n} = \Pi_{\substack{d|n} } (\Pi_{\substack{\text{primitive} \\d^{th} \text{roots} \\ \text{of unity} }}  (x-\zeta) )= \Pi_{d|n} \Phi_x (x)
+	\end{equation*}
+\end{proof}
+\newpage
+\textbf{E.g.} Calculate $\Phi_5(x)$
+\begin{align*}
+	x^5-1  &= \Phi_1(x) \Phi_5(x) &&&&\\
+	&=(x-1) \Phi_5(x)\\[1em]
+	\Phi_5(x) &= \frac{x^5-1}{x-1} = 1+x+x^2+x^3+x^4 
+\end{align*}
+More generally if $p$ prime then $x^p-1 = (x-1) \Phi_p(x) \implies \Phi_p(x) = 1+x+\dots +x^{p-1}$
 
+\textbf{E.g.} Calculate $\Phi_8(x)$
+\begin{align*}
+	x^8-1 &= \Phi_1(x) \Phi_2(x) \Phi_4(x) \Phi_8(x) &&&&&\\[1em]
+	x^4-1 &= \Phi_1(x) \Phi_2(x) \Phi_4(x) \implies \Phi_8(x) = \frac{x^8-1}{x^4-1} = x^4+1 
+\end{align*} 
 
+\begin{corollary}
+	$\Phi_n(x)$ has coefficients in $\mathbb{Z}$
+\end{corollary}
 
+\begin{proof}
+	$\Phi_n(x)$ = \LARGE{$\frac{x^n-1}{\Pi_{\substack{d|n \\ d\neq n}}\Phi_d(x) }$}\\[0.5em]
+	\normalsize
+We'll prove the corollary by induction on $n$, clearly true when $n=1$. Assume $\Phi_d$ has integer coefficients $\forall d<n$.
 
+It is proved in Algebra 3 (MATH2201) that, if $f,g \in \mathbb{Z}[X] $ and $g$ monic then $f=qg+r$ where $deg(r) < deg(g)$ and $g,r \in \mathbb{Z}[x]$. \\
+Using this, we get that the denominator $\Pi_{\substack{ d|n \\ d \neq n}} \Phi_d (x) $ is a monic polynomial with coefficients in $\mathbb{Z} \implies \Phi_n \in \mathbb{Z}[X].$
+\end{proof}
 
+\subsubsection{Gauss' Theorem}
+\begin{theorem}
+	Let $n$ be a factor of $p-1$, where $p$ is prime. Then there are exactly $\phi(n)$ elements of order $n$ in $\mathbb{F}^\times_p$. These are the roots of $\Phi $ in $\mathbb{F}^\times_p$. In particular there are $\phi(p-1)$ primitive roots.
+\end{theorem}
 
+\begin{proof}
+sss
+\end{proof}
 
 
 
