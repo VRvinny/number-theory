@@ -38,7 +38,18 @@
 \title{Number Theory}
 \author{Vinesh Ramgi}
 	%\date{}
-\maketitle
+	\maketitle
+
+
+\newpage
+	\begin{abstract}
+
+		\centering{What did the number theorist say as he drowned?}\\[1em]
+		Log, log, log, log....\\[2em]
+
+		For an up to date version of this pdf, check my GitHub :)\\[1em]
+https://github.com/vrvinny/number-theory
+	\end{abstract}
 \newpage
 \tableofcontents{}
 \newpage
@@ -792,8 +803,115 @@ Using this, we get that the denominator $\Pi_{\substack{ d|n \\ d \neq n}} \Phi_
 \end{theorem}
 
 \begin{proof}
-sss
+	Let $f(x) = x^{p-1} -1$\\
+	By Fermat's Little theorem, $f(x) = 0 \hspace{7pt} (p) $ for $x=1,\dots, p-1 $ for $(x\neq 0)$ 
+	\begin{align*}
+		\therefore f(x) &= (x-1)(x-2)\dots (x-(p-1)) &&&&&&&&&&&&&&&&&&&\\
+		&= \Pi_{\substack{n|p-1}} \Phi_n (x)
+	\end{align*}
+	This implies that:
+	\begin{itemize}
+		\item{Each $\Phi_n $ (for $n|p-1$) factorises completely into linear factors with no repeated roots\\ $\therefore \Phi_n $ has $\phi(n)$ roots in $\mathbb{F}_p$  }
+		\item{Every element of $\mathbb{F}^\times_p$ is a root of exactly one of the polynomials $\Phi_n$ with $n|p-1$ } 
+	\end{itemize}
+	It remains to show that the roots of $\Phi_n(x)$ in $\mathbb{F}_p$ has order of exactly $n$.\\
+	Suppose $\Phi_n(x) \equiv 0 \hspace{7pt}(p)$\\[1em]
+	By the lemma $\Phi_n(x)$ is a factor $x^n -1$ \\
+	\hspace{140pt} $\therefore x^n - 1 \equiv 0 \hspace{7pt}(p)$\\
+	\hspace{140pt} $\therefore x^n \equiv 1 \hspace{7pt} (p)$\\[1em]
+	Suppose $x^m \equiv 1 \hspace{7pt} (p) $ for some $m|n$, $m<n$\\[0.5em]
+	\hspace{12pt} $\implies x^m - 1 \equiv 0 \hspace{7pt} (p)$\\[1em]
+
+	By the lemma $\Pi_{\substack{d|m}}\Phi_d(x) \equiv 0 \hspace{7pt} (p)$\\[0.5em]
+	\hspace{41pt} $\implies \Phi_d(x) \equiv 0\hspace{7pt} (p)$ for some $d$ \hspace{7pt}\lightning \\
+We already know that $x$ is only a root of 1 of the cyclotomic polynomials, therefore $x$ has order $n$. 
 \end{proof}
+
+
+\subsection{Quadratic reciprocity (Quadratic equations modulo prime numbers)}
+Recall we can solve $x^a \equiv b\hspace{7pt} (p)$ as long as $a$ is coprime to $p-1$. This won't work if $a=2$ because $a$ will not be invertible mod $p-1$. An easier question to ask is, which quadratic equations have solutions modulo $p$?\\
+\textbf{E.g.} Does $x^2 \equiv 37 \hspace{7pt} (149)$ have solutions?\\[1em]
+
+Notation: We always let $p$ be an odd prime (i.e. $p\neq 2$)\\[0.5em]
+
+An element $a \in \mathbb{F}^\times_p $ is a quadratic residue if $x^2 \equiv a \hspace{7pt} (p)$ has solutions.
+
+An element $a \in \mathbb{F}^\times_p $ is a quadratic non-residue if there are no solutions. \\[1em]
+The quadratic residue symbol is defined for $a \in \mathbb{F}^\times_p$ by
+
+\begin{equation*}
+(\frac{a}{p}) =
+\begin{cases}
+		1 \hspace{11pt} \text{ a quadratic residue}\\
+		-1 \hspace{7pt} \text{a quadratic non-residue}
+\end{cases}
+\end{equation*}
+
+\begin{lemma}
+	Let $g$ be a primitive root modulo $p$ ($p$ odd prime). Then $g^r$ is a quadratic residue iff $r$ even.
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+		(\impliedby)& \text{Assume }r \text{ even} &&&&&(\implies) &\text{Assume }g^r\equiv x^2 \hspace{7pt} (p)\\
+		&\text{Clearly } g^r \text{ is a square in } \mathbb{F}^\times_p &&&&&& x\equiv g^s \hspace{7pt} (p) \hspace{15pt} (s \in \mathbb{Z}) \text{ since } g \text{ primitive roots}\\
+		&\text{So }g^r \text{ is a quadratic residue} &&&&& \therefore & g^r \equiv g^{2s} \hspace{7pt} (p)\\
+		& &&&&& & g^{r-2s} \equiv 1 \hspace{7pt} (p)\\
+		& &&&&& & g \text{ has order } p-1 \text{ ,so } r-2s \text{ is a multiple of }p-1 \\
+		& &&&&& & p\text{ odd } \implies p-1 \text{ is even }\implies r \text{ is even}
+	\end{align*}
+\end{proof} 
+\newpage
+\textbf{E.g.} $p=7$\\[1em]
+
+%\begin{minipage}{.5\linewidth}
+
+	
+	\begin{tabular}{cc}	
+\begin{tabular}{l|l}
+	\centering
+	$x$     & $x ^2 \mod 7$ \\ \cline{1-2}
+	$\pm 1$ & 1              \\
+	$\pm 2$ & 4              \\
+	$\pm 3$ & 2               
+\end{tabular}
+%\end{minipage}
+	$\implies $ \hspace{25pt}
+
+\begin{tabular}{l|l}
+	$a$ & $(\frac{a}{7})$ \\\cline{1-2}
+	1 & 1   \\
+	2 & 1   \\
+	3 & -1  \\
+	4 & 1   \\
+	5 & -1  \\
+	6 & -1 
+\end{tabular}
+\end{tabular}
+	\\[1em]So 1,2,4 are quadratic residues; 3,4,6 are quadratic non-residues\\
+
+
+
+\begin{corollary}
+	There are exactly $\frac{p-1}{2}$ quadratic residues and $\frac{p-1}{2}$ quadratic non-residues mod $p$
+\end{corollary}
+
+\begin{definition}
+	Euler's criterion: Let $p$ be an odd prime and $a \in \mathbb{F}^\times_p \implies (\frac{a}{p}) \equiv a^{\frac{p-1}{2}} \hspace{7pt} (p)$\\
+	Also $(\frac{ab}{p}) = (\frac{a}{p}) (\frac{b}{p})$
+\end{definition}
+\begin{proof}
+
+\end{proof}
+
+
+
+
+
+
+
+
+
 
 
 
