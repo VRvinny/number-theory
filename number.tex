@@ -988,19 +988,58 @@ So 35 is a primitive root modulo 83.
 	Both sides are $\pm 1$, and $+1 \not \equiv -1 \hspace{7pt} (p) $ because $p\geq 3 \implies$ they are equal.
 \end{proof}
 
+\textbf{E.g.} Find the first primitive root modulo 41\\
+$40 = 2^3  * 5 $ 
 
 
+\begin{equation*}
+	x\in \mathbb{F}^{\times}_{41}  \text{ is a primitive root} \iff 
+	\begin{cases}
+		x^{\frac{40}{2}} \not \equiv 1 \hspace{7pt}(41)\\
+		x^{\frac{40}{5}} \not \equiv 1 \hspace{7pt}(41) 
+	\end{cases}
+\end{equation*}
+\begin{equation*}
+	\text{We can then simplify the conditions to:    }
+	\begin{cases}
+		\frac{x}{41} = -1\\
+		x^4 \not \equiv \pm 1 \hspace{7pt} (41)
+	\end{cases}
+\end{equation*}
+
+\begin{align*}
+	\text{Try } x=2: \hspace{10pt} &(\frac{2}{41}) = 1  && && \implies \text{not a primitive root} \\
+	\text{Try } x=3:  \hspace{10pt}&  (\frac{3}{41}) = (\frac{41}{3}) = (\frac{2}{3}) = -1 && \text{and } 3^4 = 81 \equiv -1\hspace{7pt} (41) &&\implies \text{not a primitive root}\\
+	\text{Try } x=4: \hspace{10pt}&&&&& \implies \text{not a primitive root}\\
+	\text{Try } x=5 \hspace{16pt}& (\frac{5}{41}) = (\frac{41}{5}) = (\frac{1}{5}) = 1 &&&& \implies \text{not a primitive root}\\
+	\text{Try } x =6:  \hspace{10pt} &(\frac{6}{41}) = (\frac{2}{41}) (\frac{3}{41})= 1 * -1 =-1 \\
+	&2^4 * 3^4 = -2^4 \equiv 16 \hspace{7pt} (41) \not \equiv \pm 1  &&&& \implies \text{so 6 is a primitive root} 
+\end{align*}
+\\[1em]
+
+\textbf{E.g.} For which primes $p$ does the congruence $x^2 \equiv -3 \hspace{7pt} (p)$ have solutions? 
+\\[0.5em]
+Notice $x=1$ is a solution mod 2,\\
+\hspace{30pt} $x=2$ is a solution mod 3.\\
+
+For primes $p \neq 2,3 $ it depends on $(\frac{-3}{p})$\\
 
 
-
-
-
-
-
-
-
-
-
+\begin{align*}
+	\text{We'll calculate $(\frac{-3}{p})$} && (\frac{-3}{p}) &= (\frac{-1}{p})   (\frac{3}{p})\\
+	&&&= (-1)^{\frac{p-1}{2}} (\frac{3}{p})\\
+	&&&= (-1)^{\frac{(3-1)(p-1)}{4}}(\frac{p}{3})\\
+	&&&= (\frac{p}{3})
+\end{align*}
+List the squares mod 3, $1^2 = 1 \hspace{7pt} (3), 2^2 = 1 \hspace{7pt} (3) $
+\begin{equation*}
+	\therefore (\frac{p}{3}) = 
+	\begin{cases}
+		1  &\text{if $p\equiv1 \hspace{7pt} (3)$}\\
+		-1 & \text{if $p\equiv 2 \hspace{7pt} (3)$} 
+	\end{cases}
+\end{equation*}
+We've shown that $x^2 \equiv -3\hspace{7pt} (p)$ has solutions iff $p \neq 2 \text{ or } p \equiv 1 \mod 3$ .
 
 
 
