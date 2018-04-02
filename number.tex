@@ -901,8 +901,99 @@ The quadratic residue symbol is defined for $a \in \mathbb{F}^\times_p$ by
 	Also $(\frac{ab}{p}) = (\frac{a}{p}) (\frac{b}{p})$
 \end{definition}
 \begin{proof}
-
+	$(a^{\frac{p-1}{2}})^2 \equiv 1 \hspace{7pt} (p)$ by Fermat's Little theorem.\\[1em] 
+	\hspace{25pt}$\therefore a^\frac{p-1}{2} \equiv \pm 1 \hspace{7pt} (p)$\\[0.5em]
+	Let $a= g^r $ where $g$ is a primitive root $\implies a^{\frac{p-1}{2}} \equiv g^{(p-1)\frac{r}{2}}$
+	\begin{align*}	
+		a \text{ is a quadratic residue} &\iff r \text{ is even} &&&&&\\
+		&\iff (p-1)\frac{r}{2} \text{ is a multiple of } p-1 \\
+		&\iff g^{(p-1)\frac{r}{2}} \equiv 1 \hspace{7pt} (p)\\
+		&\iff a^{\frac{p-1}{2}} \equiv 1 \hspace{7pt} (p)
+	\end{align*}
 \end{proof}
+To calculate $(\frac{a}{p})$, we'll use three theorems:
+
+\subsubsection{Quadratic Reciprocity Law}
+Let $p,q$ be distinct odd prime numbers. Then $(\frac{p}{q}) = (-1)^{\frac{(p-1)(q-1)}{4}}$
+
+
+
+
+\large
+\begin{equation*}
+	\text{i.e.} \hspace{7pt} (\frac{p}{q}) =  
+	\begin{cases}
+		(\frac{q}{p}) &\text{ if } p \equiv 1 \hspace{7pt} (4) \text{ or } q \equiv 1\hspace{7pt} (4)\\
+		-(\frac{q}{p}) &\text{ if } p \equiv q \equiv -1 \hspace{7pt} (4)
+	\end{cases}
+\end{equation*}
+
+\subsubsection{First Nebensatz}
+\normalsize If $p$ is an odd prime, then $(\frac{-1}{p}) = (-1)^{\frac{p-1}{2}}$
+\large
+\begin{equation*}
+	\text{i.e.} \hspace{7pt} (\frac{-1}{p}) = 
+	\begin{cases}
+		1 & p \equiv 1\hspace{7pt} (4)\\
+		-1 & p \equiv -1 \hspace{7pt} (4)
+	\end{cases}
+\end{equation*}
+
+\subsubsection{Second Nebensatz}
+\normalsize Let $p$ be an odd prime, then $(\frac{2}{p}) = (-1)^{\frac{p^2 - 1}{ 8}}$
+\large
+\begin{equation*}
+	\text{i.e.} \hspace{7pt} (\frac{2}{p}) = 
+	\begin{cases}
+		1 & p \equiv \pm 1\hspace{7pt} (8)\\
+		-1 & p \equiv \pm 3 \hspace{7pt} (8) 
+	\end{cases}
+\end{equation*}
+\normalsize
+We'll prove the theorems later. \\[1em]
+
+\textbf{E.g.} Does the congruence $x^2 \equiv 37 \hspace{7pt} (199)$ have solutions?
+
+\begin{align*}
+	199 \text{ is an odd prime } (\frac{37}{199})&= +(\frac{199}{37}) &\text{ by quadratic reciprocity}\\
+	&\equiv (\frac{14}{37}) &\text{ because } 199 \equiv 14\hspace{7pt} (37)\\
+	&\equiv (\frac{2}{37}) (\frac{7}{37}) &\text{by the corollary}\\
+	&\equiv (-1) (\frac{7}{37}) &\text{by the }2^{nd} \text{ Nebensatz}\\
+	&\equiv (-1)(+1) (\frac{37}{7}) &\text{by the quadratic reciprocity law}\\
+	&\equiv -(\frac{2}{7}) &\text{because }37\equiv 2 \hspace{7pt} (7)\\
+	&\equiv - (+1) &\text{by the } 2^{nd} \text{ Nebensatz} \\
+	&\equiv -1 &\therefore x^2\equiv 37\hspace{7pt} (199) \text{ has no solutions}
+\end{align*}
+\textbf{E.g.} $x^2 \equiv 47 \hspace{7pt} (53) $ have solutions?
+\begin{align*}
+	(\frac{47}{53}) = +(\frac{53}{47}) = (\frac{6}{47}) = (\frac{2}{47})(\frac{3}{47}) = (+1)(-1) (\frac{47}{3}) = -(-\frac{1}{3}) = -(-1) = +1
+\end{align*}
+This shows that 47 is a quadratic residue mod 53, so $x^2 \equiv 47 \hspace{7pt}(53)$ does have solutions. $(x=10)$\\[1em]
+
+We can speed up the test for primitive roos using quadratic reciprocity,
+\begin{align*}
+	x \text{ is a primitive root mod }p \iff \forall q | p-1, q \text{ prime } x^{\frac{p-1}{q}} \not \equiv 1 \hspace{7pt} (p)
+\end{align*}
+This means we need to calculate $x^{\frac{p-1}{q}} \hspace{7pt} (p)$ for primes $q | p-1$, the biggest power of $x$ to calculate is $x^{\frac{p-1}{2}}$. But we can calculate this, because it is $(\frac{x}{p})$ by Euler's criterion.\\[0.5em]
+
+\textbf{E.g.} Is 35 a primitive root modulo 83?\\[0.5em]
+The primes $q$ dividing 82 are $2,41$, need to check $35^2, 35^{41}$\\
+$35^2 \not \equiv 1 \hspace{7pt} (83) $ because $35 \not \equiv \pm 1 \hspace{7pt} (83)$, a quadratic equation cannot have more than 2 roots.\\
+$35^{41} \equiv (\frac{35}{83} ) \hspace{7pt} (83) = (\frac{5}{83}) (\frac{7}{83}) = (\frac{83}{5}) (-1) (\frac{83}{7}) = (\frac{3}{5}) (-1) (\frac{-1}{7}) = (\frac{5}{3}) (-1)(-1) = (\frac{2}{3})$  $= -1 \not \equiv 1 \hspace{7pt} (83)$ \\
+So 35 is a primitive root modulo 83.
+
+\begin{proof}
+	\textit{First Nebensatz:} \\
+	By Euler's criterion, $(\frac{-1}{p}) \equiv (-1)^{\frac{p-1}{2}} \hspace{7pt}(p)$. \\ 
+	Both sides are $\pm 1$, and $+1 \not \equiv -1 \hspace{7pt} (p) $ because $p\geq 3 \implies$ they are equal.
+\end{proof}
+
+
+
+
+
+
+
 
 
 
