@@ -1095,6 +1095,102 @@ Let $m \in \mathbb{Z}[X]$ be monic and irreducible over $\mathbb{Q}$ of degree $
 The uniqueness lemma for $\mathbb{Z}[\zeta]$ follows because $\zeta$ is a root of $m(x)= \Phi_8(x) = x^4 +1$. It is proved in (7202 Groups \& Rings) that $x^4 +1$ is irreducible over $\mathbb{Q}$.
 
 
+\begin{proof}
+	(General Uniqueness Lemma)\\[0.5em]
+	Let $A \in \mathbb{Z}[\alpha]$ and $m(\alpha) = 0$
+	\begin{align*}
+		\text{Existence: } && &A= f(\alpha) \text{ for some } f \in \mathbb{Z}[X] \hspace{100pt}\\[0.5em]
+		&& &\text{divide $ f $ by $m$ with remainder, } f=q*m+r  && deg(r)<deg(m)<d \\[0.5em]
+		\therefore &&&f(\alpha) = q(\alpha) m(\alpha) +r(\alpha)\\[0.5em]
+		\therefore &&& A=r(\alpha)\\
+	\end{align*}
+	\begin{align*}
+		\text{Uniqueness: } &&&\text{Suppose }A=f(\alpha) = g(\alpha) \hspace{7pt} (f\neq g) \text{ where $f$ \& $g$ both have degree} <d\\[0.5em]
+		\therefore &&&h(\alpha) = 0 \text{ where } h=f-g \hspace{7pt}(\neq 0) \\[0.5em]
+		&&& m\text{ is irreducible over $\mathbb{Q}$ and has a bigger degree than $h$}\\[0.5em]
+		\therefore&&& m \not |\hspace{3pt} h \text{ in } \mathbb{Q}[x] \text{, so $m$ and $h$ are coprime in $\mathbb{Q}[x]$}\\[1em]
+		&&&\exists a,b \in \mathbb{Q}[x] \text{ such that :}\\[0.25em]
+		&&& 1= am +bh = a(\alpha)m(\alpha)+b(\alpha)h(\alpha) = 0  \hspace{100pt} m(\alpha)= 0 &&h(\alpha)=0\\[0.25em]
+		\implies&&& 1=0 \\[0.1em]
+		\implies&&& f=g
+	\end{align*}
+\end{proof}
+
+
+\begin{lemma}
+In any ring $R$ with any prime $p$
+	\begin{equation*}
+		(x+y)^p \equiv x^p +y^p\hspace{7pt} (pR) \text{ for any } x,y \in R 
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+Sufficient to show that each binomial coefficient:
+	\begin{align*}
+		c=\frac{p!}{i!(p-i)!} && i =1,2,\dots,p-1 \text{ is a multiple of p}
+	\end{align*}
+	\begin{align*}
+		i!(p-i)! \not \equiv 0 \hspace{7pt} (p) \implies  \in \mathbb{F}^\times_p
+	\end{align*}
+\end{proof}
+
+\newpage{}
+\begin{proof}
+	$2^{nd}$ Nebensatz\\[1em]
+
+	Let $p$ be an odd prime and let $G = \zeta + \zeta^{-1} = \sqrt{2}$. We'll calculate $G^p$  $mod$  $ (p\mathbb{Z}[\zeta]) $ in two ways.\\
+
+	\textbf{First Calculation: }
+	\begin{align*}
+		G^P &= (\zeta + \zeta^{-1})^p\\
+		&= \zeta^p + \zeta^{-p} \mod (p\mathbb{Z}[\zeta]) \text{ by the lemma}\\
+	\end{align*}
+	Since $\zeta^8 = 1$ this only depends $p$ modulo 8 if $p \equiv \pm 1 (8)$ then, 
+	\begin{align*}
+		G^p = \zeta + \zeta^{-1} \equiv G \hspace{7pt}(p\mathbb{Z}[\zeta])\\
+	\end{align*}
+	If $p\equiv \pm 3 \hspace{7pt}(8)$ then, 
+	\begin{align*}
+	G^p \equiv \zeta^3 + \zeta^{-3} \equiv -G \hspace{7pt}(p\mathbb{Z}[\zeta])
+	\end{align*}
+	So in summary, 
+
+	\begin{align*}
+		G^{p} \equiv (-1)^{\frac{p^2-1}{8}}G \hspace{7pt}(p\mathbb{Z}[\zeta])
+	\end{align*}
+	\textbf{Second calculation:}\\[1em]
+	Since $G^2 = 2$,
+	\begin{align*}
+		G^p &= G * 2^{\frac{p^2-1}{2}} \\
+		&= G * (\frac{2}{p})\hspace{7pt} (p\mathbb{Z}[\zeta]) \text{ by Euler's criterion} 
+	\end{align*}
+Comparing the results of these two calculations we get:
+	\begin{align*}
+		(\frac{2}{p}) G = (-1)^{\frac{p^2 -1}{8}} G \hspace{7pt}(p\mathbb{Z}[\zeta])
+	\end{align*}
+
+	Note $G^2 * \frac{p+1}{2} \equiv 1 \hspace{7pt}(p\mathbb{Z}[\zeta])$, i.e. $G$ is invertible modulo $p\mathbb{Z}[\zeta]$ with inverse $G*\frac{p+1}{2}$
+	\begin{align*}
+		\implies & (\frac{2}{p}) \equiv (-1)^{\frac{p^2-1}{8}} \hspace{7pt}(p\mathbb{Z}[\zeta])\\
+	\end{align*}
+
+		\text{Since $1 \equiv -1\hspace{7pt} (p\mathbb{Z}[\zeta])$}, 
+	\begin{align*}
+		(\frac{2}{p}) = (-1)^{\frac{p^2 -1}{8}}
+	\end{align*}
+\end{proof}
+The proof of the $2^{nd}$ Nebensatz worked because $\sqrt{2} \in \mathbb{Z}[\zeta]$
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
