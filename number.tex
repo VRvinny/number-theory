@@ -1157,7 +1157,7 @@ Sufficient to show that each binomial coefficient:
 	\begin{align*}
 		G^{p} \equiv (-1)^{\frac{p^2-1}{8}}G \hspace{7pt}(p\mathbb{Z}[\zeta])
 	\end{align*}
-	\textbf{Second calculation:}\\[1em]
+	\textbf{Second Calculation:}\\[1em]
 	Since $G^2 = 2$,
 	\begin{align*}
 		G^p &= G * 2^{\frac{p^2-1}{2}} \\
@@ -1178,14 +1178,106 @@ Comparing the results of these two calculations we get:
 		(\frac{2}{p}) = (-1)^{\frac{p^2 -1}{8}}
 	\end{align*}
 \end{proof}
-The proof of the $2^{nd}$ Nebensatz worked because $\sqrt{2} \in \mathbb{Z}[\zeta]$
+The proof of the $2^{nd}$ Nebensatz worked because $\sqrt{2} \in \mathbb{Z}[\zeta]$\\
+To prove the quadratic reciprocity law, we'll show that $\sqrt\pm p)$ is in another cyclotomic ring
+\newpage
+	Let $\zeta_p = e^{\frac{2\pi i }{p}} $, a primtive $p^{th}$ root of unity. We'll work in the ring modulo $q\mathbb{Z}[\zeta]$.
 
+	\begin{definition}
+		The $p^{th}$ Gauss sum (where $p$ is an odd prime):\large
+		\begin{equation*}
+			G(p) = \sum_{a=1}^{p-1}(\frac{a}{p})\zeta^a_p \in \mathbb{Z}[\zeta_p]
+		\end{equation*}
 
+	\end{definition}
+		\normalsize
+		\begin{lemma}
+			$G(p)^2 = (-1)^{\frac{p-1}{2}}$ 
+		\end{lemma}
+\begin{proof}
+		\begin{align*}
+			G(p)^{2} &= \Bigg(\sum^{p-1}_{a=1} (\frac{a}{p}) \zeta^a_p\Bigg)\Bigg(\sum^{p-1}_{b=1} (\frac{b}{p}) \zeta^b_p \Bigg) \\
+			&= \sum_{a,b \in \mathbb{F}^\times_p}(\frac{a}{p})(\frac{b}{p})  \zeta^a_p \zeta^b_p\\
+			&= \sum_{a,b \in \mathbb{F}^\times_p} (\frac{ab}{p})\zeta^{a+b}_p\\	
+			\intertext{Let $c\equiv a^{-1}b \hspace{7pt} (p)$, as $b$ runs through $\mathbb{F}^\times_p$, so does $c$}
+			&= \sum_{a,c \in \mathbb{F}^\times_p} (\frac{a^2}{p}) \zeta^{a+ac}_p\\
+			&= \sum_{c \in \mathbb{F}^\times_p} (\frac{c}{p})\bigg( \sum_{a=1}^{p-1} (\zeta^{1+c}_p)^a\bigg)
+		\end{align*}
+		Note the second summation is a geometric progression. Recall that,
+	\begin{align*}
+		\sum^{p-1}_{i=1} r^i = 
+		\begin{cases}
+			\cfrac{r^p -1}{r-1} &r \neq 1\\
+			p-1 & r=1
+		\end{cases}
+	\end{align*}
+	Summing the geometric progression:
 
+	\begin{align*}
+		\sum_{a=1}^{p-1} \big(\zeta^{1+c}_p\big)^{a} =& 
+		\begin{cases}
+			\cfrac{\big(\zeta_p^{1+c} \big)^p - \zeta^{1+c}_p }{\zeta^{1+c}_p - 1} & \text{if } c \not \equiv 1 \hspace{7pt} (p)\\
+			p-1 & \text{if } c \not \equiv -1 \hspace{7pt} (p)
+		\end{cases}
+		\\[1em] =&
+		\begin{cases}
+			-1 &c \not \equiv -1 \hspace{7pt} (p)\\
+			p-1 & c \equiv -1 \hspace{7pt} (p)
+		\end{cases}
+	\end{align*}
+	\newpage
+	\begin{align*}
+		\therefore G(p)^2 &= \sum_{c \in \mathbb{F}^\times_p} (\frac{c}{p}) (-1) + p(\frac{-1}{p}) &&\\
+		\intertext{ $\sum_{c \in \mathbb{F}^\times_p} (\frac{c}{p}) (-1) = 0$ since there are $\frac{p-1}{2}$ quadratic residues and quadratic non-residues. }
+		&= p(\frac{-1}{p}) \\
+		&= (-1)^{\frac{p-1}{2}}p &\text{ by the $1^{st}$ Nebensatz}
+	\end{align*}
+\end{proof}
 
+\subsubsection{Uniqueness Lemma for $\mathbb{Z}[\zeta_p]$}
+Every element $A \in \mathbb{Z}[\zeta_p] $ can be written uniquely as:
+\begin{align*}
+	A = a_0 + a_1\zeta + \dots + a_{p-2}\zeta^{p-2} && \text{with } a_i \in \mathbb{Z} 
+\end{align*}
+This is because $\zeta_p$ is a root of $m(x) = \Phi_p(x) = 1+x+\dots +x^{p-1}$. It's proved in 7202 that $\Phi_p$ is irreducible over $\mathbb{Q}$.
 
+\begin{proof}
+	Quadratic Reciprocity law\\[1em]
+	We'll calculate $G(p)^q \hspace{7pt}(q\mathbb{Z}[\zeta_p])$ in two ways.\\[1em]
 
+	\textbf{First Calculation:}
+	\begin{align*}
+		G(p)^q &= \bigg(\sum_{a=1}^{p-1} (\frac{a}{p}) \zeta^a_p \bigg)^q\\
+		&=\sum_{a=1}^{p-1} \bigg((\frac{a}{p}) \zeta^a_p \bigg)^q\hspace{7pt} (p\mathbb{Z}[\zeta]) \\
+		\intertext{Since $q$ is odd, $(\frac{a}{p})^q = (\frac{a}{p})$}
+		G(p)^q &\equiv \sum_{a \in \mathbb{F}^\times_p }(\frac{a}{p}) \zeta^{aq}_p
+		\intertext{Let $b \equiv aq \hspace{7pt} (p) $, and as $a$ runs through $\mathbb{F}^\times_p$ so does $b$ }
+		G(p)^q &\equiv \sum_{b \in \mathbb{F}^\times_p} (\frac{bq^{-1}}{p})\zeta^b_p\\
+		&= (\frac{q^{-1}}{p}) \sum_{b \in \mathbb{F}^\times_p} (\frac{b}{p}) \zeta^b_p\\
+		\intertext{Note that $G(p) = \sum_{b \in \mathbb{F}^\times_p} (\frac{b}{p}) \zeta^b_p$ which implies, }
+		G(p)^q &\equiv (\frac{q^{-1}}{p}) G(p) \hspace{7pt}(q\mathbb{Z}[\zeta_p])\\
+		&\equiv (\frac{q}{p}) G(p) \hspace{7pt}(q\mathbb{Z}[\zeta_p])
+	\end{align*}
+	\textbf{Second Calculation: }\\[1em]
+	Since $G(p)^2 = (-1)^{\frac{p-1}{2}}p$,
+	\begin{align*}
+		G(p)^q &= G(p) \bigg( (-1)^{\frac{p-1}{2}} p\bigg)^{\frac{q-1}{2}}  \\
+		&= G(p) (-1)^{\frac{(p-1)(q-1)}{4}} p^{\frac{q-1}{2}}\\
+		\therefore G(p)^q& \equiv G(p) (-1)^{\frac{(p-1)(q-1)}{4}} (\frac{p}{q}) \hspace{7pt}(q\mathbb{Z}[\zeta_p]) \hspace{50pt} \text{ by Euler's criterion}
+	\end{align*}
+Comparing the two results we get:
+	\begin{align*}
+		(\frac{q}{p}) G(p) \equiv (-1)^{\frac{(p-1)(q-1)}{4}} (\frac{p}{q})G(p) \hspace{7pt}(q\mathbb{Z}[\zeta_p])
+	\end{align*}
+	We need to check that $G(p)$ is invertible modulo $q\mathbb{Z}[\zeta_p]$,\\[1em]
+	$G(p)^2 = \pm p$, which is invertible modulo $q$\\[0.5em]
+	$G(p)$ has inverse $G(p) * (\pm p)^{-1} \hspace{7pt}(q\mathbb{Z}[\zeta_p])$\\[0.5em]
+	$\therefore (\frac{p}{q}) \equiv (-1)^{\frac{(p-1)(q-1)}{4}} (\frac{p}{q}) \hspace{7pt}(q\mathbb{Z}[\zeta_p]) $\\[0.5em]
+	Since $1 \equiv -1 \hspace{7pt}(q\mathbb{Z}[\zeta_p]) $, it follows that $(\frac{q}{p}) = (-1)^{\frac{(p-1)(q-1)}{4}} (\frac{p}{q})$
+\end{proof}
 
+\newpage
+\section{P-adic Number theory}
 
 
 
