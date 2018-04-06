@@ -1278,14 +1278,90 @@ Comparing the two results we get:
 
 \newpage
 \section{P-adic Number theory}
+This means methods for congruences modulo $p^n$, $p$ prime and $n$ large.\\[1em]
+
+If we want to solve $f(x)=0$, $x \in \mathbb{R}$ we can use the Newton-Raphson method:
+\begin{itemize}
+	\item{Begin with an "approximate solution" $a_0$}
+	\item{Define a sequence recursively $a_{n+1} = a_n - \cfrac{f(a_n)}{f'(a_n)}$}
+\end{itemize}
+Very often $a_n$ converge to a limit $a$ and $f(a) = 0$.
+
+We can use the same method in number theory for solving congruences. Suppose $f(x)$ is a polynomial with coefficients in $\mathbb{Z}$ and we want to solve $f(x)\equiv 0 \hspace{7pt} (p^N)$ ($p$ prime, $n$ large)
+
+We can try this:
+\begin{itemize}
+	\item{Find a solution $a_0$ to $f(a_0) \equiv 0 \hspace{7pt} (p^r)$ where $r$ is small}
+	\item{Define a recursive sequence $a_{n+1} = a_n - \cfrac{f(a_n)}{f'(a_n)}$}
+\end{itemize}
+If $n$ is large enough, then often $f(a_n) \equiv 0\hspace{7pt} (p^N)$\\[1em]
+
+\textbf{E.g.} Let $f(x) = x^2 + 2$, $p=3$\\
+Suppose we want to solve $x^2 +2 \equiv 0 \hspace{7pt} (3^N)$ \\[0.5em]
+
+Let $a_0 = 1: $ $f(a_0) = 1^2 + 2 = 3 \equiv 0 \hspace{7pt} (3)$\\[0.5em]
+Define the sequence $a_n$ by $a_{n+1} = a_n = \cfrac{f(a_n)}{f'(a_n)}=a_n - \cfrac{a_n^2 +2}{2a_n} = \cfrac{a_n}{2} - \cfrac{1}{a_n}$
+\begin{align*}
+	a_0 &= 1 &&&&&&&&&&&&&&&&\\
+	a_1 &= \frac{1}{2} -1 = \frac{-1}{2} \\
+	a_2 &= \frac{-1}{4} +2 = \frac{7}{4}
+\end{align*}
+It turns out that $ \frac{-1}{2} $ is a solution mod 9 $\implies -1 *2^{-1} \mod 9$\\
+\hspace{75pt} $\frac{7}{4} $ is a solution mod 81 $\implies 7*4^{-1} \mod 9$\\[0.5em]
+$2^{-1} \equiv 5 \hspace{7pt} (9) \implies a_1 \equiv 4 \hspace{7pt} (9) $\\[0.5em]
+$4^{-1} \equiv -20 \hspace{7pt} (81) \implies  a_2 = \frac{7}{4} \equiv -140 \equiv 22\hspace{7pt} (81)$\\[1em]
+$a_3 $ would be a solution mod $3^8$.\\[1em]
+In this example, we're reducing rational numbers mod $p^n$ not just integers. If $\frac{a}{b}$ is arational numbe,r then we can reduce this modulo $p^n$ as long as $b$ is invertible mod $p^n$, i.e. when b is not a multiple of p. We'll write:
+
+\begin{equation*}
+	\mathbb{Z}_{(p)} = \{\frac{a}{b} : a,b \in \mathbb{Z}, p \not | b\}
+\end{equation*}
+$\mathbb{Z}_{(p)} $ is closed under $+, *$, so $\mathbb{Z}_{(p)}$ is a ring contained in $\mathbb{Q}$ containing $\mathbb{Z}$. This is called the "local ring of $p$" and is the set of rational number which can be reduce modulo $p^n$ $(\forall n)$
 
 
+\begin{definition}
+	If $p$ is a prime number and $n \in \mathbb{Z}$, then the valuation of $n$, at $p$ is:
+
+	\begin{equation*}
+		V_{p}(n) = 
+		\begin{cases}
+	max\{a:  p^a | n\} & n \neq 0\\
+			\infty & n=0
+		\end{cases}
+	\end{equation*}
+\end{definition}
+A simple statement that can be made is, $V_{p}(nm) = V_p(n) + V_p(m)$ .
+We can also extend $V_p$ to a function on $\mathbb{Q}$, $V_p(\frac{n}{m}) = V_p(n) - V_p(m)$.
+
+With this notation:
+\begin{equation*}
+	Z_{(p)} = \{ x\in \mathbb{Q} : V_p(x) \geq 0 \}
+\end{equation*}
+\begin{align*}
+	x \equiv y \hspace{7pt} (p^{a}) \iff V_p(x-y) \geq a
+\end{align*}
+
+\textbf{E.g} 
+\begin{align*}
+	V_2(\frac{7}{12}) =-2 && V_2(\frac{7}{12}) =-1&&   V_5(\frac{7}{12}) =0 && V_7(\frac{-7}{12}) =+1  
+\end{align*}
 
 
+\subsection{Hensel's Lemma}
+Let $p$ be a prime number. Let $f \in \mathbb{Z}_{(p)}[x]$ and $a_0 \in \mathbb{Z}_{(p)}$ such that $f(a_0) \equiv 0 \hspace{7pt} (p^{2c+1})$ where $c= V_P(f'(a_0))$.
 
+Then if we define $a_{n+1} = a_n - \cfrac{f(a_n}{f'(a_n)}$ then $a_n \in \mathbb{Z}_{(p)}$ and $f(a_n) \equiv 0 \hspace{7pt} (p^{2c+2^n})$ 
 
-
-
+\begin{proof}
+We'll prove the following by induction on $n$
+	\begin{enumerate}
+		\item{$a_n \in \mathbb{Z}_{(p)}$ and $a_n \equiv a_0 \hspace{7pt} (p^{c+1})$}
+		\item{$V_p(f'(a_n)) = c$}
+		\item{$f(a_n) \equiv 0 \hspace{7pt}(p^{2c+2^n})$}
+	\end{enumerate}
+	If $n=0$ then the statements 1,2,3 are all true for $a$ by assumption.
+	Now assume 1,2,3 for $a_n$, we'll prove them for $a_{n+1}$
+\end{proof}
 
 
 
