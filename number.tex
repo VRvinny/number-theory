@@ -1360,7 +1360,37 @@ We'll prove the following by induction on $n$
 		\item{$f(a_n) \equiv 0 \hspace{7pt}(p^{2c+2^n})$}
 	\end{enumerate}
 	If $n=0$ then the statements 1,2,3 are all true for $a$ by assumption.
-	Now assume 1,2,3 for $a_n$, we'll prove them for $a_{n+1}$
+	Now assume 1,2,3 for $a_n$, we'll prove them for $a_{n+1}$\\[1em]
+	Let $a_{n+1} = a_n - \delta$  where $\delta = \cfrac{f(a_n)}{f'(a_n)}$\\[0.5em]	
+	\textbf{1: }
+	\begin{align*}	
+		V_p(\delta) &= V_p(f(a_n)) -V_p(f'(a_n)) \\
+		&\hspace{70pt} =c &\text{ by \bf{2:}}\\
+		&\geq 2c+2^n &\text{ by \bf{3:}}\\
+		V_p(\delta) &\geq 2c +2^n - c\\
+		V_p(\delta) &\geq c +2^n &\textbf{(*)}\\
+	\end{align*}
+	\text{By \bf{(*)}}
+	\begin{align*}
+		&V_p(\delta) \geq 0 \implies \delta \in \mathbb{Z}_{(p)} &&\\[0.5em]
+		\therefore & \text{ }a_{n+1} = a_n - \delta \in \mathbb{Z}_{(p)}
+	\end{align*}
+	\text{By \bf{(*)}}
+	\begin{align*}
+		V_{p} \geq c+1 &\implies \delta \equiv 0 \hspace{7pt} (p^{c+1})\\[0.5em]
+		a_{n+1} &\equiv a_n \hspace{7pt} (p^{c+1})\\
+		&\equiv a_0 \hspace{7pt} (p^{c+1}) && \text{by \bf{1}}
+	\end{align*}
+	\textbf{2: }We've shown that $a_{n+1} \equiv a_0 \hspace{7pt} (p^{c+1})$
+	\begin{align*}
+		\therefore \hspace{7pt} f'(a_{n+1}) &\equiv f'(a_0) \hspace{7pt} (p^{c+1})\\
+		&\not \equiv 0 &&\text{because } V_p(f'(a_0)) = c\\
+		&&& \text{also } f'(a_{n+1}) \equiv f'(a_0) \hspace{7pt} (p^c)\\
+		&&& \hspace{62pt} \equiv 0 \hspace{7pt} (p^c)\\[0.5em]
+		&&& \text{because } V_p(f'(a_0)) = c \hspace{7pt} (p^c)\\[1em]
+		\therefore V_p(f'(a_{n+1})) &=c 
+	\end{align*}
+	\textbf{3: } Must show that $f(a_{n+1}) \equiv 0 \hspace{7pt} (p^{2c+2^{n+1}})$
 \end{proof}
 
 
