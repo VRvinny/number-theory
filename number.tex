@@ -1391,13 +1391,130 @@ We'll prove the following by induction on $n$
 		\therefore V_p(f'(a_{n+1})) &=c 
 	\end{align*}
 	\textbf{3: } Must show that $f(a_{n+1}) \equiv 0 \hspace{7pt} (p^{2c+2^{n+1}})$
+	\begin{align*}
+	a_{n+1} &= a_n - \delta \\[1em]
+		a_{n+1}^r &= (a_n -\delta)^r\\
+		&= a_n^r - ra_n^r\delta +  \text{multiples of } \delta^2
+	\end{align*}
+	By \textbf{(*)}:
+	\begin{align*}
+		 V_p(\delta) &\geq c+2^n\\[1em]
+		\therefore V_p(\delta^2) &\geq 2c + 2^{n+1}\\[1em]
+		\therefore \delta^2 &\equiv 0 \hspace{7pt} (p^{2c+2^{n+1}})
+	\end{align*}
+	This implies $a^r_{n+1} \equiv a^r_n - ra^{r-1}_n \delta \hspace{7pt} (p^{2c+2^{n+1}})$\\
+
+	Suppose $f(x) = \sum c_r * x$. Substiuting $a_{n+1}$, we get:
+	\begin{align*}
+		f(a_{n+1}) &= \sum c_r(a_n^r - ra^{r-1}_n \delta) \hspace{7pt} (p^{2c+2^{n+1}})\\
+		&= \sum c_ra_n^r - \bigg(\sum rc_ra_n^{r-1} \bigg)\delta \hspace{7pt} (p^{2c+2^{n+1}})\\
+		&= f(a_n) - f'(a_n) *\cfrac{f(a_n)}{f'(a_n)} \equiv 0 \hspace{7pt} (p^{2c+2^{n+1}})
+	\end{align*}
+\end{proof}
+\newpage
+\textbf{E.g.} $f(x) = x^3 + x + 1$, $p =3$\\
+Find a root of $f$ mod 81\\[1em]
+Note that $ f'(x) = 3x^2+1$ and $f(1) = 3 \equiv 0$\\[0.5em]
+Try $a_0 = 1$
+\begin{align*}
+	c&= V_3(f'(a_0)) \\
+	&=V_3(4) \\
+	&=0
+\end{align*}
+$3^{2c+1} = 3 $ and $a_0$ is a root of $f$ modulo 3\\
+$\therefore a_0 = 1 $ satisfies the conditions of Hensel's lemma.
+\begin{align*}
+	a_1 &= 1 - \cfrac{a_0}{f'(a_0)} \\
+	& = 1 - \cfrac{3}{4}
+\end{align*}
+It is sufficient to work out $a_1$ mod 9
+\begin{align*}
+	4^{-1} \equiv 1 \hspace{7pt} (3) && \frac{3}{4} \equiv 3 *1 \hspace{7pt} (9) && a_1 \equiv -2 \hspace{7pt}(9)  
+\end{align*}
+Check 
+\begin{align*}
+	f(a_1) &\equiv (-2)^3 + (-2) + 1 \\
+	f(2) &= -9 \equiv 0 \hspace{7pt} (9)
+\end{align*}
+\begin{align*}
+	a_2 &= -2 - \frac{f(-2)}{f'(-2)}\\
+	&= -2 - \frac{-9}{13}
+\end{align*}
+This should be a root of $f$ modulo 81. 
+\begin{align*}
+	13^{-1} &\equiv -2\hspace{7pt} (9)\\[1em]
+	\implies \frac{9}{13} &\equiv -18 \\
+\end{align*}
+\begin{align*}
+	a_2 \equiv -2 -18 \equiv -20\\
+\end{align*}
+\begin{align*}
+	\text{Check } f(a_2) = (-20)^3 -20 +1 &\equiv -8000 -19 \\
+	&= -8019\\ 
+	&= -81*99\\
+	&=0\hspace{7pt} (81)
+\end{align*}
+\newpage
+\subsection{Quadratic Congruences}
+We'll see how to find out whether $x^2 \equiv b \hspace{7pt} (n) $ has solutions.\\[0.5em]
+Suppose $n= p_1^{a_1} \dots p_r^{a_r}$ ($p_i$ distinct primes). There are solutions modulo $n \iff \forall i$, there are solutions modulo $p_i^{a_i}$ by the Chinese Remainder Theorem.
+	
+	
+\begin{proposition}
+Suppose $p$ is an odd prime not dividing $b$.
+	If $x^2 \equiv b \hspace{7pt} (p)$  has solutions then $x^2 \equiv b\hspace{7pt} (p^r)$ has solutions for all $r$
+\end{proposition}
+	
+
+\begin{proof}
+	Suppose there is a solution $a_0$ modulo $p$, i.e. $a_0^2 \equiv b \hspace{7pt} (p)$\\[0.5em]
+	Let $f(x) = x^2 - b$.  We'll check that $a_0$ satisfies the conditions of Hensel's lemma.
+	\begin{align*}
+		c &= V_p(f'(a_0)) \\
+		&= V_p(2a_0) && \text{ and since } p\neq 2\\
+		\implies c &=V_p(a_0) 
+	\end{align*}
+	Also since $p \not | b$, we know $p \not | a_0$:
+	\begin{align*}
+		\therefore\hspace{7pt} & c =0 \\
+		\therefore\hspace{7pt} &f(a_0) \equiv \hspace{7pt} (p^{2c+1})  \implies a_0 \text{ satisfies the conditions of Hensel's lemma}\\
+		\therefore \hspace{7pt} & \text{We have roots of $f$ modulo all powers of $p$}
+	\end{align*}
 \end{proof}
 
+\textbf{Remark}\\
+Suppose we want a root of $f$ modulo $p^{13}$\\
+Choose $n$ so that $2c+2^n \geq 13$\\
+$f(a_n) \equiv 0\hspace{7pt} (p^{2c+2^n}) \implies f(a_n) \equiv 0 \hspace{7pt} (p^{13})$\\[1em]
 
-
-
-
-
-
+The proposition would be false if we allowed $p=2$
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	\end{document}
  
