@@ -1488,28 +1488,151 @@ Choose $n$ so that $2c+2^n \geq 13$\\
 $f(a_n) \equiv 0\hspace{7pt} (p^{2c+2^n}) \implies f(a_n) \equiv 0 \hspace{7pt} (p^{13})$\\[1em]
 
 The proposition would be false if we allowed $p=2$
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+\textbf{E.g.} Let $b = 3$
+
+\begin{align*}
+	\begin{split}
+		x^2 &\equiv 3 \hspace{7pt} (2) \text{ has a solution}\\
+		x^2 &\equiv 3 \hspace{7pt} (4) \text{ has no solutions} 
+	\end{split} &&&&&
+	\begin{tabular}{l|l}	
+		\multicolumn{1}{l|}{$x$} & \multicolumn{1}{l}{$x^2$ mod 4} \\ \hline
+		0 & 0 \\
+		1 & 1 \\
+		2 & 0 \\
+		3 & 1                      
+	\end{tabular} &&&&& \\[1em]
+\end{align*}
+
+if $b=5$
+\begin{align*}
+	\begin{split}
+		x^2 &\equiv 5 \hspace{7pt} (2) \text{ has a solution}\\
+		x^2 &\equiv 5 \hspace{7pt} (4) \text{ has solutions} \\
+		x^2 &\equiv 5 \hspace{7pt} (8) \text{ has no solutions} 
+	\end{split} &&&&&
+	\begin{tabular}{l|l}	
+		\multicolumn{1}{l|}{$x$} & \multicolumn{1}{l}{$x^2$ mod 8} \\ \hline
+		0        & 0 \\
+		$\pm1$   & 1 \\
+		$\pm2$   & 4 \\
+		$\pm3$   & 1 \\
+		$\pm 4$  & 0
+	\end{tabular} &&&&& \\[1em]
+\end{align*}
+
+\begin{proposition}
+	Suppose $b$ is odd. If $x^{2} = \equiv b \hspace{7pt} (8)$ has solutions then $x^2 \equiv b\hspace{7pt} (2^r) $ has solutions for all $r$ 
+\end{proposition}
+\begin{proof}
+	Suppose $a_0 \equiv b \hspace{7pt} (8) $, this implies $a_0$ is odd.\\
+	Let $f(x) = x^2 -b$ \\[0.5em]
+       	$\therefore c = V_2(f'(a_0)) = V_2(2a_0) = 1 $ because $a_0$ is odd\\[0.5em]
+	$\therefore 2^{2c+1} = 8$\\[0.5em]
+	$\therefore a_0$ is a root of $f$ modulo $p^{2c+1}$\\[0.5em]
+	By Hensel's lemma, there are solutions modulo all powers of 2.\\[1em]
+\end{proof}
+
+\textbf{E.g.} For which $n$ does the congruence $x^2 \equiv 5 \hspace{7pt} (5) $ have solutions?\\[1em]
+First consider the case $n \equiv p^r $\hspace{7pt} ($p$ prime)\\
+If $p \neq 2, 5 $ then by the first propositiong, there are solutions $p^n \iff (\frac{5}{p}) = 1$\\[0.5em]
+$(\frac{5}{p}) = + (\frac{p}{5})$ depends on $p $ mod $5$ 
+
+\begin{align*}
+	\begin{tabular}{l|l}
+		\multicolumn{1}{l|}{x} & \multicolumn{1}{l}{s} \\ \hline
+		1                       & 1                      \\
+		2                       & -1                     \\
+		3                       & -1                     \\
+		4                       & 1                     
+	\end{tabular}&
+	\begin{split}
+		&\text{ (different $x$)}\\
+		&\text{ The congruence $x^2 \equiv 5 \hspace{7pt} (p) $ has solutions}\\
+		&\iff  p\equiv 1,4 \hspace{7pt} (5) \text{ (in the cases $p \neq 2, 5$)}
+	\end{split}
+\end{align*}
+For $p=2$, \hspace{3pt} $x^2 \equiv 5 \hspace{7pt} (2) $ has a solution, $x=1$ \\
+\hspace{55pt} $x^2 \equiv 5 \hspace{7pt}(4) $  has a solution, $x=1$\\ 
+But the only odd square mod 8 is 1. So $x^2 \equiv 5 \hspace{7pt} (8)$ has no solutions.\\
+$\therefore $ no solutions mod $2^n$ if $n\geq 3$\\[1em]
+For $p=5$ \hspace{3pt} $x^2 = 5 \hspace{7pt} (5)$ has solutions, here's how we check. Assume:
+\begin{align*}
+	x^2 &\equiv 5 \hspace{7pt} (25)\\
+	\therefore x^2 &\equiv 0 \hspace{7pt} (5) \\[0.5em]
+	\text{So } & 5 | x^2 \\
+	\text{So } & 5 | x \\
+	\therefore x^2 &\equiv 0 \hspace{7pt} (25) \hspace{7pt} \text{\lightning}
+\end{align*}
+So there are solution modulo $n$ if  $n = 2^a * 5^b * \Pi p_i^{c_i} $ where $a\leq 2, b\leq 1, p_i \equiv 1 \hspace{7pt} (5),c_i \in \mathbb{N} $ \\[1em]
+
+\textbf{E.g.} For which $n$ does $x^2 \equiv -7\hspace{7pt}  (n)$ have solutions?\\[1em]
+Assume $p$ is a prime $\neq 2, 7$
+
+
+
+\begin{align*}
+	\begin{split}
+		(\frac{-7}{p}) &= (\frac{-1}{p}) (\frac{7}{p})\\[0.5em]
+		&= (-1)^{\frac{p-1}{2}}(-1)^{\frac{(7-1)(p-1)}{4}} (\frac{p}{7})\\[0.5em]
+		&= (-1)^{\frac{p-1}{2} + \frac{3(p-1)}{2}} (\frac{p}{7})\\[0.5em]
+		&= (+1) (\frac{p}{7}) \text{ depends on $p$ mod 7}
+	\end{split}&&
+	\begin{tabular}{l|l}
+		\multicolumn{1}{l|}{x} & \multicolumn{1}{l}{$\bigg(\cfrac{x}{7}\bigg)$} \\[0.8em] \hline
+	1 & 1 \\ 
+	2 & 1 \\ 
+	3 & -1\\
+	4 & 1 \\
+	5 & -1\\
+	6 & -1\\                 
+	\end{tabular}
+	\begin{split}
+		&3^2 = 9 \equiv 2 \mod 7 \\[1em]
+		&x^2 \equiv -7 \hspace{7pt} (p^r) \text{ has solutions}\\[1em]
+		&\implies p \equiv 1,2,4 \mod 7
+	\end{split}
+\end{align*}
+	\\[1em]
+For $p=2$:  $-7 \equiv 1 \hspace{7pt} (8)$ so -7 is a square modulo 8 by the proposition.\\
+ \hspace{53pt}$x^2 \equiv -7\hspace{7pt} (2^r)$ has solutions for all r. \\[1em]
+
+ For $p=7$: $x^2 \equiv -7 \hspace{7pt} (7)$ has a solution $x=0$ but $x^2 \equiv -7 \hspace{7pt} (7^2)$ has no solutions. Suppose 
+
+\begin{align*}
+	x^2 &\equiv -7 \hspace{7pt} (7^2)\\
+	\therefore x^2 &\equiv 0\hspace{7pt} (7) \\[1em]
+	\therefore 7 &| x^2\\
+	\implies  7 &| x\\[1em]
+	\implies x^2 &\equiv 0 \hspace{7pt} (49)\hspace{7pt} \text{\lightning} 
+\end{align*}
+So $x^2 \equiv -7\hspace{7pt} (n) $ has solutions $\iff n = 7^a * \Pi p_i^{b_i}$ where $a\leq 1$, $p_i \equiv 1,2,4\hspace{7pt} (7)$, $b_i \in \mathbb{N}$
+
+\subsection{P-adic congruence}
+Suppose we have a series $\sum^\infty_{n=1} x_n $ for $x_n \in \mathbb{Z}_{(p)}$. We'll say that the series converges \textbf{p-adically} if for every $a$, there are only finitely many terms $x_n$ with $x_n \not \equiv \hspace{7pt} (p^a)$. We can add up the series in $\mathbb{Z}/p^a$ because only finitely many terms are non zero.
+
+
+\begin{lemma}
+	$\sum x_n$ converges p-adically $\iff V_p(x_n) \rightarrow \infty$ 
+\end{lemma}
+\begin{proof}
+	If $V_p(x_n) \rightarrow \infty$ then for $n$ significantly large, $V_p(x_n) \geq a$, i.e., $x_n\equiv 0 \hspace{7pt} (p^a)$ \\[0.5em]
+\end{proof}
+
+\textbf{E.g.} p=3
+\begin{align*}
+	(1+3x)^{\frac{1}{2}} = 1 + \frac{1}{2}(3x) + \frac{(\frac{1}{2}) (\frac{-1}{2}) (3x)^2}{2!} + \frac{(\frac{1}{2}) (\frac{-1}{2}) (\frac{-3}{2})(3x)^3 }{3!}
+\end{align*}
+	if $x \in \mathbb{Z}_{(3)}$ then this series converge 3-adically.
+	\newpage
+\begin{align*}
+	(1+3x)^{\frac{1}{2}} &\equiv 1 \hspace{7pt} (3)\\
+	&\equiv 1 + \frac{3x}{2} \hspace{7pt} (9)\\
+	&\equiv 1 + \frac{3x}{2} + \frac{9}{8}x^2\hspace{7pt} (27)\\
+	&\equiv 1 + \frac{3x}{2} + \frac{9}{8}x^2 + \frac{27}{16}x^3 \hspace{7pt} (27)\\
+\end{align*}
+	We can write these polynomials with integer coefficients.
 	
 	
 	
