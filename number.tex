@@ -1633,11 +1633,116 @@ Suppose we have a series $\sum^\infty_{n=1} x_n $ for $x_n \in \mathbb{Z}_{(p)}$
 	&\equiv 1 + \frac{3x}{2} + \frac{9}{8}x^2 + \frac{27}{16}x^3 \hspace{7pt} (27)\\
 \end{align*}
 	We can write these polynomials with integer coefficients.
+\begin{align*}
+	(1+3x)^{\frac{1}{2}} &\equiv 1 + 15x + 9x^2 \hspace{7pt} (27)\\
+	&\equiv 1 + 42x + 9x^2 + 27x^3 \hspace{7pt} (81)
+\end{align*}
+Important point; these polynomials play the same role in number theory $(1+3x)^{\frac{1}{2}}$ does in analysis $\sqrt(1+3x)$\\
+\textbf{E.g.} 
+\begin{align*}
+	(1+15x+9x^2)^2 &= 1 + (30)x+(18+15^2)x^2 + (2*9*15)x^3 + (81)x^4\\
+	&\equiv 1+3x \hspace{7pt} (27)
+\end{align*}
 	
+	\textbf{E.g.} Find a square root of 7 in $\mathbb{Z}/81$
+
+\begin{align*}
+	7^\frac{1}{2} &= (1+3*2)^{\frac{1}{2}}\\
+	&\equiv 1 + 42*2 + 9*2^2 + 27*2^3 \hspace{7pt} (81) \\
+	&\equiv 1 + 84 + 36-27 \hspace{7pt} (81)\\
+	&\equiv 13\hspace{7pt} (81)
+\end{align*}
+	Check $13^2 = 169 \equiv 7\hspace{7pt} (81)$\\[0.5em]
+	This works because of a result called the power series trick.\\[1em]
 	
-	
-	
-	
+\textbf{Notation} We'll write $\mathbb{Z}_{(p)}\Big[[x]\Big]$ for the set of power series in $x$ with coefficient in $\mathbb{Z}_{(p)}$. $\mathbb{Z}_{(p)}\Big[[x]\Big]$ is a ring with addition and multiplication of power series as operations. We can often compose two power series $f,g \in \mathbb{Z}_{(p)}\Big[[x]\Big]$ to get a new power series $f \circ g$. $(f \circ g)(x) = f(g(x)) $.
+
+We can define $f \circ g$ as long as either $f$ is a polynomial or $g$ has zero constant term.
+Suppose
+
+\begin{align*}
+	f(x) &= \sum^\infty_{n=0} a_nx^n\\
+	g(x) &= \sum^\infty_{n=0} b_nx^n\\
+\end{align*}
+We'll see that $f \circ g$ is a power series
+\begin{align*}
+	f(g(x)) &= \sum_{n=0}^\infty a_n(\sum^\infty_{m=1} b_mx^m)^n\\
+	&=  \sum_{n=0}^\infty a_n  \sum_{m_1=0}^\infty  \sum_{m_2=0}^\infty\dots \sum_{m_n=0}^\infty  b_{m_1} \dots b_{m_n} x^{m_1 + \dots + m_n}
+\end{align*}
+so $f(g(x)) = \sum c_d x^d$ where \[c_d = \underbrace{\sum^\infty_{m_1,\dots,m_n =1} a_nb_{m_1}\dots b_{m_n}}_\text{finite sum in $\mathbb{Z}_{(p)}$}\]\\
+Note $f \circ g$ is not defined otherwise.
+
+\textbf{E.g} 
+\begin{align*}
+	f(x) &= 1+x+x^2 + \dots\\
+	g(x) &= 1 + x\\[1em]
+	\implies f(g(x)) &= 1 + (1+x) + (1+x)^2\\
+\end{align*}
+This has constant term $1+1+1+1 + \dots $, so $f\circ g$ is not defined.
+
+
+\subsection{Power Series Trick}
+
+Suppose $f,g,h$ are power series with coefficients in $\mathbb{Z}_{(p)}$. Assume either $f$ is a polynomial or $g$ has no constant term. Also assume: 
+
+\begin{itemize}
+	\item{For small real numbers $x$, $f(x), g(x), h(x)$ converge and $f(g(x)) = h(x)$}
+	\item{For all $x \in \mathbb{Z}_{(p)}$, $f(x), g(x)$ and $h(x)$ converge p-adically}
+\end{itemize}
+Then for all $x \in \mathbb{Z}_{(p)} $, $f(g(x)) \equiv h(x)$ \hspace{7pt} $(p^n)$\\[0.5em]
+In the example $f(x) = x^2, g(x) = (1+3x)^\frac{1}{2}, h(x) = 1+3x$.\\
+For small real $x$, $f(g(x)) = h(x)$, so as long as we know that $g(x)$ converges 3-adically ($\forall x \in \mathbb{Z}_{(3)}$) the power series trick implies $g(x)^2 \equiv 1+3x \hspace{7pt} (3^n)$\\[1em]
+
+
+How do we check for p-adic convergence?
+
+\begin{lemma}
+	$\sum x_n$ converge p-adically if and only if $V_p(x_n) \rightarrow \infty$
+\end{lemma}
+We need a way of calculating valuations of $n^th$ term of a square.
+
+\begin{proposition}
+	$V_p(n!) = \lfloor{\frac{n}{p}} \rfloor +   \lfloor{\frac{n}{p^2}} \rfloor +  \lfloor{\frac{n}{p^3}} \rfloor + \dots \leq \frac{n}{p-1} $
+\end{proposition}
+We'll prove this later, first use the properties to show that $(1+3x)^\frac{1}{2}$ converge 3-adically for all $x \in \mathbb{Z}_{(3)}$
+\begin{align*}
+	(1+3x)^\frac{1}{2} &= 1+ \frac{1}{2} (3x) + \frac{(\frac{1}{2}) (\frac{-1}{2}) (3x)}{2!} +\dots \\[1em]
+	n^{th} \text{ term } &= \cfrac{(\frac{1}{2}) (\frac{1}{2}-1) (\frac{1}{2}-2)\dots (\frac{1}{2} - n+1) }{n!}(3x)^n\\[2em]
+	V_3(n^{th} \text{ term}) &= V_3\Bigg((\frac{1}{2})(\frac{1}{2}-1) \dots (\frac{1}{2}-n+1)\Bigg) - V_3(n!) + V_3((3x)^n) \\
+	&\geq 0 - \frac{n}{3-1} + n\\
+	&\geq \frac{n}{2} \rightarrow \infty \text{ as } n \rightarrow \infty\\
+	\implies & \text{series converges 3-adically}
+\end{align*}
+
+\textbf{E.g.} Assume $p$ is an odd prime\\[1em]
+
+Let $exp(px) = 1+px+\frac{(px)^2}{2!} + \frac{(px)^3}{3!} + \dots$.\\
+We'll see that this converges for all $x\in \mathbb{Z}_{(p)}$
+\begin{align*}
+	n^{th} \text{ term }&= \frac{(px)^n}{n!}\\[2em]
+	V_p(n^{th} \text{ term } &= V_p((px)^n) - V_p(n!)\\
+	&= (n*V_p(p)) + (n*V_p(x))) - V_p(n!)\\
+	   &\hspace{30pt} 1 \hspace{60pt} \geq 0 \hspace{30pt}\leq \frac{n}{p-1}\\
+	   & \geq n - \frac{n}{p-1}\\[0.5em]
+	   &\geq (\frac{p-2}{p-1}) \rightarrow \infty \text{ for } p \neq 2
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	\end{document}
  
