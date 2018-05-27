@@ -17,7 +17,6 @@
 %place text under sigmas and pi
 \usepackage{mathtools}
 %kappa%
-
 \newenvironment{rcurly}{\left.\begin{aligned}}{\end{aligned}\right\rbrace}
 
 \begin{document}
@@ -1727,22 +1726,179 @@ We'll see that this converges for all $x\in \mathbb{Z}_{(p)}$
 	   &\geq (\frac{p-2}{p-1}) \rightarrow \infty \text{ for } p \neq 2
 \end{align*}
 
+\textbf{E.g.} $\log (1+px)$ converges p-adically for all $x \in \mathbb{Z}_{(p)}$
+\begin{align*}
+	V_p\Bigg(\pm \frac{(px)^n}{n} \Bigg) &= V_p\Big((px)^n\Big) - V_p(n)\\
+	& \hspace{20pt} nV_p(px) \hspace{10pt}<V_p(n!)\\
+	&\geq n - \frac{n}{p-1}\\
+	&\geq \Bigg(\frac{p-2}{p-1}\Bigg)n \rightarrow \infty \text{ if } p \neq 2 
+\end{align*}
+
+\textbf{Remark}
+A quick way to remember the series for $\log(1+px)$
+\begin{align*}
+	\frac{1}{1-x} &= 1 + x+x^2 + \dots && \text{geometric series}\\
+	\frac{1}{1+x} & = 1-x+x^2 -x^3 + \dots\\[0.5em]
+	\log(1+x) &= x-\frac{x^2}{2} + \frac{x^3}{3} -\frac{x^4}{4} + \dots \\[0.5em]
+	\log(1+px) &= x-\frac{(px)^2}{2} + \frac{(px^3}{3} -\frac{(px)^4}{4} + \dots \\[0.5em]
+\end{align*}
+
+\begin{proof} Calculating $V_p(n!)$\\[1em]
+	$n! = 1*2*\dots *n$\\
+	$V_p(n) =\sum_{i=1}^n V_p(i) \hspace{7pt}(*)$\\[1em]
+	The number of $i$ between 1 \& $ n $ which are multiples of $p$ is $\lfloor \frac{n}{p}\rfloor$.\\
+	There are $\frac{n}{p^2}$ values of $i$ which are multiples of $p^2$, etc.\\[0.5em]
+	$\lfloor \frac{n}{p}\rfloor$ - $\lfloor \frac{n}{p^2}\rfloor$ values of $i$ are mutliples of $p$, but not of $p^2$, i.e. $V_p(i) = 1$\\[0.5em]
+	So   $\lfloor \frac{n}{p}\rfloor$ - $\lfloor \frac{n}{p^2}\rfloor$ terms in the sum $(*)$ are equal to 1.\\[0.5em]
+	Similarly  $\lfloor \frac{n}{p^2}\rfloor$- $\lfloor \frac{n}{p^3}\rfloor$ terms in the sum $(*)$ are equal to 2.\\
+	In general there are exactly $\lfloor \frac{n}{p^a}\rfloor$- $\lfloor \frac{n}{p^{a+1}}\rfloor$ terms in $(*)$ which are equal to $a$
+	\begin{align*}
+\therefore V_p(n!) = 1 * \text{no of terms equal to 1} + 2* \text{number of terms equal to 2 } + \dots 
+	\end{align*}
+
+	\begin{align*}
+		Vp(n!) =& 1*(\lfloor \frac{n}{p}\rfloor - \lfloor \frac{n}{p^2}\rfloor)\\
+		 + &2 *(\lfloor \frac{n}{p^2}\rfloor - \lfloor \frac{n}{p^3}\rfloor)\\
+		 + &3 * (\lfloor \frac{n}{p^3}\rfloor - \lfloor \frac{n}{p^4}\rfloor)\\
+		 +& \dots\\[1em]
+		 =& \lfloor \frac{n}{p}\rfloor +  (2-1)\lfloor \frac{n}{p^2}\rfloor + (3-2)\lfloor \frac{n}{p^3}\rfloor + \dots \\[0.5em]
+		 =&  \lfloor \frac{n}{p}\rfloor +  \lfloor \frac{n}{p^2}\rfloor +  \lfloor \frac{n}{p^3}\rfloor + \dots
+	\end{align*}
+	Using this we can prove the upper bound.
+	\begin{align*}
+		V_p(n!) &\leq \frac{n}{p} + \frac{n}{p^2} + \dots\\
+			& \leq \frac{n}{p} \underbrace{(1+ \frac{1}{p} + \frac{1}{p^2} + \dots)}_{\text{geometric series } \frac{1}{1-\frac{1}{p}}}\\
+			& \leq \frac{n}{p-1}
+	\end{align*}
+\end{proof} 
+
+\subsubsection{P-adic log \& exp}
+Let $p$ be an odd prime. Use the notation 
+\begin{align*}
+	p\mathbb{Z}/p^n = \{ px \colon x \in p\mathbb{Z}/p^n \}
+\end{align*}
+
+\textbf{E.g.}
+\begin{align*}
+	3\mathbb{Z}/27 = \{0,3,6,9,12,15,18,21,24\}
+\end{align*}
+
+$p\mathbb{Z}/p^n$ is closed under $+$, so it is a subgroup of $(\mathbb{Z}/p^n)^\times $
+
+\begin{align*}
+	1+p\mathbb{Z}/p^n = \{ 1+px \colon x \in p\mathbb{Z}/p^n \}
+\end{align*}
+\textbf{E.g.}
+\begin{align*}
+	1+3\mathbb{Z}/27 = \{1,4,7,10,13,16,19,22,25\}
+\end{align*}
+$1+p\mathbb{Z}/p^n $ is closed under $*$, so $1+p\mathbb{Z}/p^n $ is a subgroup $(\mathbb{Z}/n)^\times$. Both subgroups have $p^{n-1}$ elements, but one is additive and the other is multiplicative. But actually there are isomorphic. This isomorphism is $\exp \& \log$.
+\begin{theorem}
+Let $p$ be an odd prime. Then there is an isomorphism:
+
+	\begin{align*}
+		p\mathbb{Z}/p^n &\leftrightarrows^{{\text{log}}}_{\text{exp}} 1 + p\mathbb{Z}/p^n\\[1em]
+		px &\longmapsto \exp(px)\\
+		1+px &\longmapsto \log(1+px) 	
+	\end{align*}
+\end{theorem}
+\textbf{E.g.} $\mathbb{Z}/27$  $(p=3)$ We'll find the isomorphisms in this case.
+
+\begin{align*}
+	\exp(3x) &\equiv 1 +3x + \frac{3^2x^2}{2!} +\frac{3^3x^3}{3!}\hspace{7pt} (27)\\
+	&\equiv 1+ 3x + 18x^2 + 18x^3 \hspace{7pt} (27)\\[1em]
+	\log(1+3x) &\equiv 3x - \frac{(3x)^2}{2} + \frac{(3x)^3}{3}\hspace{7pt} (27)\\
+	& \equiv 3x + 9x^2 + 9x^3\hspace{7pt} (27) 
+\end{align*}
+Check:
+\begin{align*}
+	\log(\exp(3x)) &\equiv \log(1+ 3(x+6x^2+6x^3))\\
+	&\equiv 3(x+6x^2+6x^3)+9(x+6x^2+6x^3)^2 + 9(x+6x^2+6x^3)\\
+	&\equiv  3x+18x^2+18x^3 + 9x^2 +9x^3 \\
+	&\equiv 3x
+\end{align*}
+Similarly $\exp(\log(1+3x)) \equiv 1+3x \hspace{7pt} (27)$
+
+We can use the theorem to solve congruences.\\[1em]
+
+\textbf{E.g.} Solve $7^x \equiv 13 \hspace{7pt} (27)$\\[0.5em]
+
+7 and 13 are in $1+ 3\mathbb{Z}/27$, so we can take their logarithms.
+\begin{align*}
+	x \log(7) \equiv \log(13)
+\end{align*}
+Using the formula for $\log(1+3x)$, we get:
+
+\begin{align*}
+	\log(7) &= \log(1+6)\\[0.5em]
+	&\equiv 6 - \frac{6^2}{2} + \frac{6^3}{3} -\frac{6^4}{4}\\[0.5em]
+	&\equiv 6-18+72\\[0.5em]
+	&\equiv 6 \hspace{7pt} (27)
+\end{align*}
+
+\begin{align*}
+	\log(13) &\equiv \log(1+12) \\[0.5em]
+	&\equiv 12-\frac{12^2}{2} + \frac{12^3}{3} \hspace{7pt} (27)\\[0.5em]
+	&\equiv 12-72 + 3^2 * 4^3 \hspace{7pt} (27)\\[0.5em]
+	&\equiv 12 -72 + 9 \hspace{7pt} (27)\\[0.5em]
+	&\equiv 3\hspace{7pt} (27)
+\end{align*}
+So $7^x \equiv 13 \hspace{7pt} (27) $ reduces to:
+\begin{align*}
+	& 7^x \equiv 13 \hspace{7pt} (27) \\
+	\implies &6x \equiv 3 \hspace{7pt} (27)\\
+	\implies &2x \equiv 1 \hspace{7pt} (9)\\
+	\implies &x \equiv 5 \hspace{7pt} (9)
+\end{align*}
+\newpage
+\begin{proof} $ $ \\[1em]
+	We'll use the power series trick. We've shown that $\log(1+px), \exp(px)$ converge p-adically for $x \in \mathbb{Z}_{(p)}$ and they converge for small real numbers and for small real $x$
+	\begin{align*}
+		&\log\big(\exp(px)\big) = px\\[0.5em]
+		&\exp\big(\log(1+px)\big) = 1+px
+	\end{align*}
+	By the power series trick:
+	\begin{align*}
+		&\exp\big(\log(1+px)\big) \equiv 1+px \hspace{7pt} (p^n)\\[0.5em]
+		&\log\big(\exp(px)\big) \equiv px \hspace{7pt} (p^n) \\
+	\end{align*}
+	$\therefore \log \text{ and } \exp$ are inverse functions, so they are bijective.\\[0.5em]
+	Remains to show that $\exp(px+py) \equiv \exp(px) * \exp(py) \hspace{7pt} (p^n)$\\[0.5em]
+
+	For any $a \in \mathbb{N} $: $\exp(pax) = \exp(px))^a$ for small real $x$\\[1em]
+
+	By the power series trick with:
+	\begin{align*}
+		f(x) &= x^a\\
+		g(x) &= \exp(px)\\
+		h(x) &= \exp(pax)\\[1em]
+		\exp(pax) &\equiv (\exp(px))^a \hspace{7pt} (p^a)\\ 
+	\end{align*}
+	Take $x=1$
+	\begin{align*}
+		\exp(pa) &\equiv exp(p)^a \hspace{7pt} (p^a)  \\[0.5em]
+		\therefore \exp(pa+pb) &\equiv \exp(p)^{a+b} \hspace{7pt} (p^a) \\[0.5em]
+		&\equiv \exp(p)^a * \exp(p)^b \\
+		&\equiv \exp(pa) * \exp(pb) \hspace{7pt} (p^n)
+	\end{align*}
+	We've proved this when $a$ \& $b$ are positive integers, but every element of $\mathbb{Z}/p^n$ can be written as a positive integer.
+\end{proof}
 
 
 
+\newpage
+\subsection{Teichm\"uller Lifts}
+Let $p$ be an odd prime. We saw that $(\mathbb{Z}/p^n)^\times$ has a big subgroup $1+p\mathbb{Z}/p^n$ and we can easily do calculations in the subgroup. Teichm\"uller lifts is another subgroup.\\[1em]
+$(\mathbb{Z}/p^n)^\times$ = Teichm\"uller lifts $* \hspace{2pt} (1+p\mathbb{Z}/p^n)$ \\[1em]
+
+Let $x \in \mathbb{Z}_{(p)} $ and assume $x\not \equiv 0 \hspace{7pt} (p)$ \\[0.5em]
+
+$x, x^p, x^{p^2}, x^{p^3}, \dots$\\[0.5em]
+
+All these terms are constant mod $p$.
 
 
 
-
-
-
-
-
-
-
-
-
-
-	
 	\end{document}
  
+
