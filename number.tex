@@ -1891,11 +1891,135 @@ So $7^x \equiv 13 \hspace{7pt} (27) $ reduces to:
 Let $p$ be an odd prime. We saw that $(\mathbb{Z}/p^n)^\times$ has a big subgroup $1+p\mathbb{Z}/p^n$ and we can easily do calculations in the subgroup. Teichm\"uller lifts is another subgroup.\\[1em]
 $(\mathbb{Z}/p^n)^\times$ = Teichm\"uller lifts $* \hspace{2pt} (1+p\mathbb{Z}/p^n)$ \\[1em]
 
-Let $x \in \mathbb{Z}_{(p)} $ and assume $x\not \equiv 0 \hspace{7pt} (p)$ \\[0.5em]
+Let $x \in \mathbb{Z}_{(p)} $ and assume $x\not \equiv 0 \hspace{7pt} (p)$ :
+\begin{align*}
+x, x^p, x^{p^2}, x^{p^3}, \dots
+\end{align*}
 
-$x, x^p, x^{p^2}, x^{p^3}, \dots$\\[0.5em]
+All these terms are constant mod $p$: 
+\begin{align*}
+	x^{p-1} &\equiv 1 \hspace{7pt} (p)\\
+	x^p &\equiv x \hspace{7pt} (p) 
+\end{align*}
+The sequence is constant mod $p^2$, but all terms after the $2^{nd}$ are constant mod $p^2$.\\[0.5em]
+\textbf{E.g.} $p=3, x=2$\\[0.5em]
+We'll look at the sequence mod 9:
 
-All these terms are constant mod $p$.
+\begin{align*}
+	2^3 &\equiv 8 \hspace{7pt} (9)\\
+	2^9 \equiv 8^3 &\equiv 8 \hspace{7pt} (9) \\
+	2^{27} &\equiv 8 \hspace{7pt} (9) \hspace{20pt}  etc
+\end{align*}
+The sequence is eventually constant modulo $p^n$
+
+
+\begin{definition}
+	The Teich\"uller lift of $x$ modulo $p^n$ is: 
+	\begin{align*}
+		T(x) \equiv x^{p^{n-1}} \mod p^n
+	\end{align*}
+\end{definition}
+
+To calculate Teichm\"uller lifts, we use:
+
+\begin{lemma}
+	Suppose $x \equiv y \hspace{7pt} (p^n)$ then $x^p \equiv y^p\hspace{7pt} (p^{n+1})$
+\end{lemma}
+
+\begin{proof}
+Let $ x \equiv y + p^n \implies $
+	\begin{align*}
+		x^p &\equiv (y + p^n)^p\\[1em]
+		x^p &\equiv y^p + py^{p-1}p^n + \text{ multiples of } p^{2n}\\[1em]
+		x^p &\equiv y^p \hspace{7pt} (p^{n+1})
+	\end{align*}
+\end{proof}
+
+\newpage
+
+\textbf{E.g.} Calculate $T(12) \mod 125$\\[1em]
+Definition is $12^{25} \mod 125$. Using the lemma:
+\begin{align*}
+	12 &\equiv 2 \hspace{7pt} (5)\\[1em]
+	12^5 &\equiv 2^5 \hspace{7pt} (5^2)\\
+	&\equiv 32 \equiv 7  \hspace{7pt} (25)\\
+	12^5 &\equiv 7\hspace{7pt}  (25)\\[1em]
+	12^{25} &\equiv 7^5 \hspace{7pt}  (5^3)
+\end{align*}
+
+\begin{align*}
+	T(12) &\equiv (2+5)^5 \hspace{7pt} (125)\\
+	&\equiv 2^5 +\hspace{7pt}  5(2^4)*5  + \hspace{7pt} 10*2^3*5^2 + \text{ multiples of 125}\\
+	&\equiv 2^5 +\hspace{7pt} 5^2*2^4 \hspace{7pt} (125)\\
+	&\equiv 2^5 + \hspace{7pt} 25*16 \hspace{7pt} (125)  \hspace{50pt}\text{note }  16 \equiv 1 \hspace{7pt} (5)\\
+	&\equiv 2^5 + \hspace{7pt} 25*1 \hspace{7pt} (125)\\
+	&\equiv 32 + 25 \hspace{7pt} (125)\\
+	&\equiv 57 \hspace{7pt} (125)
+\end{align*}
+
+
+\begin{tabular}{l|l}
+	$x$ & $T(x) \mod 125$     \\ \hline
+	1 &  1                         \\
+	2 &  57                             \\
+	3 &  $T(-1)*T(2) = - 1 * 57 \equiv 68 \hspace{7pt} (125)$ \\
+	4 &   $(-1)^{25} \equiv -1$                               \\
+\end{tabular}
+\\[3em]
+\begin{theorem}\
+	\begin{enumerate}
+		\item{If $r>n-1$ then $x^{p^r} \equiv T(x) \hspace{7pt} (p^n)$}
+		\item{$T(x)^{p-1} \equiv 1 \hspace{7pt} (p^n) $}
+		\item{$T(x)$ depends only on $x \mod p$ and $T(x) \equiv x \hspace{7pt} (p) $}
+		\item{$T\colon \mathbb{F}_p^\times  \mapsto (\mathbb{Z}/p^n)^\times$ is an injective homomorphism}
+	\end{enumerate}
+\end{theorem}
+\newpage
+\begin{proof}$ $\\[1em]
+	By Euler's theorem,  $\phi(p^n) = (p-1) p^{n-1} $ 
+	\begin{align*}
+		\implies& \underbrace{x^{(p-1)p^{n-1} } }_\text{$T(x)^{p-1}$}  \equiv 1 \hspace{7pt} (p^n)\\
+		\implies & T(x)^{p-1} \equiv 1 \hspace{7pt} (p^n)
+	\end{align*}
+	This proves \textbf{\textit{2}}.\\[1em]
+	$\therefore T(x)^p \equiv T(x) \hspace{7pt} (p^n)$\\
+	Doing this several times we get $T(x) \equiv T(x)^p \equiv T(x)^{p^2} \equiv \dots \hspace{7pt} (p^n) $
+
+	This proves \textbf{\textit{1}}.\\[1em]
+
+	Suppose:
+	\begin{align*}
+		x &\equiv y \hspace{7pt} (p)\\
+		x^p &\equiv y^p \hspace{7pt} (p^2) &&\text{by the lemma}  \\
+		x^{p^2} &\equiv y^{p^2} \hspace{7pt} (p^3) && \text{by the lemma}\\
+		& \hspace{7pt}\vdots\\
+		T(x) &\equiv T(y) \hspace{7pt} (p^n) &&\text{by Fermat's Little Theorem}\\
+		x&\equiv x^p \equiv x^{p^2} \equiv \dots \equiv T(x) \hspace{7pt} (p)
+	\end{align*}
+	This proves \textbf{\textit{3}}.\\
+	\begin{align*}
+		T(xy) \equiv (xy)^{p^{n-1}} &\equiv x^{p^{n-1}} y^{p^{n-1}}\\
+		&\equiv T(x) T(y) \hspace{7pt} (p)
+	\end{align*}
+	So $T$ is a homomorphism, suppose:
+	\begin{align*}
+		T(x) &\equiv T(y) \hspace{7pt} (p^n)\\
+		\therefore T(x) &\equiv T(y) \hspace{7pt} (p) \\
+		x &\equiv y\hspace{7pt} (p) &&	\text{by \textbf{\textit{3.}}}\\[1em]
+		\therefore T\colon \mathbb{F}_p^\times &\mapsto (\mathbb{Z}/p^n)^\times \text{is injective}
+	\end{align*}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
