@@ -2011,18 +2011,144 @@ Definition is $12^{25} \mod 125$. Using the lemma:
 \end{proof}
 
 
+\begin{corollary}
+	Let $p$ be an odd prime, every element in $(\mathbb{Z}/p^n)^\times$ can be written uniquely in the form:
+	\begin{align*}
+		T(x) * \exp(py) \text{ with } &x \in \mathbb{F}_p^\times \\
+		&py \in p\mathbb{Z}/p^n
+	\end{align*}
+\end{corollary}
+
+\newpage 
+\textbf{E.g} 22 $\in (\mathbb{Z}/125)^\times$
+
+\begin{align*}
+	22 &= T(x) \exp(5y) \hspace{7pt} (125)\\
+	&\equiv 2\hspace{7pt}(5)  \\ 
+	&\equiv x \hspace{7pt} (5)\\[1em]
+	\implies x &\equiv 2 \hspace{7pt} (5)
+\end{align*}
+
+\begin{align*}
+	22 = T(2)\exp(5y)\hspace{7pt} (125)\\
+	 22*T(2^{-1}) \equiv \exp(5y) \hspace{7pt} (125) && \text{from the table $T(3) = 68$}\\[1em]
+\end{align*}
+\begin{align*}
+	\exp(5y) &\equiv 22*68 \hspace{7pt} (125)\\
+	&\equiv 121 \hspace{7pt} (125)\\
+	&\equiv -4 \hspace{7pt} (125)
+\end{align*}
 
 
+\begin{align*}
+	\therefore 5y &\equiv \log(-4) \hspace{7pt} (125)\\
+	&\equiv \log(1-5) \hspace{7pt} (125)\\
+	&\equiv -5 - \frac{25}{2} - \frac{125}{3} + \dots\\
+	&\equiv -5 - 75\\
+	&\equiv 45 \hspace{7pt} (125)\\[2em]
+	\therefore 22 &= T(2)\exp(45) \hspace{7pt} (125)
+\end{align*}
+
+\textbf{E.g} Calculate $22^{37} \mod 125$
+\begin{align*}
+	22^{37} &\equiv \big(T(2)\exp(45) \big)^{37}\\
+	&\equiv T(2^{37})* \underbrace{\exp(45*37)}_\text{$\equiv 40$} \hspace{7pt} (125)\\
+	&\equiv 2 \hspace{7pt}(5)\\[1em]
+	\therefore 22^{37} &\equiv \underbrace{T(2)}_\text{$\equiv 57$} * \underbrace{\exp(40)}_\text{$\equiv 841$}\\
+	&\equiv 57*91 \hspace{7pt} (125)\\
+	&\equiv 62 \hspace{7pt} (125) 
+\end{align*}
+\newpage
+\textbf{E.g.} Calculate $T(23) \mod 7^3$
+\begin{align*}
+	23 &\equiv 2 \hspace{7pt} (7) \\
+	23^7 &\equiv 2^7 \equiv 128 \equiv 30 \hspace{7pt} (7^2)\\
+	23^{7^2} &\equiv 30^7 \hspace{7pt} (7^3)
+\end{align*}
+Using the binomial theorem: 
+	\begin{align*}
+		23^{7^2} &\equiv (2+ 4\cdot7 )^7\hspace{7pt} (7^3)\\
+		&\equiv 2^7 + 7\cdot 2^6 \cdot 4 + \text{multiples of $7^3$} \hspace{7pt} (7^3)
+	\end{align*}
+	
+	Since $2^6 \cdot 4 \equiv 4 \mod 7 $, it follows that $(7^2 \cdot 2^6 \cdot 4) \equiv (49* 4) \equiv 196 \mod 7^3 $. This shows that $T(23) \equiv 128 + 196 \equiv 324 \mod 7^3$\\[1em]
 
 
+	The followin corollary was stated but not proved:
+\begin{corollary}
+	Let $p$ be an odd prime number. Every element of $(\mathbb{Z}/p^n)^\times$ can be written uniquely in the form $T(x) \cdot \exp(py)$ where $x \in \mathbb{F}_p^{\times} $ and $py \in p\mathbb{Z}/p^n$. Thi is an isomorphism of groups:
+	\begin{align*}
+		(\mathbb{Z}/p^n)^\times \cong \mathbb{F}_p^\times * p\mathbb{Z}/p^n
+	\end{align*}
+\end{corollary}
 
+\begin{proof}
+	Take any $a \in (\mathbb{Z}/p^n)^\times $ and let $x \equiv a \mod p $. We have $a \equiv x \equiv T(x) \mod p$. Therefore $aT(x)^{-1} \equiv 1 \mod p$. This implies that $\log(\frac{a}{T(x)})$ converges p-adically. Let $py = \log(aT(x)^{-1})$. Then obviously $a=T(x)\exp(py)$.\\[0.5em]
 
+	For uniqueness, suppose $T(x)\cdot \exp(py) \equiv T(x')\cdot \exp(py') \mod p^n $. Since the image of $\exp$ is congruent to $ 1 \mod p$, we have $T(x) \equiv T(x') \mod p$.\\[0.5em]
 
+	This implies $x\equiv x' \mod p$. Therefore $T(x) \equiv T(x') \mod p^n$. From this we get $\exp(py) \equiv \exp(py') \mod p^n$. Taking logs we get $py \equiv py' \mod p^n$\\[1em] 
+\end{proof}
+This corollary can be used to solve the following types of equations:\\[0.5em]
 
+\textbf{E.g} $x^{21}\equiv 71 \mod 81$\\
+Note 21 is not coprime to $\phi(81) = 54$, so previous methods cannot be used to solve this equation. Also $(1+70)^{\frac{1}{21}}$ does not converge 3-adically. Start with $71\equiv 2 \mod 3$:
+\begin{align*} 
+	\implies 71 \equiv T(2)\exp(3y) \mod 81
+\end{align*}
+$T(2) \equiv -1 \mod 81$, 
+\begin{align*}
+	\implies& \exp(3y) \equiv -71 \\
+	\implies& 3y \equiv \log(1+9) = 9 - \frac{81}{2} + \dots \equiv 9 \mod 81\\
+	\implies & 71 = T(2) \exp(9) \mod 81
+\end{align*}
+	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-
-
+	
+	
+	
+	
+	
 	\end{document}
  
 
