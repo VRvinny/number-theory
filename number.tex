@@ -2102,29 +2102,158 @@ $T(2) \equiv -1 \mod 81$,
 	\implies& 3y \equiv \log(1+9) = 9 - \frac{81}{2} + \dots \equiv 9 \mod 81\\
 	\implies & 71 = T(2) \exp(9) \mod 81
 \end{align*}
-	
+\newpage	
+Suppose we also decompose $x = T(u)\exp(3v)$. Then 
+\begin{align*}
+	x^{21} = T(u^{21})\exp(3*21v) = T(2) \exp(9)
+\end{align*}
+Since such a representation is unique, this gives us two simultaneous equations:
+\begin{align*}
+	u^{21} \equiv 2 \mod 3  \implies&   u\equiv -1 \equiv 2 \mod 3\\[2em]
+	63v \equiv 9 \mod 81  \implies&  7v \equiv 1\mod 9\\
+	 &v\equiv 4 \mod 9\\
+	 &3v\equiv 12 \mod 27\\
+\end{align*}
+\begin{align*}
+	x\equiv T(2)\exp(12) \mod 27
+\end{align*}
 
+\begin{align*}
+	\exp(12) &\equiv 1 + 12 + \frac{12^2}{2} + \frac{12^3}{6} + \frac{12^4}{4!} + \dots\\
+	& \equiv 1 + 12 + 72 + 288\\
+	&\equiv 1 + 12+18+18\\
+	&\equiv 22 \mod 27\\[1em]
+	T(2) &\equiv -1 \mod 27\\
+\end{align*}
 	
+So $x \equiv 5 \mod 27 \implies x \equiv 5,32, 59 \mod 81$
+
+\subsection{Fractional Powers}
+	If $p$ is an odd prime $n$ and $a \equiv 1 \mod p$ and $b \in \mathbb{Z}_{(p)} $ then $a^b $ modulo $p^n$ is:
+\begin{align*}
+	a^b \equiv \exp(b\log(a)) \mod p^n
+\end{align*}
+
+The usual rules hold for powers:
+\begin{itemize}
+	\item{$(ab)^c \equiv a^cb^c \mod p^n$}
+	\item{$a^{b+c} \equiv a^b a^c \mod p^n$}
+	\item{$a^{bc} \equiv (a^b)^c \mod p^n$}
+\end{itemize}
+\newpage
+\textbf{E.g} $4^{\frac{1}{2}} \mod 27$
+First find $\log(4) \mod 27$
+
+\begin{align*}
+	\log(4) & \equiv(1+3) \mod 27\\
+	& \equiv 3 - \frac{9}{2} + \frac{27}{3} \mod 27\\
+	& \equiv 3 + 9 + 9 \mod 27\\
+	& \equiv 6 \mod 27
+\end{align*}
+
+So 
+\begin{align*}
+	4^b &\equiv \exp(-6b) &\mod 27\\
+	& 1 -6b + \frac{36b^2}{2} - \frac{6^3 b^3}{6} &\mod 27\\
+	& 1 -6b + 18b^2 - 36b^3 &\mod 27\\
+	& 1-6b - 9b^2-  9b^3 &\mod 27
+\end{align*}
 	
+\begin{align*}
+	4^\frac{1}{2} &\equiv 1- 3 - 9(\frac{1}{4} + \frac{1}{8}) \\
+	 &\equiv 1-3 \frac{27}{8}\\
+	 &\equiv 1-3 \\
+	 &\equiv -2 \mod 27
+\end{align*}
+
+
+\subsection{P-adic integers}
+This section is slighty more highbrow way of looking at the results of the previous lectures. We've defined several congruency classes such as $\exp(px) \mod p^n$, $T(a) \mod p^n$, $\log(1+px) \mod p^n$. It's a little bit more convenien to be able to write down just $\exp(px)$, $T(a)$, etc $\dots$ without needing to write modulo $p^n$ everywhere. The problem is that there is no integer (or even an element of the local ring) which is congruent $T(a) \mod p^n$ for all $n$. Instead, we work in a bigger ring, the ring $\mathbb{Z}_p$ of p-adic integers. In this ring, the expression $T(a)$, $\exp(px)$ etc all make sense.\\[1em]
+
+Let $p$ be any prime number. By a p-adic integer, we shall mean a p-adically convergent series
+
+\begin{align*}
+	\sum^{\infty}_{i=1} a_i &&a_i \in \mathbb{Z}_{(p)}, V_p(a_i) \longrightarrow \infty
+\end{align*}
+
+Recall that any series represents and element of $\mathbb{Z}/p^n$ for every $n$. We call two p-adic integers equal if they are congruent modulo $p^n$ for every $n$. THe set of all p-adic integers is whether $\mathbb{Z}_p$ (without the brackets around the $p$). Note that we can add, subtract and multiply p-adically convergent series, so in fact $\mathbb{Z}_p$ is a ring. 
+
+The advantage of this kind of notation is that we can write (for example) $\log(1+px)$ to mean a p-adic integer, without having to reduce modulo $p^n$. This allows us to state many of the recent theorems more simply. If $a \in \mathbb{Z}$ or $\in \mathbb{Z}_{(p)}$, then we can regard $a$ as the series $a = a + 0 + 0 + 0 +\dots$ and so $a$ is a p-adic integer as well.
+
+Therefore $\mathbb{Z} \subset \mathbb{Z}_{(p)} \subset \mathbb{Z}$\\[1em]
+
+
+However, it turns out that there are many more p-adic integers than there are elements in the local ring $\mathbb{Z}_{(p)}$. For example consider the following 5-adic integer:
+
+\begin{align*}
+	a &= (1+5) ^\frac{1}{2}\\
+	 &= 1+ \frac{1}{2}*5 + \frac{\frac{1}{2}*\frac{-1}{2}}{2} + 5^2 + \dots
+\end{align*}
+
+In fact $a$ is a square root of 6. We've shown earlier that $a^2 \equiv 6 \mod 5^n$ for all $n$ and therefore $a^2 \equiv 6 \in \mathbb{Z}_5$. However, the local ring $\mathbb{Z}_{(5)}$ has no square roots of 6 since its elements are rational numbers. This shows that $a$ is in $\mathbb{Z}_5$ but not $\mathbb{Z}_{(5)}$.
+\begin{proposition}
+Every p-adic integer can be written uniquely in the form:
+
+	\begin{align*}
+	\sum^{\infty}_{i=0}a_ip_i 
+	\end{align*}
+with coefficients $a_i \in \{ 0,1,\dots,p-1\}$
+\end{proposition}
+
+\begin{proof} $ $\\
+Let $x$ be a p-adic integer, so $x$ is defined modulo $p^n$ for all n. There is a unique choice of $a_0$ such that $a_0 \equiv x \mod p $. 
+
+	This means that $x-a_0$ is a multiple of $p$. There is a unique choice of $a_1$ such that $a_1 \equiv \frac{x-a_0}{p} \mod p$.
+
+	This implies $pa_1 \equiv x-a_0 \mod p^2$, so $ x\equiv a_0 + a_1p \mod p^2$.
+	This implies $x-a_0-a_1p$ is a multiple of $p^2$ and there is a unique $a_2$ such that $p^2a_2 \equiv x - a_0 -a_1p \mod p^3$, etc.
+\end{proof}
+
+We've already seen what it means for a series to converge p-adically. We'll now make a coresponding definition for sequences.
+
+\begin{definition}
+	Let $a_n$ be a sequence for elements of $\mathbb{Z}_{(p)}$. We'll say that this sequence converges p-adically if the corresponding series:
+	\begin{align*}
+	a_0 + (a_1 - a_0) + (a_2-a_1) + \dots
+	\end{align*}
+\end{definition}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	If this is the case, then we define the limit of the sequence to be this series, regarded as an element of $\mathbb{Z}_p$. Note that the partial sums of the series above are exactly the terms of the sequence $a_n$. In fact, we have already seen manyt examples of p-adic limits.
+
+	Suppose $a_0 \in \mathbb{Z}_{(p)} $ satisfies the conditions of Hensel's lemma for a polynomial $f(x)$, i.e. $f(a_0) \equiv 0 \mod p^{2c+1}$, where $c = V_p(f'(a_0))$. Consider the series:
+	\begin{align*}
+	a =a_0+ (a_1-a_0) + (a_2-a_1)+(a_3-a_2)+\dots
+	\end{align*}
+	We'll show that this series converges p-adically. Recall that $a_{n+1} - a_n = \frac{f(a_n)}{f'(a_n)} $
+	\newpage
+When proving Hensel's lemma, we showed that $f(a_n) \equiv 0 \mod p^{2c+2^n}$, $V_p(f'(a_n)) = c$\\[1em]
+	Therefore $V_p(a_{n+1} - a_n) \geq 2c + 2^n - c = c+ 2^n \rightarrow \infty $\\[1em]
+
+	Hence $a$ is a p-adic integer, and is congruent to $a_n \mod p^{c+2^n}$.
+	We can re-interpret Hensel's lemma as saying the following:
+
+\begin{proposition}
+	Let $a_0$ and $f$ satisfy the conditions of Hensel's lemma and let $a \in \mathbb{Z}_p$ be the p-adic integer defined above. Then $f(a) = 0$
+\end{proposition}
+
+\begin{proof} $ $ \\
+	We just need to prove that $f(a) \equiv 0 \mod $ any power of $p$. But we have $f(a) \equiv f(a_n) \equiv 0 \mod p^{c+2^n}$
+\end{proof}
+
+Next consider Teichm\"uller lifts. For an odd prime $p$ and an element $a \in \mathbb{Z}_{(p)}$ such that $p \not | a $ let:
+
+\begin{align*}
+	T(a) = a + (a^p - a) + (a^{p^2} - a^p) + (a^{p^3} - a^{p^2}) + (a^{p^4} - a^{p^3}) + \dots
+\end{align*}
+We've shown that $a^{p^n} - a^{p^{n-1}} \equiv 0 \mod p^n$, and therefore the valuation of the $n-th$ term is at least $n$. This shows that the series converges p-adically, so $T(a) \in \mathbb{Z}_p$. Now the properties of Teichm\"uller lifts can be restated as follows:
+
+\begin{proposition}
+	The p-adic integer $T(a)$ depends onlt on the congruence class of a modulo $p$, and the map $T \colon \mathbb{F}_p^\times \mapsto \mathbb{Z}^\times_p$ is an injective group homomorphism.
+\end{proposition}
+
+\begin{proof} $ $\\
+	Since $T(x) \equiv x \mod p$, it follows that $T$ is injective. For every $n$, we have $T(xy) \equiv T(x)T(y) \mod p^n$. Therefore $T(xy) = T(x)T(Y) \in \mathbb{Z}_p$
+\end{proof}
 	
 	
 	
