@@ -2252,16 +2252,155 @@ We've shown that $a^{p^n} - a^{p^{n-1}} \equiv 0 \mod p^n$, and therefore the va
 \end{proposition}
 
 \begin{proof} $ $\\
-	Since $T(x) \equiv x \mod p$, it follows that $T$ is injective. For every $n$, we have $T(xy) \equiv T(x)T(y) \mod p^n$. Therefore $T(xy) = T(x)T(Y) \in \mathbb{Z}_p$
+	Since $T(x) \equiv x \mod p$, it follows that $T$ is injective. For every $n$, we have $T(xy) \equiv T(x)T(y) \mod p^n$. Therefore $T(xy) = T(x)T(y) \in \mathbb{Z}_p$
 \end{proof}
+
+\newpage
+\section{Quadratic rings}
+An integer $d$ is called square-free if $d$ is not a multiple of a square (apart from $1^2$). Let $d$ be a square-free integer with $d\not \equiv 1$. Define a complex number $\alpha$ by:
+
+
+\begin{align*}
+	\alpha =
+	\begin{cases}
+		\sqrt{d} & \text{ when }d \not \equiv 1   \hspace{7pt} (4)\\[1em]
+		\frac{1+\sqrt{d}}{2} & \text{ when } d \equiv 1 \hspace{7pt} (4)
+	\end{cases}
+\end{align*} 
+
+Consider the set $\{x+y\alpha : \hspace{7pt} x,y \in \mathbb{Z} \}$. This is called a "Quadratic Ring".
+
+\begin{lemma}
+Every quadratic ring is a ring, i.e. closed under $+, \times$.
+\end{lemma}
+\begin{proof}
+Clearly closed under +
+	\begin{align*}
+	(x+y\alpha)(r+s\alpha) = xr + (xs+yr)\alpha + ys\alpha^2
+	\end{align*}
+
+	Sufficient to show that $\alpha^2$ is in the quadratic ring.
+
+
+	\textbf{Case 1:}
+	\begin{align*}
+		\alpha = \sqrt{d} \implies \alpha^2 = d \text{ which is in the quadratic ring} 
+	\end{align*}
+
+	\textbf{Case 2:}
+	\begin{align*}
+		\alpha = \frac{1+\sqrt{d}}{2}  &&&& d \equiv 1 \hspace{7pt} (4)\\[0.5em]
+		(\alpha - \frac{1}{2})^2 = \frac{d}{4}\\[0.5em]
+		\alpha^2 -\alpha + \frac{1}{4} = \frac{d}{4}\\[0.5em]
+		\alpha \equiv \alpha + \frac{d-1}{4} && d-1 \equiv 0 \hspace{7pt} (4) \implies && \frac{d-1}{4} \in \mathbb{Z}
+	\end{align*}
+	$\therefore \alpha^2 $ is in the quadratic ring.
+\end{proof}
+
+We call $\mathbb{Z}[\alpha] = \{x+y\alpha : x,y, \in \mathbb{Z}\}$:
+\begin{itemize}
+	\item{A real quadratic ring if $d>0$}
+	\item{A complex quadratic ring if $d<0$}
+\end{itemize}
+\textbf{E.g} $d=-1$\\
+$-1\equiv 1 \hspace{7pt} (4) $\\
+$\therefore \alpha = \sqrt{-1} = i$\\[0.5em]
+
+$\mathbb{Z}[i] = \{x+iy : x,y \in \mathbb{Z} \} $ is the ring of Gaussian integers.\\[1em]
+\newpage
+\textbf{E.g} $d=-3 $\\
+$-3 \equiv 1 \hspace{7pt} (4) $ so $\alpha = \frac{1+\sqrt{3}}{2}$
+
+This is the ring of Eisenstein integers. It is the same as $\mathbb{Z}[\zeta_3] = \zeta = e^{\frac{2\pi i }{3}}$.
+
+\begin{definition}
+	Let $\mathbb{Z}[\alpha]$ be a quadratic ring. The elements all have the form $A = x + y\sqrt{d}$ where $x,y$ are rational. The conjugate of such an element $\bar A = x-y \sqrt{d}$
+\end{definition}
+
+
+\textbf{Properties of conjugates}
+
+
+\textbf{1} $\bar \alpha = $
+
+\begin{enumerate}
+	\item{$\bar \alpha = 
+		\begin{cases}
+			-\alpha & d \not \equiv 1 \hspace{7pt} (4)  \\
+			1-\alpha & d \equiv 1 \hspace{7pt} (4) 
+		\end{cases}$}\\[1em]
+\item{$\overline{A+B} = \bar A + \bar B  $\\
+	$\overline{AB} = \overline{A}  \hspace{3pt} \overline{B}$}\\[1em]
+\item{$\bar A \in \mathbb{Z}[\alpha]$ if $A \in \mathbb{Z}[\alpha]$}\\[1em]
+\item{ $\bar{\bar A} = A$}
+\end{enumerate}
+\begin{proof} $ $\\ 
+	\textbf{1.} If $d \not \equiv 1 \hspace{7pt} (4)$ then $\alpha = \sqrt{d} $\\
+	\hspace{70pt} $\implies \bar \alpha = - \sqrt{d} = -\alpha $\\[2em]
+	If $d \equiv 1 \hspace{7pt} (4)$ then $\alpha = \frac{1+\sqrt{d} }{2}$\\
+	\hspace{60pt} $\implies \bar \alpha = \frac{1-\sqrt{d}}{2} = 1 - \alpha$ \\[1em]
+	
+	\textbf{2.} Suppose:
+
+	$A= x+ y\sqrt{d}$
+	
+	$ B= r+s\sqrt{d} $\\[1em]
+
+	Clearly $\overline{A+B} = \bar A + \bar B $
+
+
+	\begin{align*}
+		\overline{A+B} & = \overline{(x+y\sqrt{d}) )(r+s\sqrt{d})}\\
+		&= \overline{(xr+dys)+ (xs+yr)\sqrt{d}}\\
+		& = \overline{(xr+dys)- (xs+yr)\sqrt{d}}
+	\end{align*}
+
+	\begin{align*}
+		\bar A \cdot \bar B &= (x-y\sqrt{d})(r-s\sqrt{d})\\
+		&=(xr+dys)+ (-xs-yr)\sqrt{d}
+	\end{align*}
+	\newpage
+	\textbf{3.} Let $A = x+y\alpha   $\hspace{20pt} $x,y \in \mathbb{Z}$\\[1em]
+	by \textbf{2.} $\bar A = x+y\alpha$\\
+	by \textbf{1.} $\bar \alpha \in \mathbb{Z}[\alpha]$\\
+	$\therefore \bar A \in \mathbb{Z}[\alpha]$\\[1em]
+	\textbf{4.} Trivial
+\end{proof}
+
+
+
+
+
+
+
 	
 	
 	
 	
 	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 	
