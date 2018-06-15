@@ -2318,7 +2318,7 @@ This is the ring of Eisenstein integers. It is the same as $\mathbb{Z}[\zeta_3] 
 \end{definition}
 
 
-\textbf{Properties of conjugates}
+\subsubsection{Properties of conjugates}
 
 
 \textbf{1} $\bar \alpha = $
@@ -2368,6 +2368,118 @@ This is the ring of Eisenstein integers. It is the same as $\mathbb{Z}[\zeta_3] 
 \end{proof}
 
 
+\begin{definition}
+	For an element $A \in \mathbb{Z}$ we define $N(A) = A \bar A$ - The norm of $A$
+\end{definition}
+Remark: If $\mathbb{Z}[\alpha]$ is a complex quadratic ring then $\bar A$ is the complex conjugate of $A$. This means $N(A) = |A|^2$\\[1em]
+
+
+\textbf{E.g.} $d = -1 \implies \mathbb{Z}[\alpha] = \mathbb{Z}[i]$
+
+The elements have the form $x+iy , \hspace{7pt} x, y \in \mathbb{Z}$
+\begin{align*}
+	N(x+iy) &= (x+iy)(x-iy) \\
+	&= x^2 + y^2
+\end{align*}
+
+
+\textbf{E.g.} $d=-3 \implies -3 \equiv 1 \hspace{7pt} (4) $, so $\alpha = \frac{1+\sqrt{-3}}{2}$
+
+\begin{align*}
+	N(x+y\alpha) &= (x+y\alpha)(x+y\bar \alpha) && \bar \alpha = 1- \alpha\\
+	&=x^2 + xy(\underbrace{\alpha+ 1-\alpha}_{=1}) + y^2(\underbrace{\alpha(1-\alpha)}_{=1})
+\end{align*}
+Note that:
+\begin{align*}
+	&\alpha = \frac{1+\sqrt{d}}{2}\\[1em]
+	\implies &(\alpha - \frac{1}{2})^2 = \frac{d}{4}\\[1em]
+	\implies &\alpha^2 - \alpha + \frac{1}{4}  =  \frac{d}{4}\\[1em]
+	\implies & \alpha(1-\alpha) = \frac{1-d}{4}
+\end{align*}
+In this case:
+\begin{align*}
+	N(x+y\alpha) = x^2 + xy+y^2
+\end{align*}
+
+
+\subsubsection{Formula for norms}
+The general formula for norms is given by: \\[1em]
+$
+N(x+y\alpha) = 
+\begin{cases}
+	x^2 - dy^2 & \text{ if } d\not \equiv 1 \hspace{7pt} (4)\\
+	x^2 + xy + \frac{1-d}{4}y^2 &\text{ if } d \equiv 1 \hspace{7pt} (4)
+\end{cases}
+$
+
+\newpage
+\textbf{Case 1:} $d \not \equiv 1 \hspace{7pt} (4) $
+
+$\implies \hspace{19pt}\bar \alpha \equiv - \alpha$
+\begin{align*}
+	N(x+y\alpha) = (x+y\alpha)(x-y\alpha) = x^2 - dy^2 &&\alpha^2 = d 
+\end{align*}
+
+\textbf{Case 2:} $\bar \alpha = 1 - \alpha $\\
+$\implies \hspace{18pt} \alpha = \frac{1+\sqrt{d}}{2} $
+
+\begin{align*}
+	N(x+y\alpha) &= (x+y\alpha)(x+y(1-\alpha))\\
+	&= x^2 + xy + y^2(\underbrace{\alpha - \alpha^2}_{\frac{1-d}{4}}) 
+\end{align*}
+
+	
+\subsubsection{Properties of norms}
+	
+	
+\begin{enumerate}
+	\item{$N(A) \in \mathbb{Z}$}
+	\item{$N(AB) = N(A)N(B) $}
+	\item{If $N(A) = 0 $ then $A=0$}
+\end{enumerate}
+\begin{proof} $ $\\
+	\begin{enumerate}
+		\item{Follows from formulas for norms}
+		\item{$N(AB) = AB \overline{AB}$}
+		\item{If $N(A) = 0$ then $A \bar A =0$\\
+			\hspace{76pt} $\therefore $ either $A=0 $ or $\bar A = 0$\\
+			\hspace{76pt} $\therefore \bar A = 0 $ then $A = \bar A = \bar 0 = 0$  }
+	\end{enumerate}
+\end{proof}
+
+
+Recall - A unit in a ring $R$ is an element with an inverse in $R$.\\[1em]
+
+\textbf{E.g.} $1+\sqrt{2} $ is a unit in $\mathbb{Z}[\sqrt{2}] \implies (1+\sqrt{2})(\sqrt{2} -1) = 1$
+
+\begin{corollary}
+	An element $A \in \mathbb{Z}[\alpha] $ is a unit if and only if $N(A) = \pm 1$
+\end{corollary}
+
+\begin{proof}
+	If $N(A) = \pm 1$ then $A \bar A = \pm 1$\\
+	\hspace{105pt} $\implies A^{-1} = \pm A \in \mathbb{Z}[\alpha]$. So $A $ is a unit.
+\end{proof}
+
+If $A$ is a unit with inverse $B$, $AB = 1 \implies N(A)N(B) = N(AB) = N(1) = 1 $\\
+
+Using this proposition, it's easy to find all the units in any complex quadratic ring.
+
+
+\textbf{E.g} The units in $\mathbb{Z}[i] $ are $\pm 1, \pm i$
+
+
+\begin{proof}
+	Since $N(x+iy) = x^2 + y^2 $, the units correspond to the solutions to $x^2 + y^2 = 1$. These solutions are $x = \pm 1$, $y = 0$ and $x =0 $, $y = \pm 1$
+\end{proof}
+
+
+
+
+
+
+
+
 
 
 
@@ -2377,7 +2489,6 @@ This is the ring of Eisenstein integers. It is the same as $\mathbb{Z}[\zeta_3] 
 	
 	
 	
-	
 
 
 
@@ -2389,23 +2500,6 @@ This is the ring of Eisenstein integers. It is the same as $\mathbb{Z}[\zeta_3] 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
-	
 	
 	
 	
