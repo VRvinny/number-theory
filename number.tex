@@ -2474,11 +2474,105 @@ Using this proposition, it's easy to find all the units in any complex quadratic
 \end{proof}
 
 
+\newpage
+
+\textbf{E.g.} The units in the Eisenstein integers $\mathbb{Z}[\frac{1+\sqrt{-3}}{2}]$ are  $\pm 1, \pm \alpha, \pm (\alpha -1)$. Equivalently these are $\pm 1, \pm \zeta_3, \pm \zeta^2_3$
+
+
+\begin{proof}
+Find all solutions to $x^2 + xy +y^2 = 1$. We can complete the square to get:
+	\begin{align*}
+		(x+\frac{1}{2}y)^2 + \frac{3}{4}y^2 = 1
+	\end{align*}
+
+	$y^2 < \frac{4}{3}$ and since $y$ is an integer $|y|< 1$
+
+	Similarly $|x| <1 $.\\[1em]
+
+	If $y=0 $ then $x \pm 1$\\
+	If $y=\pm 1 $ then $x^2 + xy+ 1 = 1 \implies x=0,-y $ are solutions.\\[1em]
+
+	So the 6 solutions are $(1,0), (-1,0), (0,1), (-1,1), (0,-1), (1,-1)$
+
+\end{proof}
+
+
+\begin{corollary}
+	If $d<0$ and $d\neq -1,-3$ then the units in $\mathbb{Z}[\alpha]$ are \{1,-1\}
+\end{corollary}
+
+
+\begin{proof}
+	Assume first that $d\not \equiv 1 \mod 4$\\[1em]
+	$\implies N(x+y\alpha) = x^2 - dy^2 $ \hspace{20pt} $x,y \in \mathbb{Z} $ and $-d>1$ so $y=0 \implies x= \pm 1$
+	\\[1em]
+
+	So $(1,0), (-1,0)$ give us the two units $1 ,-1$\\[1em]
+
+	Assume now $d \equiv1 \mod 4 \implies -d\geq -7 $ and need to find solutions to the equation:
+	\begin{align*}
+		&x^2 +xy+ \frac{1-d}{4}y^2 = 1\\[1em]
+		\implies & (x+\frac{1}{2}y)^2 - \frac{d}{4}y^2 = 1
+	\end{align*}
+	Since $\frac{d}{4} > 1, y^2 < 1 \implies y=0 \implies x=\pm 1$
+
+
+\end{proof}
 
 
 
 
+\subsection{Norm-Euclidean quadratic rings}
 
+\begin{definition}
+	A quadratic ring $\mathbb{Z}[\alpha]$ is norm-Euclidean if $\forall A,B \in \mathbb{Z}[\alpha] $ with $B\neq 0$ \hspace{7pt}$ \exists Q,R, \in \mathbb{Z}[\alpha] $ such that:
+
+
+	\begin{itemize}
+		\item{$A = QB + R$}
+		\item{$|N(R)| < N(B)$}
+	\end{itemize}
+\end{definition}
+
+
+Finitely many of the quadratic rings are norm-Euclidean.
+
+
+\begin{theorem}
+	If $\mathbb{Z}[\alpha]$ is norm-Euclidean then every non-zero element of $\mathbb{Z}[alpha]$ can be factorised as $UQ_1\dots Q_r$
+\end{theorem}
+$Q_i $ are irreducible elements of $\mathbb{Z}[\alpha] $, $U$ is a unit.
+
+This factorisation is unique in the sense that if $U_1Q_1\dots Q_r=U_2R_1 \dots R_s$ then $r=s$ and (after reordering $Q_r, R_i$ is a unit for each $U$
+
+\newpage
+\textbf{E.g} Let $d = -7$ so $\alpha = \frac{1+\sqrt{-7}}{2}$. This is norm-Euclidean.
+
+
+Suppose $z= x+y \sqrt{-7} $ \hspace{7pt} $x,y \in \mathbb{Q}$. We'll show that there is an element $Q \in \mathbb{Z}[\alpha] $ such that $|N(Z-Q)| <1$.\\[1em]
+
+
+Choose $b \in \mathbb{Z}$ such that $|y - \frac{b}{2}| < \frac{1}{4}$\\[1em]
+
+Note that $z - b\alpha = (x-\frac{b}{2}) + (y-\frac{b}{2})\sqrt{-7}$\\[1em]
+
+Then choose $a \in \mathbb{Z} $ so that $|x-\frac{b}{2} - a| \leq \frac{1}{2}$. Also note that the maximum distance to the closest integer is $\frac{1}{2}$.\\[1em]
+
+We let $Q= a + b\alpha$ and we have:
+
+\begin{align*}
+	Z-Q = (x-\frac{b}{2} - a) + (y-\frac{b}{2}) \sqrt{-7}\\[2em]
+	N(Z-Q) \leq (\frac{1}{2})^2 + 7(\frac{1}{4}) ^2 = \frac{11}{16} < 1
+\end{align*}
+
+Now to show the ring is norm-Euclidean. Choose $A, B \in \mathbb{Z}[\alpha]$ with $B \neq 0$. By what we've shown there is an element $Q \in \mathbb{Z}[\alpha]$ such that $|N(\frac{A}{B} -Q)| \leq 1$\\[1em]
+
+Let $R = A-QB $ then $A=QB + R$
+\begin{align*}
+	|N(R)| &= |N(A-QB)|\\
+	&= |N(\frac{A}{B} - Q ) N(B) |\\
+	&< |N(B)|
+\end{align*}
 
 
 
