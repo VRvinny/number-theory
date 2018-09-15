@@ -46,8 +46,10 @@
 		\centering{What did the number theorist say as he drowned?}\\[1em]
 		Log, log, log, log....\\[2em]
 
-		For an up to date version of this pdf, check my GitHub :)\\[1em]
-https://github.com/vrvinny/number-theory
+		%For an up to date version of this pdf, check my GitHub :)\\[1em]
+%https://github.com/vrvinny/number-theory
+
+		%These notes definitely have typos in them, I don't know where but don't blame me if you fail this module. :)
 	\end{abstract}
 \newpage
 \tableofcontents{}
@@ -75,16 +77,9 @@ Examples of rings:
 	\subsubsection{Congruences}
 	Let $n$ be a positive integer. Given $x,y \in \mathbb{Z}$, we say $x$ is congruentt to $y$ modulo $n$ if $x-y$ is a multiple of $n$.\\
 
-	$x \equiv y (n)$  \hspace{10pt} or \hspace{10pt} $x \equiv y$ mod $n$
-	
-	\begin{flushleft}
-	%\begin{align*}
-		\textbf{E.g} \hspace{10pt} $2 \equiv 12 \hspace{5pt} (10)$\\
-		\hspace{42pt}$\equiv  -8 \hspace{5pt} (10)$
-	%\end{align*}
-	\end{flushleft}
-	
-
+	$x \equiv y (n)$  \hspace{10pt} or \hspace{10pt} $x \equiv y$ mod $n$\\[1em]
+	\textbf{E.g} \hspace{10pt} $2 \equiv 12 \hspace{5pt} (10)$ \\
+	 $ $ $ \hspace{500pt} \equiv -8 \hspace{5pt} (10)$\\[1em]
 	We write $\mathbb{Z}/n$ for the ring of congruency classes modulo $n$, i.e. the elements are integer, with two of them regarded as the same if they are congruent modulo $n$.\\
 
 	Since every integer is congruent to a unique integer in the set $\{0,\dots, n-1\}$, we have $\mathbb{Z}/n = \{0,\dots, n-1\}$.
@@ -2074,7 +2069,7 @@ Using the binomial theorem:
 	Since $2^6 \cdot 4 \equiv 4 \mod 7 $, it follows that $(7^2 \cdot 2^6 \cdot 4) \equiv (49* 4) \equiv 196 \mod 7^3 $. This shows that $T(23) \equiv 128 + 196 \equiv 324 \mod 7^3$\\[1em]
 
 
-	The followin corollary was stated but not proved:
+	The following corollary was stated but not proved:
 \begin{corollary}
 	Let $p$ be an odd prime number. Every element of $(\mathbb{Z}/p^n)^\times$ can be written uniquely in the form $T(x) \cdot \exp(py)$ where $x \in \mathbb{F}_p^{\times} $ and $py \in p\mathbb{Z}/p^n$. Thi is an isomorphism of groups:
 	\begin{align*}
@@ -2574,15 +2569,843 @@ Let $R = A-QB $ then $A=QB + R$
 	&< |N(B)|
 \end{align*}
 
+\textbf{E.g} Let $d=3$. In this case $\alpha = \sqrt{3} $. We'll show that the quadratic ring $\mathbb{Z}[\sqrt{3}]$ is norm-Euclidean.\\[1em]
+
+Let $z = x + y \sqrt{3} $ with $x,y \in \mathbb{Q}$. Need to show there is an element $Q = r+s\sqrt{3} \in \mathbb{Z}[\sqrt{3}]$ such that $|N(Z-Q)| < 1$. Choose $r,s \in \mathbb{Z}$ such that:
 
 
+\begin{align*}
+	&|x-r|\leq \frac{1}{2}  && |y-s| \leq \frac{1}{2}
+\end{align*}
+\begin{align*}
+	\implies& N(Z-A) = (x-r)^2 - 3(y-s)^2\\
+	\implies& -\frac{3}{4} \leq N(Z-Q) \leq \frac{1}{4}\\
+	\implies& |N(Z-Q)|<1
+\end{align*}
+Now to show that $\mathbb{Z}[\sqrt{3}]$  is norm-Euclidean. Suppose $A, B \in \mathbb{Z}[\sqrt{3}] $ with $B\neq 0$, there is already a $Q \in \mathbb{Z}[\sqrt{3}]$ such that $|N(\frac{A}{B} - Q)|<1$.\\[1em]
+
+Let $R= A-QB$. This implies $A= QB +R$
+\begin{align*}
+	\implies |N(R)| &= |N(A-QB)|\\
+	& = |N(\frac{A}{B} - Q ) N(B) |\\
+	& < |N(B)| 
+\end{align*}
+
+Hence $\mathbb{Z}[\sqrt{3}]$ is norm-Euclidean.
 
 
+\begin{theorem}
+The disappointing theorem - The quadratic rings with $d = -1, -2, -3, -7, 1, 2, 3, 5, 13 $ are norm-Euclidean.
+\end{theorem}
 
+\begin{definition}
+	Suppose $A, B \in \mathbb{Z}[\alpha]$. A highest common factor of $A $ and $B$ is an element $C \in \mathbb{Z}[\alpha]$ with the following properties:
+
+	\begin{itemize}
+		\item{$C$ is a factor of both $A $ and $B $ i.e. $\frac{A}{C}$ and $\frac{B}{C}$ are both in $\mathbb{Z}[\alpha]$}
+		\item{If $D$ is a factor of both $A$ and $B$ then $D$ is a factor of $C$ (and hence$|N(D)| \leq |N(C)| $)}
+	\end{itemize}
+\end{definition}
 	
+	If $C$ is a highest common factor of $A$ and $B$, then so is $UC$ fo every unit $U$, but these are all the highest common factors. Hence highest common factors, if they exit are unique up to multiplication by a unit.
+
+\begin{lemma}
+	Bezout's Lemma - Let $\mathbb{Z}[\alpha] $ be norm-Euclidean ring and let $A,B \in \mathbb{Z}[\alpha]$ not both $0$. Then there is a highest common factor $C$ of $A,B $ and there exist $H, K \in \mathbb{Z}[\alpha]$, such that $HA+KB=C$ 
+\end{lemma} 
+
+
+\begin{proof}
+	The proof goes similarly to in the ring $\mathbb{Z}$. We prove by induction on $\min(|N(A)|,|N(B)|)$. The induction step consists of writing $A=QB+R $ with $N(R)< |N(B)|$ and using the lemma. To prove the start of the induction, we assume $B=0$. But then it's easy to check that $A$ is a highest common factor.
+\end{proof}
+
+
+\begin{definition}
+	An element $P \in \mathbb{Z}[\alpha] $ is called irreducible if:
+	\begin{itemize}
+		\item{$P$ is not a unit}
+		\item{If $P=AB$ with $A,B \in \mathbb{Z}[\alpha]$ then either $A$ or $B$ is a unit }
+	\end{itemize}
+\end{definition}
+
+
+
+\begin{definition}
+	We'll say that a quadratic ring $\mathbb{Z}[\alpha]$ has unique factorisation if the following is true:
+	\begin{itemize}
+		\item{For every non-zero element $A \in\mathbb{Z}[\alpha] $ there is a factorisation $A = UP_1\dots P_r $ with $U$ a unit and each $P_i$ irreducible}
+		\item{If we have another factorisation $A=U'Q_1 \dots Q_s$, then $r=s$ and we can reorder $Q_1,\dots, Q_s$ so that each $P_i/Q_i$ is a unit.} 
+	\end{itemize}
+
+\end{definition}
+\newpage
+
+\begin{lemma}
+	Let $\mathbb{Z}[\alpha]$ be norm-Euclidean. Let $p$ be irreducible and suppose $P|AB$ in $\mathbb{Z}[\alpha]$. Then $P|A$ or $P|B$
+\end{lemma}
+
+\begin{proof}
+	Suppose $P$ does not divide $A$. Then the highest common factor of $P$ and $A$ is not $P$, so it must be $1$. Therefore we can find $H,K \in \mathbb{Z}[\alpha]$ such that $HP+KA=1$. This implies $B=HPB+KPB$ which is a multiple of $P$.
+\end{proof}
+
+
+\begin{theorem}
+	If $\mathbb{Z}[\alpha]$ is norm-Euclidean, then $\mathbb{Z}[\alpha]$ has unique factorisation.
+\end{theorem}
+
+\begin{proof}
+$ $\\
+	The proof is exactly as for $\mathbb{Z}$ (using the previous lemma for the uniqueness part), except that we prove by induction on $N(A)$.
+\end{proof}
+In fact, there are many examples when $\mathbb{Z}[\alpha]$ has unique factorisation, even though it is not norm-Euclidean. It's known that a complex quadratic ring has unique factorisation for exactly the following values of $d$ and no more:
+\begin{align*}
+d=-1,-2,-3,-7,-11,-19,-43,-67,-163
+\end{align*}
+In contrast, it is much more common for a real quadratic ring to have unique factorisation. In fact, the following is believed (but not proved):
+\\[1em]
+\textit{\textbf{Conjecture:}  }There are infinitely many positive square-free integers $d$ such that $\mathbb{Z}[\alpha]$ has unique factorisation. On the other hand, there are many quadratic rings which do not have unique factorisation. \\[1em]
+
+\textbf{E.g} In the ring $\mathbb{Z}[\sqrt{-5}]$ we have non-unique factorisation. For example $6=2*3 = (1+\sqrt{-5})(1-\sqrt{-5})$.\\[2em]
+
+
+The elements $2,3, 1\pm \sqrt{-5} $ are all irreducible. To see this, note that they have norms $2,9, $ $6 \& 6 $. Hence any proper factors would have norm $2 $ and $3 $. However the ring $\mathbb{Z}[\sqrt{-5}]$ has no elements of norm $2$ and $3$ since $x^2+ 5y^2$ is never equal to $2$ or $3$ fo r integers $x,y$.
+
+\subsection{The Decomposition Theorem}
+
+Assume that $\mathbb{Z}[\alpha]$ is a quadratic ring with unique factorisation into irreducible elements, e.g. $\mathbb{Z}[\alpha]$ could be norm-Euclidean.
+
+
+\begin{lemma}
+	If $Q$ is an irreducible element in $\mathbb{Z}[\alpha]$ then there exists a unique prime number $p$ such that $Q|p$
+\end{lemma}
+
+
+\begin{proof}
+	\begin{align*}
+		Q|N(Q) = \pm p_1p_2 \dots  p_r \hspace{7pt} (p_i\text{ prime})
+	\end{align*}
+	By uniqueness of factorisation $Q|p_i$ for some $i$ if $Q|p$ and  $Q|q$  where $p,q$ are distinct primes, $hcf(p,q) = 1 = hp+kq$ ($h, k \in \mathbb{Z})  \implies Q|1 $ \lightning
+\end{proof}
+
+The lemma means that to find all the irreducible elements, we just need to factorise all the primes in $\mathbb{Z}[\alpha]$. Suppose $Q|p$, where $Q$ is irreducible in $\mathbb{Z}[\alpha]$, $p$ prime:
+\begin{align*}
+	\implies & N(Q) | N(p) = p^2\\
+	\implies & N(Q) = \pm p \text{ or } \pm p^2
+\end{align*}
+If $N(Q) = \pm p^2 $ then $Q = unit * p $ so $p$ is irreducible.
+
+
+
+
+
+\begin{itemize}
+	\item{If $P=Q_1Q_2$ where $\frac{Q_1}{Q_2}$ is not a unit, then we say $P$ is \textbf{split} in $\mathbb{Z}[\alpha]$ }
+	\item{If $P = UQ^2$ ($U $ a unit, $Q $ irreducible) then we say $P$ is \textbf{ramified} in $\mathbb{Z}[\alpha]$  } 
+	\item{If $P$ is irreducible in $\mathbb{Z}[\alpha]$ then we say that $P$ is \textbf{inert} in $\mathbb{Z}[\alpha]$}
+\end{itemize}
+
+
+\textbf{E.g} $d=-1 $\hspace{7pt}  $\alpha = \sqrt{-1} = i $\hspace{7pt} $N(x+iy)=x^2+y^2$\\[1em]
+
+A prime number $p$ factorises in $\mathbb{Z}[i] \implies $ there is an element with norm $\pm p$
+
+
+\begin{itemize}
+	\item{$2 = 1^2+1^2= N(1+i) = (1+i)(1-i) = -i (1+i)^2  \implies $ 2 is ramified } 
+	\item{$3$ is inert}
+	\item{$5 = 2^2 + 1^2 = (2+i)(2-i) $ 5 is split}
+	\item{7 is inert}
+	\item{11 is inert}
+	\item{$13 = 3^2 + 2^2 = (3+2i)(3-2i)$ 13 is split}
+\end{itemize}
+
+Check if a number is ramified by dividing one by the other and checking if the result is in the ring.\\[1em]
+
+\textbf{E.g } $d=-3 $ \hspace{7pt} $\alpha = \frac{1+\sqrt{3}}{2} $ \hspace{7pt} $N(x+y\alpha) = x^2 +xy+y^2$
+
+
+\begin{itemize}
+	\item{2 inert}
+	\item{$3= - \sqrt{-3}^2 = -(1-2\alpha)^2 $ 3 ramified}
+	\item{5 inert}
+	\item{$7 = N(2+\alpha) = (2+\alpha)(3-\alpha) $ }
+	\item{11 inert}
+\end{itemize}
+
+
+Assume $\mathbb{Z}[\alpha]$ is a quadratic ring with unique factorisation. Let $p$ be an odd prime number.
+
+
+\begin{align*}
+	p \text{ is ramified } &\iff p|d && 2 \text{ splits } \iff d \equiv 1 \hspace{7pt} (8) \\
+	p \text{ is split } &\iff \Big(\frac{d}{p}\Big) = 1 && 2 \text{ inert } \iff d \equiv 5\hspace{7pt}(8) \\
+	p \text{ is inert } &\iff \Big(\frac{d}{p}\Big) = -1 && \text{in other cases 2 is ramified } \\
+\end{align*}
+\newpage
+
+Idea of proof:\\[1em]
+
+Assume $d\not \equiv 1 \hspace{7pt} (4)$, $N(x+y\alpha) = x^2-dy^2 $\\[0.5em]
+
+If $p$ factorises then $\exists x,y \in \mathbb{Z}$, $ x^2-dy^2 = \pm p$ 
+
+
+\begin{align*}
+	\implies x^2 \equiv dy^2 \hspace{7pt} (p)\\
+	\implies \Big(\frac{x}{y}\Big)^2 \equiv d \hspace{7pt} (p)
+\end{align*}
+
+
+If $d$ is a quadratic residue then $x^2 \equiv d \hspace{7pt} (p) $\hspace{15pt} $p | (x+\sqrt{d})(x-\sqrt{d})$.\\[0.5em]
+
+If $p$ were inert then $p| x+\sqrt{d} $ or $x-\sqrt{d}$ \lightning \hspace{15pt}(number not in ring) \\
+$\implies $ factorises
+
+
+
+\subsection{Solving $|N(A) = n |$}
+
+Assume that $\mathbb{Z}[\alpha]$ has unique factorisation, does the equation $|N(A)| = n $ have solutions?\\[1em]
+
+
+\textbf{E.g} $d= -1 \hspace{20pt} \mathbb{Z}[\alpha] = \mathbb{Z}[i]  \hspace{20pt} N(x+iy)= x^2+ y^2$
+
+
+\begin{align*}
+	& 2= 1^2 + 1^2 && &8=2^2+2^2\\
+	&3 \times && &9 = 3^2 +0^2\\
+	&4 = 2^2 + 0^2 && &10 = 3^2 + 1^2\\
+	&5 = 2^2+1^2 && &11 \times\\
+	&6 \times && &12 \times\\
+	&7 \times && &13 = 3^2 + 2^2
+\end{align*}
+
+
+The answer is a corollary to the Decomposition Theorem.
+\begin{corollary}
+	Assume $\mathbb{Z}[\alpha]$ has unique factorisation and let $n$ be a positive integer. Then the following are equivalent:
+
+	\begin{enumerate}
+		\item{$\exists A \in \mathbb{Z}[\alpha]: $ $ |N(A)| = n $}
+		\item{$\forall $ inert primes $p|n$, $V_p(n)$ is even}
+	\end{enumerate}
+\end{corollary}
+
+
+\begin{proof} $ $\\[1em]
+	$\textbf{1} \implies \textbf{2}$ Assume $|N(A)| = n$
+	\begin{align*}
+		A=Q_1^{a_1}\dots Q_r^{a_r} \text{ for } &Q_i \text{ irreducible in }\mathbb{Z}[\alpha]\\
+		&Q_i|P_i \hspace{7pt} (p_i \text{ prime}) \\[0.5em]
+	\end{align*}
 	
+	\begin{equation*}
+		|N(Q_i)| = 
+		\begin{cases}
+			P_i & \text{ if $P_i$ splits or is ramified}\\
+			P_i^2 & \text{$P_i$ inert}
+		\end{cases}
+	\end{equation*}
+
+
+	\begin{align*}
+		n = |N(A)| = \Bigg( \prod_{\substack{\text{$P_i $ split } \\\text{or ramified} }} P_i^{a_i} \Bigg)* \Bigg( \prod_{\substack{\text{$P_i$ inert}}} \Bigg)  
+	\end{align*}
+	So powers of inert primes are even.$ $\\[1em]
+
+	\textbf{2} $\implies $ \textbf{1} Let
+	\begin{align*}
+		n = \Bigg( \prod_{\substack{\text{$P_i$ split} \\\text{ or ramified} }} P_i^{a_i}\Bigg) * \Bigg( \prod_{\substack{\text{$P_i$ inert}}} P_i^{2a_i} \Bigg)
+	\end{align*}
+	Choose an element $Q_i$ with norm $\pm P_i$ if $P_i$ is split or ramified:
+	\begin{align*}
+		n &= N \Bigg( \prod_{\substack{\text{$P_i$ ramified} \\ \text{or split}}} Q_i^{a_i} \hspace{7pt} \times \prod_{\substack{\text{$P_i$ inert}}} P_i  \Bigg)
+	\end{align*}
+\end{proof}
+$ $\\
+\textbf{E.g} Solve $x^2 + y^2 = 585$ i.e. $N(x+iy) = 585$\\
+
+Note $585 =3^2*5*13$ 
+
+\begin{itemize}
+	\item{$3$ is inert because $\Big( \frac{-1}{3} \Big) = -1$}
+	\item{$5$ is split because $\Big( \frac{-1}{5} \Big) = +1$}
+	\item{$3$ is split because $\Big( \frac{-1}{13} \Big) = +1$}
+\end{itemize}
+
+The only inert prime factor of $585$ is $3$ and its power is even so $x^2+y^2 = 585$ will have solutions.
+
+\begin{align*}
+	5 &= 2^2 + 1^2 = N(2+i) = (2+i)(2-i)\\
+	13 &=3^2 + 2^2 = N(3+2i) = (3+2i)(3-2i)
+\end{align*}
+
+\begin{align*}
+	585 &=  3^2 *5 * 13\\
+	   &= N(3*(2+i)(3+2i))\\
+	   &= N(3(6+7i-2))\\
+	   &=N(12+21i)\\
+	   &=12^2+21^2
+\end{align*}
+ 
+The other elements of norm $585$ are unit multiples of it:
+
+\begin{itemize}
+	\item{$3(2+i)(3-2i) = 24-3i$}
+	\item{$3(2-i)(3+2i) = 24+3i$}
+	\item{$3(2-i)(3-2i) = 12-21i$}
+\end{itemize}
+
+
+
+$ $\\
+\textbf{E.g.} $x^2 +xy+y^2 = 84 $\\ 
+
+Note that $84 = 2^2*3*7$
+
+
+\begin{itemize}
+	\item{$2$ is inert in $\mathbb{Z}[\alpha]$}
+	\item{$3 = -(\sqrt{3} )^2 = -(1-2\alpha)^2 $ $\implies$ ramified}
+	\item{$7 \hspace{7pt}\Big (\frac{-3}{7} \Big)  = \Big (\frac{4}{7} \Big ) = 1 $ $\implies$ 7 splits \\[1em] $7 = N(2+2\alpha) = (2+\alpha) (3-\alpha)$} 
+\end{itemize}
+
+
+So the elements with norm $84$ are:
+
+\begin{itemize}
+	\item{$2(1-2\alpha)(2+\alpha)*$ unit }
+	\item{$2(1-2\alpha)(3-\alpha)*$ unit }
+\end{itemize}
+There are 6 units in this ring, therefore there are 12 solutions to $x^2 + xy +y^2 = 84$\\[1em]
+One possible solution is:
+
+\begin{align*}
+	2(1-2\alpha)(2+\alpha) &= 2(2-3\alpha=3\alpha^2)\\
+	&=2(2-3\alpha-2\alpha+2)\\
+	&=8-10\alpha
+\end{align*}
+
+so $N(8-10\alpha) = 84$
+
+
+$ $\\[1em]
+\textbf{Super cool trick}\\[1em]
+Using $\alpha = \frac{1+\sqrt{d}}{2}$
+
+\begin{align*}
+	\Big(\alpha - \frac{1}{2} \Big)^2 &= \frac{d}{4}\\[0.5em]
+	\alpha^2 - \alpha + \frac{1}{4} &= \frac{d}{4}\\[1em]
+	\alpha^2 = \frac{d-1}{4} &+ \alpha
+\end{align*}
+
+\subsection{Continued Fractions}
+
+A finite continued fraction is $a_0+\cfrac{1}{a_1+\cfrac{1}{a_2+\cfrac{1}{a_3+ \cdots \cfrac{1}{\ddots a_n}} }}$
+where $a_0 \in \mathbb{Z}$ \\and $a_1, \dots, a_n \in \mathbb{Z} >0$.\\[1em]
+
+We'll use the notation $[a_0, \dots, a_n] = a_0+\cfrac{1}{a_1+\cfrac{1}{a_2+\cfrac{1}{a_3+ \cdots \cfrac{1}{\ddots a_n}} }}$\\[1em]
+$ $\\
+\textbf{E.g.} $[1,2,3,2] = 1 + \cfrac{1}{2 + \cfrac{1}{3+ \cfrac{1}{2}}} = 1+\cfrac{1}{2+\cfrac{1}{7/2}} = 1 + \cfrac{1}{2 + \cfrac{2}{7}} = 1 + \cfrac{7}{16} = \cfrac{23}{16}$ 
+\\[1em]
+$ $ \\
+More generally if $\alpha \in \mathbb{R}$, $ \alpha > 0 $
+\begin{align*}
+	[a_0, \dots, a_n, \alpha] = a_0+\cfrac{1}{a_1+\cfrac{1}{a_2+\cfrac{1}{a_3+ \cdots \cfrac{1}{\ddots a_n + \cfrac{1}{\alpha}}} }}
+\end{align*}
+
+and as a consequence $[a_0, \dots, a_n] = [a_0,\dots, a_r, [a_{r+1},\dots, a_r]]$\\[1em]
+$ $\\
+\textbf{E.g} $[1,2,3,2]= [1,2,[3,2]] = [1,2,\frac{7}{2}] = [1, 2 + \frac{2}{7}] = [1, \frac{16}{7} ] = 1+ \frac{7}{16} = \frac{23}{16} $\\[1em]
+
+$ $\\
+Clearly every finite continued fraction is in $\mathbb{Q}$. Conversely if $frac{n}{m} \in \mathbb{Q}$, then we can write $\frac{n}{m}$ as a finite continued fraction.\\[1em]
+
+$ $ \\
+\textbf{E.g.} By Euclid's algorithm:
+
+\begin{align*}
+	89 &= 2*39+ 11 & 89/39 &= 2 + \frac{11}{39}\\[0.5em]
+	39 &= 3*11 + 6 & 39/11 &= 3 + \frac{6}{11}\\[0.5em]
+	11 &= 1*6 + 5 & 11/6 &= 1+\frac{5}{6} \\[0.5em]
+	6 &= 1*5+1 &  6/5 &= 1 + \frac{1}{5}\\[0.5em]
+	5 &= 1*5 + 0 & 5/1 &= 5 
+\end{align*}
+
+Therefore $\frac{89}{39} = 2+ \cfrac{1}{3+ \cfrac{1}{1+\cfrac{1}{1+\cfrac{1}{5}}}} = [2,3,1,1,5]$\\[1em]
+
+Now suppose we have a sequence $a_n \in \mathbb{Z}$ for all $n, a_1, a_2, \dots > 0$. For any $n$ we have a finite continued fraction $[a_0, \dots, a_n] = \cfrac{h_n}{k_n} \in \mathbb{Q}$\\[1em]
+We define $[a_0, a_1, \dots] = \displaystyle{\lim_{n \to \infty} } [a_0, \dots , a_n] = \displaystyle{\lim_{n \to \infty}} \frac{h_n}{k_n}$
+
+
+
+\begin{definition}
+	$[a_0, a_1, \dots ]$ is called an infinite continued fraction
+\end{definition}
+
+
+\begin{theorem}
+	For any sequence of integers $a_n > 0 $ for $n>0$, the limit $[a_0, \dots] $ exists. If $\alpha = [a_0,a_1,\dots] $ then $\Big| \alpha - \cfrac{h_n}{k_n}\Big| < \cfrac{1}{k_n^2}$ (will be proved later)
+\end{theorem}
+
+
+Sometimes we can calculate infinite continued fractions.\\[1em]
+
+$ $\\
+\textbf{E.g.} $\alpha = [1,2,1,2,1,2,1,2,\dots]$ Which real number is $\alpha$?
+
+\begin{align*}
+	\alpha &= [1,2,\alpha]\\
+	&= \Big[1,2 + \frac{1}{\alpha}\Big]\\
+	&= \Big[1, \cfrac{2\alpha+1}{\alpha}\Big]\\
+	&= 1 + \cfrac{\alpha}{2\alpha+1}\\
+	&= \cfrac{3\alpha + 1}{2\alpha + 1}
+\end{align*}
+\begin{align*}
+	2\alpha^2 + \alpha &= 3\alpha + 1\\
+	2\alpha^2 - 2\alpha - 1 &= 0\\[2em]
+	\alpha = \cfrac{1\pm \sqrt3}{2}
+\end{align*}
+Since $\alpha = 1 + \cfrac{2}{1+ \dots} > 1 $, $\alpha = \cfrac{1+\sqrt 3}{2}$.\\[1em]
+$ $\\
+Every infinite continued fraction converges to a real number. Conversely if $\alpha$ is an irrational real number, then we can write $\alpha$ as an infinite continued fraction.
+
+
+
+
+$ $ \\
+\textbf{Method: } We define a sequence $\alpha_n \in \mathbb{R} $, $ a_n \in \mathbb{Z} $ such that $\alpha_0 = \alpha $ and $a_n = \lfloor\alpha_n \rfloor$
+\begin{align*}
+	\alpha_{n+1} = \cfrac{1}{\alpha_n - a_n} > 1&& a_n>0
+\end{align*}
+
+From this definition:
+\begin{align*}
+	\alpha &= \alpha_0\\
+	&=a_0 + \cfrac{a_0}{\alpha_1}\\
+	&= a_0 + \cfrac{1}{a_1 + \cfrac{1}{\alpha_2}}\\
+	&= [a_0, a_1, a_2, \alpha_3] \text{ etc}
+\end{align*}
+
+Using this we can show that $\alpha = [a_0,a_1, \dots]$
+
+\textbf{E.g.} Write $\sqrt{2}$ as an infinite continued fraction
+
+
+
+
+\begin{align*}
+	\alpha_0 &= \sqrt2 &&&& a_0 =\lfloor \sqrt{2} \rfloor = 1\\
+	\alpha_1 &= \cfrac{1}{\alpha_0 - a_0 } &&&& a_1 = \lfloor \sqrt{2}  +1 \rfloor = 2\\
+	& = \cfrac{1}{\sqrt{2}-1}\\
+	& = \cfrac{\sqrt{2}+1}{(\sqrt{2}-1)(\sqrt{2}+1)}&\\[1em]
+	& = \cfrac{\sqrt{2}+1}{2-1}\\[1em]
+	& = \sqrt{2}+1
+\end{align*}
+
+\begin{align*}
+	\alpha_2 &= \cfrac{1}{\alpha_1- a_1} &&&&& a_2 = \lfloor \alpha_2 \rfloor = \lfloor \alpha_1 \rfloor  = 2\\
+&= \cfrac{1}{(\sqrt{2} +1 )-2 }\\
+	&= \cfrac{1}{\sqrt{2}-1}\\
+	&=\alpha_1
+\end{align*}
+
+\begin{align*}
+	\alpha_3 &= \cfrac{1}{\alpha_2-\alpha_2} &&&&&&&&& a_3= \lfloor a_1 \rfloor = 2\\
+	&= \cfrac{1}{\alpha_1-a_1}\\
+	&=\alpha_2
+\end{align*}
+
+So $\alpha_2=\alpha_3=\alpha_4=\dots = \cfrac{1}{\sqrt2 - 1} = \sqrt{2} +1$ and $a_3, a_4, a_5 = 2$
+\\[1em]
+
+Therefore $\sqrt{2} = [a_0,a_1,a_2, \dots ] = [1,2,2,2,\dots]$.
+
+$ $ \\
+
+Using this method we can write $\sqrt{d}$ for any $+ve$ $d$ as an infinite continued fraction.
+$ $\\[1em]
+Recall that an element in $\mathbb{Z}[\sqrt2]$ is a unit if its norm is $\pm 1$, i.e. elements $x+y\sqrt{2} $ where $x^2 - 2y^2 = \pm 1$ i.e. $\Big| \Big( \cfrac{x}{y} \Big)^2 -2 \hspace{2pt}\Big | = 1$ so $\cfrac{x}{y}$ is close to $\sqrt{2}$.
+
+$ $\\[1em]
+Let $\cfrac{h_n}{k_n} = \underbrace{[1,2,2,\dots, 2]}_{n \text{ terms}}$\\[1em]
+This is close to $\sqrt{2}$
+\begin{align*}
+	[1] &= 1/1 = 1 &&& 1^2-2*1^2 &= -1  \\
+	[1,2] &= 1 + 1/2 = 3/2 &&& 3^2 - 2*2^2 &=+ 1\\
+	[1,2,2] &= 7/5 &&& 7^2 - 2*5^2 &= -1\\
+	[1,2,2,2] &=17/12 &&& 17^2-2*12^2 &=+ 1
+\end{align*}
+
+
+$ $\\
+In this case when $\cfrac{h}{k} = [1,2,,\dots,2]$, we always have $h^2 - 2*k^2 = \pm 1$, so $h+k\sqrt{2} $ is a unit in $\mathbb{Z}[\sqrt{2}]$
+
+\subsection{Pell's equation and units in real quadratic rings}
+
+Let $d > 1$ be a square free integer. Pell's equation is $x^2 - dy^2=1 $. We'll see how to find the solutions $(x,y)$ in integers.\\[1em]
+Let $A = x+y\sqrt{d}$. Pell's equation $\leftrightarrow $ $N(A)=1$. Therefore $A$ is a unit in $\mathbb{Z}[\sqrt{d}]$ with norm 1. \\[1em]
+There are obvious solutions $x= \pm 1$, $ y= 0$. We'll call these the trivial solutions, these correspond to the units $A= \pm 1$
+
+\begin{theorem}
+For any $d$, there are non-trivial solutions
+\end{theorem}
+
+\begin{definition}
+	The smallest solution $(x,y)$ with $x,y >0$ is called the fundamental solution
+\end{definition}
+$ $\\
+\textbf{E.g.} $d = 2$ 
+
+$\hspace{10pt}x^2-2y^2 = 1$ and so $(x,y) = (3,2)$  is the fundamental solution\\[2em]
+$A^n$ is also a unit with norm $1$. This gives an infinite sequence of solutions to Pell's equations.\\[0.5em]
+$A^2 = (3+2\sqrt{2})^2 = 9+12\sqrt{2} + 8 = 17+12\sqrt{2}$\\
+$A^3 = (3+2\sqrt{2})(17+12\sqrt{2}) = 99 + 70\sqrt{2}$\\[1em]
+So $(17,12) $ and $(99,70)$ are also the solutions to $x^2 -2y^2 = 1$
+
+
+\begin{proposition}
+	If $(x,y)$ is the fundamental solution, then any other solution in positive integers will be $(x_n,y_n)$ where $(x_n + y_n \sqrt{d}) = (x+y\sqrt{d})^n$
+\end{proposition}
+
+
+\begin{proof}
+	Let $A = x+y\sqrt{d}$\\
 	
+	$A$ is the smallest unit with norm 1 such that $A>1$\\
+
+	Let $B$ be any unit in $\mathbb{Z}[\sqrt{d}] $ which is bigger than 1, and has norm 1. 
 	
+	Want to show $B= A^n $ for some $n$\\
+
+	$1<A<A^2<A^3<\dots \rightarrow \infty$\\
+	
+	There exists $n$ such that $A^n \leq B < A^{n+1}$ $\implies $ $ 1 \leq A^{-n}B < B$\\
+
+	$A^{-n}B$ is a unit with norm 1. By choice of $A$, $A^{-n}B=1$ and $B=A^n$ 
+\end{proof}
+
+Once we have the fundamental solution, we've solved the equation. Sometimes the fundamental solution is big so it's difficult to find, for example:\\
+
+$d=151 \implies x^2- 151 y^2 =1$\\
+
+Fundamental solution $x=1728148040$, $y=140634693$
+
+So we need a fast way of finding the fundamental solution.\\[1em]
+
+If $\alpha \in \mathbb{R} $ and $\alpha $ is irrational then it has an infinite continued fraction expansion.
+
+\begin{align*}
+	\alpha = [a_0,a_1,\dots] = \lim_{n \rightarrow \infty }  a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 +\dots \cfrac{1}{\ddots a_n}}} 
+\end{align*}
+The limit above converges to $\sqrt{d} $ and $[a_0,\dots,a_n]$.\\[1em]
+$ $\\
+Let $\cfrac{h_n}{k_n} = [a_0,\dots,a_n]$.
+
+
+\begin{definition}
+	The rational numbers $\cfrac{h_n}{k_n}$ are called \textbf{convergents} of $\alpha$
+\end{definition}
+
+
+\begin{theorem}
+	If $\cfrac{h}{k} \in \mathbb{Q} $ with $\bigg| \alpha - \cfrac{h}{k} \bigg| < \cfrac{1}{2k^2}$ then $\cfrac{h}{k}$ must be one of the convergents of $\alpha$
+\end{theorem}
+
+
+
+\begin{corollary}
+	If $(x,y)$ is a solution to Pell's equation $x^2 -dy^2 = 1$ for $x>y>0$, then $\cfrac{x}{y}$ is a convergent in the continued fraction of $\sqrt{d}$
+\end{corollary}
+
+
+
+
+\begin{proof} (Corollary)
+	\begin{align*}
+		x^2-dy^2 &=1\\
+	(x+y\sqrt{d})(x-y\sqrt{d})&=1\\
+	\end{align*}
+	\vspace{-30pt}
+	\begin{align*}
+		|x-y\sqrt{d}|&= \cfrac{1}{x+y\sqrt{d}} < \cfrac{1}{2y}\\
+		|\cfrac{x}{y} - \sqrt{d} | &< \cfrac{1}{2y^2}
+	\end{align*}
+
+	$\cfrac{x}{y} $ is a convergent.
+\end{proof}
+
+$ $\\[1em]
+\textbf{E.g.} $d=7 \implies x^2-7y^2 = 1$ \\
+
+To find the fundamental solution we find $\sqrt{7}$ as a continued fraction.
+
+
+\begin{align*}
+	\alpha_0 &= \sqrt{7} &&&& a_n=\lfloor \alpha_n \rfloor\\
+	\alpha_{n+1} &= \cfrac{1}{\alpha_n - a_n}\\[2em]
+	\alpha_1 &= \cfrac{1}{\sqrt{7}-2} = \cfrac{\sqrt{7} +2}{(\sqrt{7}-2)(\sqrt{7}+2)} = \cfrac{\sqrt{7}+2}{3} &&&& a_1 = 1\\
+	\alpha_2 &= \cfrac{1}{\cfrac{\sqrt{7} +2 }{3}-1} = \cfrac{3}{\sqrt{7}-1} = \cfrac{3(\sqrt{7}+1)}{(\sqrt{7}-1)(\sqrt{7}+1)} = \cfrac{\sqrt{7}+1}{2} &&&& a_2=1\\
+	\alpha_3 &= \cfrac{1}{\cfrac{\sqrt{7}+1}{2}-1} = \cfrac{2}{\sqrt{7}-1} = \cfrac{2(\sqrt{7}+1)}{6} = \cfrac{\sqrt{2}+1}{3} &&&& a_3=1 \\
+	\alpha_4 &= \cfrac{1}{\cfrac{\sqrt{7}+1}{3}-1} = \cfrac{3}{\sqrt{7} -2 } = \cfrac{3(\sqrt{7}+2)}{3} = \sqrt{7}+2 &&&& a_4=4\\
+	\alpha_5 &= \cfrac{1}{\sqrt{7} + 2 -4} = \cfrac{1}{\sqrt{7}-2} = \alpha_1 &&&& a_5 =1 
+\end{align*}
+\\[2em]
+So $\sqrt{7} = [2,1,1,1,4,1,1,1,4,\dots]$
+
+\begin{align*}
+	[2] &= 2/1 &&& 2^2-7*1^2&=-3\\
+	[2,1] &=3/1 &&& 3^2 - 7*1^2 &= 2 \\
+	[2,1,1] &=5/2 &&& 5^2 -7*2^2 &=-3\\
+	[2,1,1,1] &= 8/3 &&&  8^2 - 7*3^2 &= 1
+\end{align*}
+
+Therefore $(8,3)$ is fundamental solution.
+
+
+\begin{proposition}
+	If $(x,y)$ is any solution in integers to $x^2 - dy^2 = 1$, with $x>y>0$ then $\frac{x}{y} $ is a convergent.
+\end{proposition}
+
+$ $\\
+\textbf{E.g.} If $d=13$, find the fundamental solution to $x^2-13y^2 =1$
+\\
+
+We define sequences $\alpha_n, a_n $ by $\alpha_0 = \sqrt{d} $, $a_n = \lfloor \alpha_n \rfloor $, $ \alpha_{n+1} = \cfrac{1}{\alpha_n -a_n} = \cfrac{1}{\alpha_n-\lfloor \alpha_n \rfloor}$
+
+
+\begin{align*}
+	\alpha_0 &= \sqrt{13} &&&&& a_0 &= 3\\[2em]
+	\alpha_1 &= \cfrac{1}{\sqrt{13}-3} &&&&& a_1&=4\\[1em]
+	&= \cfrac{\sqrt{13}+3}{(\sqrt{13}+3)(\sqrt{13}-3)}\\[1em]
+	&=\cfrac{\sqrt{13}+3}{4} \\[2em]
+	\alpha_2 &= \cfrac{1}{\cfrac{\sqrt{13}+3}{4}-1}   &&&&& a_2 &= 1\\[1em]
+	&= \cfrac{4}{\sqrt{13}-1} \\[1em]
+	&=\cfrac{4(\sqrt{13}+1)}{(\sqrt{13}-1)(\sqrt{13}+1)} \\[1em]
+	&= \cfrac{4(\sqrt{13}+1)}{12} \\[1em]
+	&=\cfrac{\sqrt{13}+1}{3}  \\[2em]
+	\alpha_3 &= \cfrac{1}{\cfrac{\sqrt{13}+1}{3}-1} &&&&& a_3&=1\\[1em]
+	&= \cfrac{3}{\sqrt{13}-2} \\[1em]
+	&= \cfrac{3(\sqrt{13}+2)}{9} \\[1em]
+	&= \cfrac{\sqrt{13}+2}{3}
+\end{align*}
+\begin{align*}
+	\alpha_4 & = \cfrac{1}{\cfrac{\sqrt{13}+2}{3}-1} &&&&& a_4 &=1\\[1em]
+	& = \cfrac{3}{\sqrt{13}-1}\\[1em]
+	&= \cfrac{3(\sqrt{13}+1)}{12}\\[1em]
+	&= \cfrac{\sqrt{13}+1}{4}\\[2em]
+	\alpha_5 & = \cfrac{1}{\cfrac{\sqrt{13}+1}{4}-1} &&&&& a_5 &= 6\\[1em]
+	&= \cfrac{4}{\sqrt{13}-3} \\[1em]
+	&= \cfrac{4(\sqrt{13}+3)}{4}\\[1em]
+	&=  \sqrt{13}+3\\[2em]
+	\alpha_6 &= \cfrac{1}{\sqrt{13}-3} = \alpha_1\\[1em]
+	\alpha_7 &= \alpha_2 \hspace{7pt} etc
+\end{align*}
+$ $\\[1em]
+So $\sqrt{13} = [3,1,1,1,1,6,1,1,1,6,\dots] = [3,\overline{1,1,1,1,6}]$ 
+
+\begin{align*}
+	[3] &= 3/1 &&&&& 3^2-13*1^2&=-4\\
+	[3,1] &=4/1 &&&&& 4^2-13*1^2 &=+3\\
+	[3,1,1] &= 7/2 &&&&& 7^2 -13*2^2 &= -3\\
+	[3,1,1,1] &=11/3 &&&&& 11^2 -13*3^2 &=+4\\
+	[3,1,1,1,1] &= 18/5 &&&&& 18^2 -13*5^2 &=-1
+\end{align*}
+
+\begin{align*}
+	& N(18+5\sqrt{13})=-1 \\
+	\implies & N( (18+5\sqrt{13})^2) = 1\\[2em]
+\end{align*}
+\vspace{-5em}
+\begin{align*}
+	(18+5\sqrt{13})^2 &= 324+180\sqrt{13}+325\\
+	&= 649+180\sqrt{13}
+\end{align*}
+This means that $649^2-13*180^2 = 1$. If we find a unit of norm $-1$, before any unit of norm $+1$, then its square will be the fundamental solution. 
+$ $\\[1em]
+In general if $\sqrt{d} = [a_0,\overline{a_1,\dots,a_n,2a_0 }]$ and if $[a_0,\dots,a_n] = \cfrac{h_n}{k_n}$ \hspace{4pt}then $h_n^2-dk_n^2 = (-1)^{n+1}$
+
+
+
+
+\subsubsection{Convergence of continued fractions}
+
+
+Let $[a_0,a_1,\dots ]$ be a continuous fraction. Then $x_n = [a_0,\dots, a_n] $ is the $n^{th}$ convergent.\\
+
+Want a formula for numerator and denominator of $x_n$
+
+\begin{align*}
+	x_0 = \cfrac{a_0}{1} && x_1 = a_0 + \cfrac{1}{a_1}= \cfrac{a_1a_0+1}{a_1}
+\end{align*}
+
+Define sequences of integers $h_n,k_n$ by:
+
+\begin{align*}
+	h_0&=a_0 &&& k_0&=1\\
+	h_1&=a_1a_0 + 1 &&& k_1&=a_1\\
+	h_n &= a_n h_{n-1} + h_{n-2} &&& k_n&=a_nk_{n-1}+k_{n-2}
+\end{align*}
+
+
+
+\begin{lemma}
+	$x_n = \cfrac{h_n}{k_n}$
+\end{lemma}
+
+\begin{proof}
+By induction on $n$. True for $n=0,1$.
+	\begin{align*}
+		x_n &= [a_0,\dots,a_n]\\[0.5em]
+		&= \Bigg[a_0,\dots,a_{n-1}+\frac{1}{a_n} \Bigg ]\\[1em]
+		& = \frac{h_{n-1}}{k_{n-1}}
+	\end{align*}
+	\vspace{-0.5em}
+	By the inductive hypothesis:
+	\begin{align*}
+		h'_{n-1} = (a_{n-1} + \frac{1}{a_n})h_{n-2} + h_{n-3}\\
+		k'_{n-1} = (a_{n-1} + \frac{1}{a_n})k_{n-2} + k_{n-3}\\
+	\end{align*}
+This means that:
+
+	\begin{align*}
+		x_n &= \cfrac{(a_{n-1}+\cfrac{1}{a_n})h_{n-2} + h_{n-3} }{(a_{n-1}+\cfrac{1}{a_n})k_{n-2}+k_{n-3}}\\[1em]
+		&= \cfrac{a_n a_{n-1}h_{n-2} +h_{n-2} +a_nh_{n-3} }{a_n a_{n-1}k_{n-2} +k_{n-2} +a_nk_{n-3}} \\[1em]
+		&= \cfrac{a_n \overbrace{(a_{n-1}h_{n-2} + h_{n-3}) }^{h_{n-1}} +h_{n-2}}{a_n \underbrace{(a_{n-1}k_{n-2} + k_{n-3}) }_{k_{n-1}} +k_{n-2}}\\[1em]
+		x_n &= \cfrac{\overbrace{a_nh_{n-1}+h_{n-2}}^{h_n} }{\underbrace{a_nk_{n-1} + k_{n-2}}_{k_n}}
+	\end{align*}
+	Therefore $x_n = \cfrac{h_n}{k_n}$\\
+$ $\\
+	Since $k_0 = 1 >0 $, \hspace{7pt}$k_1 = a_1 > 0$, \hspace{7pt} $k_n= a_nk_{n-1} +k_{n-2} >k_{n-1}$, the denominators are an increasing sequence of positive integers. 
+
+\end{proof}
+
+
+\begin{lemma}
+	$h_n$ and $k_n$ are coprime and $h_{n+1}k_n - h_nk_{n+1} = (-1)^n$
+\end{lemma}
+
+\begin{proof}
+By induction on $n$. Check in cases $n=0,1$. Assume true for $n-1 > 1$ and prove for $n$.
+	\begin{align*}
+		h_{n+1}k_n-h_nk_{n+1} &= (\cancel{a_{n+1}h_n} + h_{n-1})k_n - h_n(\cancel{a_{n+1}k_n} + k_{n-1})\\
+		&= -(h_nk_{n-1} -h_{n-1}k_n\\
+		&= -(-1)^{n-1}\\
+		&= (-1)^n
+	\end{align*}
+\end{proof}
+
+\begin{theorem}
+	The continued fraction $[a_0, \dots]$ converges to a real number $\alpha$ and \\$\bigg | \alpha- \cfrac{h_n}{k_n} \bigg|< \cfrac{1}{k_n^2}$
+\end{theorem}
+
+\textbf{Alternating Series Test}
+Suppose $y_n$ is decreasing and $y_n \rightarrow 0$. Then $\sum_{n=1}^{\infty} (-1)^n y_n$ converges if $S = \sum^{\infty}_{n=1} (-1)^ny^{n}$ then $S$ is between $\sum^{N}_{n=1}(-1)^ny_n $ and $\sum^{N+1}_{n=1}(-1)^ny_n$
+
+
+\begin{proof}
+	Let $x_n = \cfrac{h_n}{k_n}$
+
+	\begin{align*}
+		x_{n+1}-x_n = \cfrac{h_{n+1}}{k_{n+1}} -\cfrac{h_n}{k_n} = \cfrac{h_{n+1}k_n-h_nk_{n+1}}{k_nk_{n+1}} = \cfrac{(-1)^n}{k_n{k_{n+1}}} 
+	\end{align*}
+	\begin{align*}
+		x_n &= x_0 + (x_1-x_0) + (x_2-x_1) + \dots + (x_n-x_{n-1})\\
+		&= x_0 + \cfrac{1}{k_0k_1} - \cfrac{1}{k_1k_2} + \cfrac{1}{k_2k_3} -\dots + \cfrac{-1}{k_{n-1}k_n}
+	\end{align*}
+
+	Therefore $x_n$ converges to some $\alpha \in \mathbb{R} $ by the alternating series test. Also $\alpha $ in between $x_n$ and $x_{n+1}$
+	\begin{align*}
+		|x_n-\alpha| < |x_n-x_{n+1}| \implies \cfrac{1}{k_nk_{n+1}} < \cfrac{1}{k_n^2}
+	\end{align*}
+\end{proof}
+
+
+Using the theorem we'll prove:
+
+\begin{theorem}
+For any square-free $d>1$, Pell's equation has non trivial solutions in integers. Equivalently, every real quadratic ring has non trivial units.
+\end{theorem}
+
+\begin{proof}
+	$\sqrt{d}$ has a continued fraction expansion. For any convergent $\cfrac{h}{k}$ we have
+
+	\begin{align*}
+		\bigg | \cfrac{h}{k} -\sqrt{d} \bigg | &< \cfrac{1}{k^2} \\
+		| h-k\sqrt{d}  | &< \cfrac{1}{k}\\
+		 | h^2 -k^2d | &=|h+k\sqrt{d} | * |h-k\sqrt{d}|\\
+		 &< \bigg| \cfrac{h}{k} + \sqrt{d} \bigg | < 2\sqrt{d}+1 
+	\end{align*}
+
+	This shows that for the convergents $\cfrac{h}{k} $ to $\sqrt{d}$, $h^2-dk^2$ takes only finitely many values. There exists $n$ which can be written as $h^2 - dk^2$ in infinitely many ways. The values of $h$ and $k$ mod $n$ have only finitely many possibilities but we have infinitely many pairs $(h,k)$ such that $h^2-dk^2=n$
+
+
+	Choose two solutions $(h,k)$,$(h',k')$ where $h=h' \hspace{7pt} (n) $ and $k=k'\hspace{7pt} (n) $.
+
+	$ $\\
+	Let $A= \cfrac{h+k\sqrt{d}}{h'+k'\sqrt{d}}$. Claim $A$ is a unit in $\mathbb{Z}[\sqrt{d}].$ $ $\\[1em]
+	Clearly $N(A) = \cfrac{N(h+k\sqrt{d})}{N(h'+k'\sqrt{d})} = \cfrac{n}{n} = 1$.
+	Remains to show that $A \in \mathbb{Z}[\sqrt{d}]$.
+	$ $\\[1em]
+	$A= \cfrac{h+k\sqrt{d}}{h'+k'\sqrt{d}}  = \cfrac{(h+k\sqrt{d})(h'-k'\sqrt{d})}{h'^2 -dk'^2 } = \cfrac{(hh'-dkk')+(kh'-hk')\sqrt{d}}{n}$\\[2em]
+	Recall $h=h'\hspace{7pt} (n) $ and $k=k'\hspace{7pt} (n) $. 
+	$ $\\[1em]
+	Therefore
+	\begin{align*}
+	hh'-dkk' = h^2-dk^2=n \equiv 0\hspace{7pt} (n)
+	\end{align*}
+	\vspace{-2em}
+	\begin{align*}
+		kh'-hk' \equiv kh -hk \equiv 0 \hspace{7pt} (n) 
+	\end{align*}
+	So $A \in \mathbb{Z}[\sqrt{d}]$ and $A$ is a unit with norm $1$ in $\mathbb{Z}[\sqrt{d}]$.
+\end{proof}
+
+\begin{theorem}
+	Let $\alpha \in \mathbb{R}$ be irrational. If $\cfrac{a}{b} \in \mathbb{Q} $ with $\bigg |\cfrac{a}{b} - \alpha \bigg| < \cfrac{1}{2b^2}$ then $\cfrac{a}{b}$ is a convergent of $\alpha$  
+\end{theorem}
+In order to solve this, we will state and prove the following lemma:
+
+\begin{lemma}
+	Let $\alpha$ be an irrational real number $\cfrac{h_n}{k_n}$ and the $n^{th}$ convergent of $\alpha$. If $\cfrac{a}{b}$ is any rational number with $b>0$ and $b<k_{n+1}$ and $\cfrac{a}{b}$ is not a convergent then $|a-b\alpha| > |h_n-k_n\alpha|$
+\end{lemma}
+
+\begin{proof}
+Consider these simultaneous equations:
+	\begin{align*}
+		h_nx+h_{n+1}y&=a\\
+		k_nx+k_{n+1}y&=b
+	\end{align*}
+	The matrix
+	$
+	\begin{pmatrix}
+		h_n & h_{n+1} \\ k_n & k_{n+1} 
+	\end{pmatrix}$
+	has determinant $\pm 1$ which means the solutions of $x,y$ are integers $x,y\neq 0$ because $\cfrac{a}{b} \neq \cfrac{h_n}{k_n}, \cfrac{h_{n+1}}{k_{n+1}}$. Plug $x=0$ or $y=0$ for a contradiction.\\[1em]
+	Also $x,y$ have opposite signs because $b<k_{n+1}$ and $\alpha $ is between $\cfrac{h_n}{k_n}$ and $\cfrac{h_{n+1}}{k_{n+1}}$. \\[1em]
+	Therefore $\cfrac{h_n}{k_n} - \alpha$ and $\cfrac{h_{n+1}}{k_{n+1}}-\alpha$ have opposite signs.\\[1em]
+	Therefore $h_n-k_n\alpha$ and $h_{n+1}-k_{n+1}$ have opposite signs.\\[1em]
+	Therefore $x(h_n-k_n\alpha)$ and $y(h_{n+1}-k_{n+1}\alpha)$ have the same sign.
+	\begin{align*}
+		| a-b\alpha| & = |(h_nx+h_{n+1}y)-(k_nx+k_{n+1}y)\alpha|\\
+		&=| x(h_n-k_n\alpha) + y(h_{n+1}-k_{n+1}\alpha)|\\
+		&=|x| * |h_n-k_n\alpha| + |y|*|h_{n+1}-k_{n+1}\alpha|\\
+		&> |h_n-k_n\alpha|
+	\end{align*}
+
+
+\end{proof}
+\begin{proof}
+	Assume $\cfrac{a}{b}$ is not a convergent to $\alpha$, choose an $a$ such that $k_n\leq b < k_{n+1}$. By the lemma $|h_n-k_n\alpha| < \underbrace{|a-b\alpha|}_{<\cfrac{1}{2b}} = |b| * \underbrace{\bigg|\cfrac{a}{b} - \alpha \bigg | }_{<\cfrac{1}{2b^2}}$
+	\\[1em]
+	This means that $\bigg| \cfrac{h_n}{k_n}-\alpha \bigg| < \cfrac{1}{2bk_n}$
+	\begin{align*}
+		\cfrac{a}{b} \neq \cfrac{h_n}{k_n} \implies \bigg| \cfrac{a}{b} -\cfrac{h_n}{k_n} \bigg | \geq \cfrac{1}{bk_n}\\[2em]
+	\end{align*}
+	\begin{align*}
+		\therefore \cfrac{1}{bk_n} \leq \bigg | \cfrac{a}{b} - \cfrac{h_n}{k_n} \bigg | = \bigg | \bigg(\cfrac{a}{b}-\alpha \bigg) + \bigg(a-\cfrac{h_n}{k_n} \bigg) \bigg|  \underbrace{<}_{\cfrac{1}{bk_n} < \cfrac{1}{bk_n} \text{\LARGE \lightning }} \cfrac{1}{2b^2} + \underbrace{\cfrac{1}{2bk_n}}_{\cfrac{1}{2bk_n} + \cfrac{1}{2bk_n} = \cfrac{1}{bk_n}}
+	\end{align*}
+	So $\cfrac{a}{b}$ must be a convergent.
+\end{proof}
 
 
 
@@ -2591,20 +3414,6 @@ Let $R = A-QB $ then $A=QB + R$
 
 
 
-
-
-
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	\end{document}
+\end{document}
  
 
